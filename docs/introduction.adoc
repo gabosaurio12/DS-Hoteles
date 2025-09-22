@@ -1,0 +1,7 @@
+
+== Introducción
+Actualmente cada hotel tiene una solución local de reservaciones, pero tiene el problema de generar inconsistencias, errores y dificulta el control centralizado.
+Este sistema busca globalizar todas las reservaciones con una plataforma centralizada que sea escalable y eficiente.
+
+== Oportunidad de Negocio
+Transformar la gestión de reservaciones de un costo operativo a un aventaja competitiva. Un sistema unificado permitirá implementar precios dinámicos y políticas d eocupación avanzadas, incrementando los ingresos y mejorando la satisfacción del cliente.
