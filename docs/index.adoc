@@ -22,6 +22,10 @@
 :warning-caption: Advertencia
 
 include::introduction.adoc[]
+include::glosary.adoc[]
+include::requirements.adoc[]
+include::asr.adoc[]
+
 include::stakeholders.adoc[]
 include::views/context.adoc[]
 include::views/functional.adoc[]

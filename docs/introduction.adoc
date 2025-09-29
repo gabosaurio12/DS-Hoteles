@@ -1,17 +1,12 @@
 
 == Introducción
-Actualmente cada hotel tiene una solución local de reservaciones, pero tiene el problema de generar inconsistencias, errores y dificulta el control centralizado.
 Este sistema busca globalizar todas las reservaciones con una plataforma centralizada que sea escalable, segura y con buen rendimiento.
 
-== Oportunidad de Negocio
-Transformar la gestión de reservaciones de un costo operativo a un aventaja competitiva. Un sistema unificado permitirá implementar precios dinámicos y políticas de ocupación avanzadas, incrementando los ingresos y mejorando la satisfacción del cliente.
+== Contexto y Alcance del sistema
+Qué se va a construir y hasta donde se va a construir
 
-== QA importantes
-- Seguridad (7) - Podría cambiar la Arq
-- Integridad (5) - Podría cambiar la Arq
-- Disponibilidad (4) - Podría cambiar la Arq
-- Rendimiento (4) - Podría cambiar la Arq
-- Interoperabilidad (3)
-- Escalabilidad (3)
-- Usabilidad (2)
-- Portabilidad (0)
+=== Visión de sistema
+=== Alcance
+=== Audiencia del documento
+
+== Planteamiento del problema
