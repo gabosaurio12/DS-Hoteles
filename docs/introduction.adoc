@@ -5,8 +5,46 @@ Este sistema busca globalizar todas las reservaciones con una plataforma central
 == Contexto y Alcance del sistema
 Qué se va a construir y hasta donde se va a construir
 
+<<<<<<< HEAD
 === Visión de sistema
 === Alcance
 === Audiencia del documento
 
 == Planteamiento del problema
+=======
+== QA importantes
+- Seguridad (7) - Podría cambiar la Arq
+- Integridad (5) - Podría cambiar la Arq
+- Disponibilidad (4) - Podría cambiar la Arq
+- Rendimiento (4) - Podría cambiar la Arq
+- Interoperabilidad (3)
+- Escalabilidad (3)
+- Usabilidad (2)
+- Portabilidad (0)
+
+= Escenario de Rendimiento - Software de Gestión de Hoteles
+
+== Fuente
+Un recepcionista del hotel
+
+== Estímulo
+Solicita la disponibilidad de habitaciones para una fecha específica durante temporada alta
+
+== Artefacto
+Módulo de reservas del sistema de gestión de la cadena hotelera
+
+== Entorno
+El sistema está en operación normal, con múltiples usuarios concurrentes realizando consultas y reservas (pico de carga en temporada alta)
+
+== Respuesta
+El sistema procesa la solicitud, accede a la base de datos centralizada de hoteles, recupera la información y muestra las habitaciones disponibles en pantalla
+
+== Medida
+* La respuesta debe generarse en *menos de 2 segundos* para consultas de disponibilidad
+* Confirmación de reserva en *menos de 5 segundos*
+* Soporta al menos *500 usuarios concurrentes* sin degradación perceptible del servicio
+
+== Evaluación
+* Importancia para el negocio: H
+* Dificultad técnica: M
+>>>>>>> e3fd20c83b4cca47b3c8887140b6cbd1d747c060
