@@ -1,7 +1,3 @@
 
 [[deployment-view]]
 == Vista de Despliegue
-
-La vista de despliegue nos ayudará a ...
-
-image::deployment.png[Context Diagram, width=600, align=center]

@@ -15,6 +15,8 @@ Transformar la gestión de reservaciones de un costo operativo a un aventaja com
 * Diagrama de contexto (Al menos nivel 2)
 ** Muestra el sistema, sus usuarios e interacciones con sistemas externos
 
+=== Diagramas de caso de uso
+
 === Descripciones de casos de uso
 
 * Son CU de análisis, no de diseño
@@ -36,7 +38,7 @@ Transformar la gestión de reservaciones de un costo operativo a un aventaja com
 *Disparador:* Huésped selecciona “Reservar” en el MenuPrincipalHuésped
 Precondiciones: N/A
 
-==== Flujo Normal
+*Flujo Normal*
 
 1.	El Sistema recupera de la base de datos las habitaciones y sus fechas disponibles (Ver EX01)
 2.	El Sistema abre ReservaHabitacionesHuésped mostrando los datos recuperados
@@ -49,15 +51,49 @@ Precondiciones: N/A
 9.	El Sistema cierra ReservaHabitacionesHuésped
 10.	Termina el caso de uso
 
-==== Flujos alternos
+*Flujos alternos*
 
-===== FA01 – Cancelar reservación
+*Excepciones*
 
-==== Excepciones
+*EX01 – Error al conectarse a la base de datos*
 
-===== EX01 – Error al conectarse a la base de datos
+*EX02 – Error al procesar el pago*
 
-===== EX02 – Error al procesar el pago
+*Postcondiciones:* El Huésped reservó una habitación y se guardó en la base de datos
+
+*Reglas de negocio:* N/A
+
+*Incluye:* N/A
+
+*Extiende:* N/A
+
+=== CU05 – Consultar reservaciones
+*ID:* CU02
+
+*Nombre:* Reservar una habitación
+
+*Descripción:* El Huésped puede cancelar la reserva de una habitación, con una comisión la cual dependerá de qué tan cerca estaba del check-in
+
+*Actor(es):* Huésped
+
+*Disparador:* Huésped selecciona “Cancelar” en el MenuReservas
+
+*Precondiciones:* El Huésped debe tener al menos una reserva activa
+
+*Flujo Normal*
+
+1.	El Sistema recupera de la base de datos la reserva que seleccionó el Huésped (Ver EX01)
+2.	El Sistema abre MenuConfirmacion mostrando los datos y solicitando confirmación
+
+*Flujos alternos*
+
+*FA01 – Cancelar reservación*
+
+*Excepciones*
+
+*EX01 – Error al conectarse a la base de datos*
+
+*EX02 – Error al procesar el pago*
 
 *Postcondiciones:* El Huésped reservó una habitación y se guardó en la base de datos
 

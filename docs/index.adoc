@@ -1,5 +1,8 @@
 
-= Descripción de la Arquitectura de Software para un Sistema de Reservaciones
+= Descripción de la Arquitectura de Software para un Sistema de Reservaciones de una cadena hotelera
+
+*Gabriel Antonio González López- Seth Márquez Rodríguez - Abel Yong - Cristian Rosas*
+
 :doctype: book
 :toc: left
 :sectnums:
@@ -21,12 +24,15 @@
 :tip-caption: Consejo
 :warning-caption: Advertencia
 
+include::version.adoc[]
 include::introduction.adoc[]
 include::glosary.adoc[]
-include::requirements.adoc[]
-include::asr.adoc[]
-
+include::problem.adoc[]
 include::stakeholders.adoc[]
+
+include::requirements.adoc[]
+include::qualities.adoc[]
+
 include::views/context.adoc[]
 include::views/functional.adoc[]
 include::views/information.adoc[]
@@ -34,6 +40,5 @@ include::views/concurrency.adoc[]
 include::views/deployment.adoc[]
 include::views/development.adoc[]
 include::views/operational.adoc[]
-include::qualities.adoc[]
 include::decisions.adoc[]
 include::appendix.adoc[]

@@ -1,3 +1,0 @@
-
-== Impulsores arquitectónicos (ASRs) y Priorización
-* Tabla o diagrama que represente el árbol.
