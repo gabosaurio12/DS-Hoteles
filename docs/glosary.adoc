@@ -1,7 +1,8 @@
 
 == Glosario
 
-=== Huésped
+*Huésped*
+
 Son los que contratan el servicio de una casa, departamento u hostal. Su experiencia engloba las interacciones entre el establecimiento y los clientes, esa experiencia comienza con el momento en el que comienzan a reservar su habitación.
 
 === Recepcionista
