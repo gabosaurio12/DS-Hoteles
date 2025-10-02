@@ -26,10 +26,7 @@
 
 include::version.adoc[]
 include::introduction.adoc[]
-include::glosary.adoc[]
-include::problem.adoc[]
 include::stakeholders.adoc[]
-
 include::requirements.adoc[]
 include::qualities.adoc[]
 

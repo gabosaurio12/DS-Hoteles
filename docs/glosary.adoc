@@ -1,25 +1,3 @@
 
 == Glosario
 
-*Huésped*
-
-Son los que contratan el servicio de una casa, departamento u hostal. Su experiencia engloba las interacciones entre el establecimiento y los clientes, esa experiencia comienza con el momento en el que comienzan a reservar su habitación.
-
-=== Recepcionista
-Dan la bienvenida a los huéspedes a su llegada al hotel, se encarga del registro de entradas y salidas, la entrega de llaves, la realización de reservas ya sea telefónica o por correo electrónico, la preparación de recibos y el cobro de facturas; también deben solucionar las quejas y problemas que los clientes tengan,
-
-=== Administrador
-Necesita tener conocimientos técnicos y habilidades blandas bien desarrolladas para sí poder tener una interacción efectiva con los huéspedes así como manejar un hotel para llevarlo al éxito.
-El administrador se encarga de asegurar el funciona◊miento sin interrupciones de todos los servicios del hotel, resuleve situaciones conflictivas, conoce las normas de los servicios hoteleros y del mantenimiento que requiere el hotel. Es el rostro del hotel.
-
-=== Auditor
-Supervisa las actividades financieras (revisión de los estados de resultados, informes de gastos y registros de transacciones para que se cumpla con los protocolos financieros), controles internos, gestión del cumplimiento (se mantienen informados sobre los cambios legislativos así como de las directrices y mejores prácticas para garantizar el cumpllimeinto de los requisitos legales y regulatorios. Análisis financiero, identifica tendencias, anomalías e indicadores de rendimiento, los auditores orientan a la gerencia, son fundamentales para la toma de decisiones y evaluación de riesgos.
-
-=== Auditor nocturno
-Se encarga de la gestión financiera, tareas administrativas como responder consultas de los huéspedes, procesar reservas y preparar la documentación para las operaciones del día siguiente. Lleva a cabo procedimientos de fin de jornada como finalizar transacciones e informes financieros del día.
-
-=== Habitación
-Es el cuarto dentro de un establecimiento hotelero destinado a ser alquilado como alojamiento privado para huéspedes, tiene servicios como cama, baño y comodidades privadas para poder descansar y pasar la noche.
-
-=== Sistema de pago
-Es un conjunto de instrumentos, procedimientos, infraestructuras tecnológicas y normativas que permiten la transferencia segura y eficiente de dinero entre compradores y vendedores para la realización de transacciones comerciales.
