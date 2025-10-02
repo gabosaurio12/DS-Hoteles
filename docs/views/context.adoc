@@ -12,7 +12,7 @@ image::context.png[Context Diagram, width=600, align=center]
 image::../images/huespeddfd.jpg[DFD Huesped, width=600, align=center]
 
 .Diagrama de flujo de datos de Recepcionista N1
-image::../images/huespeddfd.jpg[DFD Huesped, width=600, align=center]
+image::../images/recepcionistadfd1.jpg[DFD Huesped, width=600, align=center]
 
 .Diagrama de flujo de datos de Recepcionista N1
-image::../images/huespeddfd.jpg[DFD Huesped, width=600, align=center]
+image::../images/recepcionistadfd2.jpg[DFD Huesped, width=600, align=center]

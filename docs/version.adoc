@@ -14,4 +14,9 @@
 |Gabriel Antonio González López
 |Marcos generales para la entrega
 
+|0.0.2
+|30/09/2025
+|Gabriel Antonio González López
+|Redacción sobre visión y alcance
+
 |===
