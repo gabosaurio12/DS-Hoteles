@@ -10,90 +10,9 @@ Actualmente la cadena tiene una solución distinta por sucursal, este acercamien
 * Diagrama de contexto (Al menos nivel 2)
 ** Muestra el sistema, sus usuarios e interacciones con sistemas externos
 
-=== Diagramas de caso de uso
-
-=== Descripciones de casos de uso
-
 * Son CU de análisis, no de diseño
 ** Nombre
 ** Actores
 ** Pre/post condiciones
 ** Flujo normal
 ** Al menos un flujo alterno/excepción
-
-==== CU03 - Reservar estancia
-*ID:* CU03
-
-*Nombre:* Reservar una habitación
-
-*Descripción:* El Huésped reserva una habitación para hospedarse
-
-*Actor(es):* Huésped
-
-*Disparador:* Huésped selecciona “Reservar” en el MenuPrincipalHuésped
-Precondiciones: N/A
-
-*Flujo Normal*
-
-1.	El Sistema recupera de la base de datos las habitaciones y sus fechas disponibles (Ver EX01)
-2.	El Sistema abre ReservaHabitacionesHuésped mostrando los datos recuperados
-3.	El Huésped selecciona una habitación y la fecha que desea reservar
-4.	El Huésped reserva la habitación (ver FA01)
-5.	El Sistema abre PáginaPago solicitando los datos de pago del Huésped
-6.	El Huésped ingresa sus datos de pago y selecciona “Pagar”
-7.	El Sistema envía los datos al Sistema de cobros (Ver EX02)
-8.	El Sistema envía al Huésped su comprobante de pago y de reservación
-9.	El Sistema cierra ReservaHabitacionesHuésped
-10.	Termina el caso de uso
-
-*Flujos alternos*
-
-*Excepciones*
-
-*EX01 – Error al conectarse a la base de datos*
-
-*EX02 – Error al procesar el pago*
-
-*Postcondiciones:* El Huésped reservó una habitación y se guardó en la base de datos
-
-*Reglas de negocio:* N/A
-
-*Incluye:* N/A
-
-*Extiende:* N/A
-
-=== CU05 – Consultar reservaciones
-*ID:* CU02
-
-*Nombre:* Reservar una habitación
-
-*Descripción:* El Huésped puede cancelar la reserva de una habitación, con una comisión la cual dependerá de qué tan cerca estaba del check-in
-
-*Actor(es):* Huésped
-
-*Disparador:* Huésped selecciona “Cancelar” en el MenuReservas
-
-*Precondiciones:* El Huésped debe tener al menos una reserva activa
-
-*Flujo Normal*
-
-1.	El Sistema recupera de la base de datos la reserva que seleccionó el Huésped (Ver EX01)
-2.	El Sistema abre MenuConfirmacion mostrando los datos y solicitando confirmación
-
-*Flujos alternos*
-
-*FA01 – Cancelar reservación*
-
-*Excepciones*
-
-*EX01 – Error al conectarse a la base de datos*
-
-*EX02 – Error al procesar el pago*
-
-*Postcondiciones:* El Huésped reservó una habitación y se guardó en la base de datos
-
-*Reglas de negocio:* N/A
-
-*Incluye:* N/A
-
-*Extiende:* N/A

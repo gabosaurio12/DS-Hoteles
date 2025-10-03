@@ -1,0 +1,99 @@
+
+=== Diagramas de caso de uso
+
+=== Descripciones de caso de uso
+
+
+*CU01 - Buscar hotel* +
+*ID:* CU01 +
+*Nombre:* Buscar hotel +
+*Descripción:* El Huésped busca un hotel para solicitar una estancia +
+*Actor(es):* Huésped +
+*Disparador:* Huésped selecciona "Buscar hotel” +
+*Precondiciones:* N/A
+
+*Flujo Normal* +
+1. El _Huésped_ selecciona una ciudad, la fecha de check-in, check-out y cantidad de huéspedes +
+2. El _Sistema_ muestra los hoteles disponibles con las características solicitadas (ver FA01) (ver EX01) +
+3. El _Huésped_ puede solicitar reservar la estancia (Extiende CU03) +
+4. Termina el caso de uso
+
+*Flujos alternos* +
+
+*FA01 - Buscar otro hotel* +
+1. El _Huésped_ cambia alguno de los parámetros de búsqueda (ciudad, fecha de check-in, check-out y cantidad de huéspedes) +
+2. Regresa al flujo normal 2
+
+*Excepciones* +
+
+*EX01 – Error al conectarse a la base de datos* +
+1. El _Sistema_ informa al _Huésped_ que hubo un error al conectarse a la base de datos +
+2. Termina el caso de uso
+
+*Postcondiciones:* El _Huésped_ recibió los datos de un hotel +
+*Reglas de negocio:* N/A +
+*Incluye:* N/A +
+*Extiende:* CU03
+
+*CU03 - Reservar estancia* +
+*ID:* CU03 +
+*Nombre:* Reservar una habitación +
+*Descripción:* El Huésped reserva una habitación para hospedarse +
+*Actor(es):* Huésped +
+*Disparador:* Huésped selecciona “Reservar” +
+*Precondiciones:* Haber buscado un hotel o consultado la disponibilidad de una habitación
+
+*Flujo Normal* +
+1. El _Sistema_ muestra los datos de la habitación solicitada (Ver EX01) +
+2. El _Huésped_ selecciona "Reservar la habitación" (ver FA01)
+3. El _Sistema_ solicita los datos de pago al _Huésped_
+4. El _Huésped_ ingresa sus datos de pago y selecciona “Pagar”
+5. El _Sistema_ envía los datos al Sistema de cobros (Ver EX02)
+6. El _Sistema_ envía al _Huésped_ su comprobante de pago y de reservación
+7. Termina el caso de uso
+
+*Flujos alternos*
+
+*FA01 - Cancelar reserva* +
+1. El _Huésped_ selecciona "Cancelar"
+2. Termina el caso de uso
+
+*Excepciones*
+
+*EX01 – Error al conectarse a la base de datos* +
+1. El _Sistema_ informa al _Huésped_ que hubo un error al conectarse a la base de datos +
+2. Termina el caso de uso
+
+*EX02 – Error al procesar el pago*
+1. El _Sistema_ informa al _Huésped_ que hubo un error al realizar el cobro +
+2. Termina el caso de uso
+
+*Postcondiciones:* El Huésped reservó una habitación y recibió su comprobante +
+*Reglas de negocio:* N/A +
+*Incluye:* N/A +
+*Extiende:* N/A
+
+*CU05 – Consultar reservaciones* +
+*ID:* CU02 +
+*Nombre:* Reservar una habitación +
+*Descripción:* El Huésped puede cancelar la reserva de una habitación, con una comisión la cual dependerá de qué tan cerca estaba del check-in +
+*Actor(es):* Huésped +
+*Disparador:* Huésped selecciona “Cancelar” en el MenuReservas +
+*Precondiciones:* El Huésped debe tener al menos una reserva activa +
+
+*Flujo Normal* +
+1.	El Sistema recupera de la base de datos la reserva que seleccionó el Huésped (Ver EX01) +
+2.	El Sistema abre MenuConfirmacion mostrando los datos y solicitando confirmación
+
+*Flujos alternos*
+
+*FA01 – Cancelar reservación* +
+
+*Excepciones*
+
+*EX01 – Error al conectarse a la base de datos* +
+
+*Postcondiciones:* El Huésped reservó una habitación y se guardó en la base de datos +
+*Reglas de negocio:* N/A +
+*Incluye:* N/A +
+*Extiende:* N/A
