@@ -1,7 +1,5 @@
 
-= Descripción de la Arquitectura de Software para un Sistema de Reservaciones de una cadena hotelera
-
-*Gabriel Antonio González López- Seth Márquez Rodríguez - Abel Yong - Cristian Rosas*
+image::images/PortadaDocumento.jpg[Portada, align=center, width=800]
 
 :doctype: book
 :toc: left
