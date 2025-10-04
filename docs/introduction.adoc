@@ -1,23 +1,33 @@
 
-== Introducción
-Este sistema busca globalizar todas las reservaciones con una plataforma centralizada que sea escalable, segura y con buen rendimiento.
+= Introducción
 
-== Visión y Alcance del Sistema
+== Contexto y Alcance del Sistema
 
-Se construirá un sistema que se pueda utilizar en todos los hoteles de la cadena, este permitirá a los huéspedes solicitar reservar una estancia, cancelarla o editarla (?) asegurando la seguridad y privacidad de sus datos contra ataques de posibles adversarios.
-En cuanto a los recepcionistas, el sistema les permitirá registrar los *Check-in* y *Check-out*. En caso de que sea necesario un cambio de cuarto para un huésped el recepcionista podrá hacer el cambio y se verá reflejado en el sistema actualizando el estado de las habitaciones.
-Por otro lado, los administradores podrán consultar los estados de cuenta del hotel, agregar los costos de consumo del hotel y sus servicios de mantenimiento (así como solicitarlos).
-Por último el auditor podrá consultar la información contable del area de reservaciones del hotel, filtrando por días, semanas, meses y años.
+=== Contexto del Negocio
 
-== Audiencia del documento
+Actualmente cada hotel de la cadena utiliza su propia solución local para realizar el control de las reservaciones y estancias de la sucursal. Esta falta de estandarización es causa de inconsistencias y errores que impeden que la cadena se administre eficientemente. 
+
+=== Visión del Sistema
+
+Para los clientes, huéspedes, administración y equipos de operación de la cadena hotelera, quienes necesitan un sistema centralizado para gestión de inventario, reservaciones, estancias y servicios, que proporcione una experiencia fluida al cliente y sea fácil de utilizar por el personal, el Sistema de Reservaciones tiene como objetivo transformar el proceso de reservación y gestión de estancias de la cadena mediante una plataforma de reservación en linea con pago por adelantado, que ofrezca un servicio rápido, intuitivo, satisfactorio y seguro. Asi como un sistema de gestión de hoteles y estancias, que ofrezca un control de inventario de hoteles y habitaciones, registro de check-in y check-out, cambio de habitacion, cargo de servicios a la habitación y consumo del huésped, y configuración de politicas como tarifas de cancelación o cambio de reserva, por último, ofrecerá metricas de rendimiento y registro de reservas para asegurar la trazabilidad de cada transacción por parte de la auditoria.
+
+=== Alcance
+
+* Reservaciones: Reservación en linea con pago por adelantado.
+* Gestión de estancias: Check-in, Check-out, cambio de habitación, cargo de servicio a la habitación y consumo del huésped
+* Control de inventario: Hoteles y habitaciones, servicios y consumos.
+* Configuración de políticas del negocio: Cancelación y cambio de reserva.
+* Auditoria: Consulta de información contable del area de reservaciones del hotel.
+
+=== Audiencia del documento
 
 Este documento está dirigido para los desarrolladores del sistema de gestión de hoteles o cualquier persona interesada en el funcionamiento del sistema.
 
-== Glosario
+=== Glosario
 
 *Huésped:* Son los que contratan el servicio de una casa, departamento u hostal. Su experiencia engloba las interacciones entre el establecimiento y los clientes, esa experiencia comienza con el momento en el que comienzan a reservar su habitación.
 
-*Recepcionista:* Dan la bienvenida a los huéspedes a su llegada al hotel, se encarga del registro de entradas y salidas, la entrega de llaves, la realización de reservas ya sea telefónica o por correo electrónico, la preparación de recibos y el cobro de facturas; también deben solucionar las quejas y problemas que los clientes tengan,
+*Recepcionista:* Dan la bienvenida a los huéspedes a su llegada al hotel, se encarga del registro de entradas y salidas, la entrega de llaves, la realización de reservas ya sea telefónica o por correo electrónico, la preparación de recibos y el cobro de facturas; también deben solucionar las quejas y problemas que los clientes tengan.
 
 *Administrador:* Necesita tener conocimientos técnicos y habilidades blandas bien desarrolladas para sí poder tener una interacción efectiva con los huéspedes así como manejar un hotel para llevarlo al éxito.
 El administrador se encarga de asegurar el funcionamiento sin interrupciones de todos los servicios del hotel, resuelve situaciones conflictivas, conoce las normas de los servicios hoteleros y del mantenimiento que requiere el hotel. Es el rostro del hotel.
@@ -27,5 +37,7 @@ El administrador se encarga de asegurar el funcionamiento sin interrupciones de 
 *Auditor nocturno:* Se encarga de la gestión financiera, tareas administrativas como responder consultas de los huéspedes, procesar reservas y preparar la documentación para las operaciones del día siguiente. Lleva a cabo procedimientos de fin de jornada como finalizar transacciones e informes financieros del día.
 
 *Habitación:* Es el cuarto dentro de un establecimiento hotelero destinado a ser alquilado como alojamiento privado para huéspedes, tiene servicios como cama, baño y comodidades privadas para poder descansar y pasar la noche.
+
+*Reservacion:* Solicitud de alojamiento en un hotel de la cadena, implica la asignación de una o varias habitaciones durante un tiempo determinado por un precio anunciado, pagado con antelación.
 
 *Sistema de pago:* Es un conjunto de instrumentos, procedimientos, infraestructuras tecnológicas y normativas que permiten la transferencia segura y eficiente de dinero entre compradores y vendedores para la realización de transacciones comerciales.
