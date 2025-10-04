@@ -9,11 +9,3 @@ Actualmente la cadena tiene una solución distinta por sucursal, este acercamien
 * Identificar stakeholders y concerns, aprox 900-1350 palabras
 * Diagrama de contexto (Al menos nivel 2)
 ** Muestra el sistema, sus usuarios e interacciones con sistemas externos
-
-=== Descripciones de casos de uso
-* Son CU de análisis, no de diseño
-** Nombre
-** Actores
-** Pre/post condiciones
-** Flujo normal
-** Al menos un flujo alterno/excepción

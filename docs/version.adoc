@@ -19,4 +19,9 @@
 |Gabriel Antonio González López
 |Redacción sobre visión y alcance
 
+|0.0.3
+|03/10/2025
+|Gabriel Antonio González López
+|Redacción de Descripciones de caso de uso (CU01-CU12)
+
 |===
