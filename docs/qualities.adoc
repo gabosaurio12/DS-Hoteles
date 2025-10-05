@@ -1,16 +1,25 @@
 
 == Impulsores arquitectónicos (ASRs) y Priorización
 
-=== ASRs
+=== Atributos de Calidad Principales
 
-* Seguridad (7) - Podría cambiar la Arq
-* Integridad (5) - Podría cambiar la Arq
-* Disponibilidad (4) - Podría cambiar la Arq
-* Rendimiento (4) - Podría cambiar la Arq
-* Interoperabilidad (3)
-* Escalabilidad (3)
-* Usabilidad (2)
-* Portabilidad (0)
+A partir de los intereses pricipales de los interesados y la funcionalidad principal requerida del sistema, los siguientes atributos de calidad han sido determinados como los más importantes. A continuación se presentan las definiciones de atributos de calidad que serán tomadas como referencia para el proyecto. 
+
+*Seguridad* +
+Capacacidad de protección de la información y los datos de forma que personas o sistemas tengan el grado de acceso a los datos adecuado para sus tipos y niveles de autorización, y para defenderse de los patrones de ataque de agentes malintencionados. +
+- _ISO/IEC 25010_
+
+*Disponibilidad* +
+Propiedad del software para estar disponible y listo para realizar su tarea cuando se necesita, la capacidad para recuperarse tras una falla, y la capacidad del sistema para arreglar o enmascarar los defectos de tal forma aque no se manifiesten como una falla. +
+- _(Parafrasis) Software Architecture in Practice, L. Bass, P. Clements R. Kazman_
+
+*Rendimiento*
+Grado en el que un producto realiza sus funciones dentro de parámetros de tiempo y rendimiento especificados y hace uso eficiente de los recursos bajo condiciones especificas. +
+- _ISO/IEC 25010_
+
+*Usabilidad* +
+Grado en el que un sistema, producto o servicio puede ser usado por usuarios especificos para conseguir objetivos especificos con eficacia, eficiencia y satisfacción en un contexto de uso especificado. -_ISO 9241-11:2018_
+
 
 == Utility tree
 
