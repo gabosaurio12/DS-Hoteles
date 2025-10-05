@@ -20,5 +20,5 @@ Actualmente cada hotel de la cadena utiliza su propia solución local para reali
 * Estandarizar la gestión de estancias, permitiendo capacitar a los empleados más rápidamente, reducir la tasa de errores y facilitar la rotación y transferencia de personal.
 ** 90% de los recepcionistas novatos completan el check-in y el check-out por su cuenta al primer intento, después de solo 10 minutos de instrucción.
 * Centralizar la gestión de la cadena hotelera, facilitando el control de inventario, el cobro por servicios y consumos, la implementación de precios dinámicos, políticas de reservación y políticas de cancelación. 
-** Optimizar las operaciones diarias en más de *5,000* hoteles para más de *1,000,000 *de habitaciones.
+** Optimizar las operaciones diarias en más de *5,000* hoteles para más de *1,000,000* de habitaciones.
 ** Implementar y gestionar una politica de overbooking de 10% por tipo de habitación sin sobreventa accidental.

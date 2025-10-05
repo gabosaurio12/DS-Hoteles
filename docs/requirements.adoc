@@ -4,9 +4,6 @@
 include::problem.adoc[]
 
 === Alcance y propósito del diseño
-* Identificar stakeholders y concerns, aprox 900-1350 palabras
-* Diagrama de contexto (Al menos nivel 2)
-** Muestra el sistema, sus usuarios e interacciones con sistemas externos
 
 include::stakeholders.adoc[]
 
