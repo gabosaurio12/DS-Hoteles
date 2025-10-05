@@ -1,17 +1,17 @@
 
-= Introducción
+== Introducción
 
-== Contexto y Alcance del Sistema
+=== Contexto y Alcance del Sistema
 
-=== Contexto del Negocio
+==== Contexto del Negocio
 
 Actualmente cada hotel de la cadena utiliza su propia solución local para realizar el control de las reservaciones y estancias de la sucursal. Esta falta de estandarización es causa de inconsistencias y errores que impeden que la cadena se administre eficientemente. 
 
-=== Visión del Sistema
+==== Visión del Sistema
 
 Para los clientes, huéspedes, administración y equipos de operación de la cadena hotelera, quienes necesitan un sistema centralizado para gestión de inventario, reservaciones, estancias y servicios, que proporcione una experiencia fluida al cliente y sea fácil de utilizar por el personal, el Sistema de Reservaciones tiene como objetivo transformar el proceso de reservación y gestión de estancias de la cadena mediante una plataforma de reservación en linea con pago por adelantado, que ofrezca un servicio rápido, intuitivo, satisfactorio y seguro. Asi como un sistema de gestión de hoteles y estancias, que ofrezca un control de inventario de hoteles y habitaciones, registro de check-in y check-out, cambio de habitacion, cargo de servicios a la habitación y consumo del huésped, y configuración de politicas como tarifas de cancelación o cambio de reserva, por último, ofrecerá metricas de rendimiento y registro de reservas para asegurar la trazabilidad de cada transacción por parte de la auditoria.
 
-=== Alcance
+==== Alcance
 
 * Reservaciones: Reservación en linea con pago por adelantado.
 * Gestión de estancias: Check-in, Check-out, cambio de habitación, cargo de servicio a la habitación y consumo del huésped
@@ -19,11 +19,11 @@ Para los clientes, huéspedes, administración y equipos de operación de la cad
 * Configuración de políticas del negocio: Cancelación y cambio de reserva.
 * Auditoria: Consulta de información contable del area de reservaciones del hotel.
 
-=== Audiencia del documento
+==== Audiencia del documento
 
 Este documento está dirigido para los desarrolladores del sistema de gestión de hoteles o cualquier persona interesada en el funcionamiento del sistema.
 
-=== Glosario
+==== Glosario
 
 *Huésped:* Son los que contratan el servicio de una casa, departamento u hostal. Su experiencia engloba las interacciones entre el establecimiento y los clientes, esa experiencia comienza con el momento en el que comienzan a reservar su habitación.
 

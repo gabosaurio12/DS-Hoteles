@@ -1,2 +1,12 @@
 
-== Planteamiento del problema
+=== Planteamiento del problema (Aprox 450 palabras)
+
+==== Situación actual
+
+Actualmente la cadena tiene una solución distinta por sucursal, este acercamiento provoca *inconsistencias, errores y dificulta tener un control centralizado*. El proyecto busca reemplazar esa solución por una que sea *centralizada* y con soporte al *crecimiento constante* el cuál deberá tener un rendimiento optimizado. Deberá soportar operaciones diarias en más de *5,000 operacciones y 1,000,000* de habitaciones. Con una solución generalizada se podrían implementar precios dinámicos y políticas de ocupacíon avanzadas, incrementando los ingresos y mejorando la satisfacción del cliente.
+
+==== Problema de Negocio
+
+
+==== Oportunidad de Negocio
+

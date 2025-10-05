@@ -24,7 +24,6 @@ image::images/PortadaDocumento.jpg[Portada, align=center, width=800]
 
 include::version.adoc[]
 include::introduction.adoc[]
-include::stakeholders.adoc[]
 include::requirements.adoc[]
 include::usecases.adoc[]
 include::qualities.adoc[]
