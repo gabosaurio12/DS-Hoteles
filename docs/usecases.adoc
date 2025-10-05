@@ -502,13 +502,13 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 *ID:* 16 +
 *Nombre:* Registrar habitacion +
 *Actores:* Administrador de la cadena (Admin)+
-*Descripción:* El _Admin_ registra una nueva habitacion a un hotel +
+*Descripción:* El _AdminHotel_ registra una nueva habitacion a un hotel +
 *Precondiciones:* Debe existir por lo menos 1 hotel en el sistema, debe estarse en la ventana de configuracion de hotel.
 
 *Flujo normal* +
-1. El _Admin_ da click en agregar habitaicon (ver FA02)+
+1. El _AdminHotel_ da click en agregar habitaicon (ver FA02)+
 2. El _Sistema_ solicita los datos de habitacion +
-3. El _Admin_ Ingresa los datos y confirma la habitacion (Ver FA02)(ver FA01) +
+3. El _AdminHotel_ Ingresa los datos y confirma la habitacion (Ver FA02)(ver FA01) +
 4. El _Sistema_ Valida los datos y registra la habitacion en la vase de datos(ver FA03)(ver EX01).
 
 *Flujos alternos* +
@@ -517,7 +517,7 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 2. Regresa al flujo normal 3.
 
 *FAO2 - Cancelar crear habitacion* + 
-1. El _Admin_ cancela la accion de crear habitacion +
+1. El _AdminHotel_ cancela la accion de crear habitacion +
 2. Termina el CU.
 
 
@@ -527,7 +527,7 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 
 *Excepciones * +
 *EX01 – Error al conectarse a la base de datos* +
-1. El _Sistema_ informa al _Admin_ que hubo un error al conectarse a la base de datos.+
+1. El _Sistema_ informa al _AdminHotel_ que hubo un error al conectarse a la base de datos.+
 2. Termina el caso de uso +
 
 *Postcondiciones:* La habitacion queda registrada en el hotel. +
@@ -537,6 +537,121 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 
 ---
 
+*CU17 - Actualizar habitación* +
+*ID:* CU17 +
+*Nombre:* Actualizar habitación +
+*Actores:* AdminHotel +
+*Descripción:* El _AdminHotel_ actualiza los datos de una habitación existente en el sistema. +
+*Precondiciones:* Debe existir al menos una habitación registrada en el hotel.
+
+*Flujo normal* +
+1. El _AdminHotel_ accede al módulo de administración de habitaciones. +
+2. El _Sistema_ muestra la lista de habitaciones del hotel (ver EX01). +
+3. El _AdminHotel_ selecciona la habitación que desea modificar (ver FA01). +
+4. El _Sistema_ muestra los datos actuales de la habitación seleccionada. +
+5. El _AdminHotel_ edita los datos necesarios y confirma la actualización (ver FA02). +
+6. El _Sistema_ valida los datos y actualiza la información en la base de datos (ver EX02). +
+7. El _Sistema_ confirma que la actualización fue realizada con éxito. +
+8. Termina el caso de uso +
+
+*Flujos alternos* +
+
+*FA01 - No se selecciona habitación* +
+1. El _AdminHotel_ no selecciona ninguna habitación. +
+2. El _Sistema_ muestra un mensaje solicitando la selección de una habitación. +
+3. Regresa al flujo normal 2 +
+
+*FA02 - Cancelar actualización* +
+1. El _AdminHotel_ cancela la acción de actualización. +
+2. Termina el caso de uso +
+
+*Excepciones* +
+
+*EX01 – Error al conectarse a la base de datos* +
+1. El _Sistema_ informa al _AdminHotel_ que hubo un error al conectarse a la base de datos. +
+2. Termina el caso de uso +
+
+*EX02 – Error al guardar los cambios* +
+1. El _Sistema_ informa al _AdminHotel_ que no se pudieron guardar los cambios realizados. +
+2. Termina el caso de uso +
+
+*Postcondiciones:* La información de la habitación se actualiza correctamente en la base de datos. +
+*Reglas de negocio:* Los identificadores de las habitaciones no pueden modificarse. +
+*Incluye:* N/A +
+*Extiende:* N/A +
+
+---
+
+*CU18 - Eliminar habitación* +
+*ID:* CU18 +
+*Nombre:* Eliminar habitación +
+*Actores:* AdminHotel +
+*Descripción:* El _AdminHotel_ elimina del sistema una habitación registrada en el hotel. +
+*Precondiciones:* Debe existir al menos una habitación registrada en el hotel.
+
+*Flujo normal* +
+1. El _AdminHotel_ accede al módulo de administración de habitaciones. +
+2. El _Sistema_ muestra la lista de habitaciones disponibles (ver EX01). +
+3. El _AdminHotel_ selecciona la habitación que desea eliminar (ver FA01). +
+4. El _Sistema_ muestra los datos de la habitación seleccionada y solicita confirmación. +
+5. El _AdminHotel_ confirma la eliminación. +
+6. El _Sistema_ elimina la habitación de la base de datos (ver EX02). +
+7. El _Sistema_ muestra un mensaje indicando que la habitación fue eliminada con éxito. +
+8. Termina el caso de uso +
+
+*Flujos alternos* +
+
+*FA01 - Cancelar eliminación* +
+1. El _AdminHotel_ cancela la acción de eliminación. +
+2. Termina el caso de uso +
+
+*Excepciones* +
+
+*EX01 – Error al conectarse a la base de datos* +
+1. El _Sistema_ informa al _AdminHotel_ que hubo un error al conectarse a la base de datos. +
+2. Termina el caso de uso +
+
+*EX02 – Error al eliminar la habitación* +
+1. El _Sistema_ informa al _AdminHotel_ que ocurrió un error al intentar eliminar la habitación. +
+2. Termina el caso de uso +
+
+*Postcondiciones:* La habitación seleccionada es eliminada del sistema. +
+*Reglas de negocio:* No se podrá eliminar una habitación que tenga una reserva activa o pendiente. +
+*Incluye:* N/A +
+*Extiende:* N/A +
+
+---
+
+*CU19 - Consultar habitaciones* +
+*ID:* CU19 +
+*Nombre:* Consultar habitaciones +
+*Actores:* AdminHotel +
+*Descripción:* El _AdminHotel_ consulta la lista de habitaciones registradas en su hotel y puede visualizar sus detalles. +
+*Precondiciones:* Debe existir al menos una habitación registrada en el hotel.
+
+*Flujo normal* +
+1. El _AdminHotel_ accede a la sección de consulta de habitaciones. +
+2. El _Sistema_ muestra la lista completa de habitaciones registradas (ver EX01). +
+3. El _AdminHotel_ selecciona una habitación para ver su información detallada. +
+4. El _Sistema_ despliega los datos de la habitación seleccionada. +
+5. Termina el caso de uso +
+
+*Flujos alternos* +
+
+*FA01 - No hay habitaciones registradas* +
+1. El _Sistema_ informa al _AdminHotel_ que no existen habitaciones registradas en el hotel. +
+2. Termina el caso de uso +
+
+*Excepciones* +
+
+*EX01 – Error al conectarse a la base de datos* +
+1. El _Sistema_ informa al _AdminHotel_ que hubo un error al conectarse a la base de datos. +
+2. Termina el caso de uso +
+
+*Postcondiciones:* Se visualizan los detalles de las habitaciones registradas. +
+*Reglas de negocio:* N/A +
+*Incluye:* N/A +
+*Extiende:* N/A +
 
 ---
 
