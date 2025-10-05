@@ -525,7 +525,7 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 1. El _Sistema_ muestra un mensaje que indica que el numero de habitacion que desea ingresarse ya existe.
 2. Regresa al flujo normal 3
 
-*Excepciones * +
+*Excepciones* +
 *EX01 – Error al conectarse a la base de datos* +
 1. El _Sistema_ informa al _AdminHotel_ que hubo un error al conectarse a la base de datos.+
 2. Termina el caso de uso +
@@ -550,7 +550,7 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 3. El _AdminHotel_ selecciona la habitación que desea modificar (ver FA01). +
 4. El _Sistema_ muestra los datos actuales de la habitación seleccionada. +
 5. El _AdminHotel_ edita los datos necesarios y confirma la actualización (ver FA02). +
-6. El _Sistema_ valida los datos y actualiza la información en la base de datos (ver EX02). +
+6. El _Sistema_ valida los datos y actualiza la información en la base de datos (ver EX01). +
 7. El _Sistema_ confirma que la actualización fue realizada con éxito. +
 8. Termina el caso de uso +
 
@@ -571,9 +571,6 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 1. El _Sistema_ informa al _AdminHotel_ que hubo un error al conectarse a la base de datos. +
 2. Termina el caso de uso +
 
-*EX02 – Error al guardar los cambios* +
-1. El _Sistema_ informa al _AdminHotel_ que no se pudieron guardar los cambios realizados. +
-2. Termina el caso de uso +
 
 *Postcondiciones:* La información de la habitación se actualiza correctamente en la base de datos. +
 *Reglas de negocio:* Los identificadores de las habitaciones no pueden modificarse. +
@@ -595,7 +592,7 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 3. El _AdminHotel_ selecciona la habitación que desea eliminar (ver FA01). +
 4. El _Sistema_ muestra los datos de la habitación seleccionada y solicita confirmación. +
 5. El _AdminHotel_ confirma la eliminación. +
-6. El _Sistema_ elimina la habitación de la base de datos (ver EX02). +
+6. El _Sistema_ elimina la habitación de la base de datos(ver EX01). +
 7. El _Sistema_ muestra un mensaje indicando que la habitación fue eliminada con éxito. +
 8. Termina el caso de uso +
 
@@ -611,9 +608,6 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 1. El _Sistema_ informa al _AdminHotel_ que hubo un error al conectarse a la base de datos. +
 2. Termina el caso de uso +
 
-*EX02 – Error al eliminar la habitación* +
-1. El _Sistema_ informa al _AdminHotel_ que ocurrió un error al intentar eliminar la habitación. +
-2. Termina el caso de uso +
 
 *Postcondiciones:* La habitación seleccionada es eliminada del sistema. +
 *Reglas de negocio:* No se podrá eliminar una habitación que tenga una reserva activa o pendiente. +
@@ -652,9 +646,180 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 *Reglas de negocio:* N/A +
 *Incluye:* N/A +
 *Extiende:* N/A +
+---
+*CU20 - Registrar categoria de servicio a la habitacion* +
+*ID:* CU20 +
+*Nombre:* Registrar categoría de servicio a la habitación +
+*Actores:* Administración del hotel (AdminHotel) +
+*Descripción:* El _AdminHotel_ registra una nueva categoría de servicio a la habitación en el sistema. +
+*Precondiciones:* EDebe existir almenos un hotel en el sistema.
+
+*Flujo normal* +
+1. El _AdminHotel_ selecciona la opción para crear una nueva categoría de servicio a la habitación. +
+2. El _Sistema_ solicita los datos de la nueva categoría. +
+3. El _AdminHotel_ ingresa la información y confirma. +
+4. El _Sistema_ valida la informacion(ver FA01)(ver FA02). +
+5. El _Sistema_ guarda la nueva categoría.(ver EX01) +
+6. El _Sistema_ notifica al _AdminHotel_ que el registro fue exitoso. +
+7. Termina el caso de uso. 
+
+
+*Flujos alternos* +
+*FA01 - Datos invalidos o incompletos* +
+1. EL _Sistema_ notifica que indica que hay datos erroneamente ingresados +
+2. Regresa al flujo normal 3.
+
+*FA02 - Nombre de categoría duplicado* +
+1. El _Sistema_ detecta que el nombre de la categoría ya existe. +
+2. El _Sistema_ informa del error al _AdminHotel_ y solicita un nombre diferente. +
+3. Regresa al flujo normal 3. 
+
+*Excepciones* +
+*EX01 – Error al conectarse a la base de datos* +
+1. El _Sistema_ informa al _AdminHotel_ que hubo un error al conectarse a la base de datos. +
+2. Termina el caso de uso. 
+
+*Postcondiciones:* Se crea una nueva categoría de servicio a la habitación en el sistema. +
+*Reglas de negocio:* El nombre de cada categoría de servicio debe ser único. +
+*Incluye:* N/A +
+*Extiende:* N/A 
 
 ---
+*CU21 - Actualizar categoria de servicio a la habitacion* +
+*ID:* CU21 +
+*Nombre:* Actualizar categoría de servicio a la habitación +
+*Actores:* Administración del hotel (AdminHotel) +
+*Descripción:* El _AdminHotel_ actualiza la información de una categoría de servicio a la habitación existente. +
+*Precondiciones:* Debe existir por lo menos una categoria de servicio. +
 
+*Flujo normal* +
+1. El _AdminHotel_ selecciona la categoría de servicio a modificar. +
+2. El _Sistema_ muestra los datos de categoria. +
+3. El _AdminHotel_ actualiza la información y confirma los cambios. +
+4. El _Sistema_ valida los nuevos datos (ver FA01)(ver FA02). +
+5. El _Sistema_ guarda las modificaciones.(ver EX01) +
+6. El _Sistema_ notifica al _AdminHotel_ el éxito de la operación. +
+7. Termina el caso de uso. +
+
+*Flujos alternos* +
+*FA01 - No existen categorías* +
+1. El _Sistema_ no encuentra categorías de servicio registradas. +
+2. El _Sistema_ informa al _AdminHotel_ que el catálogo está vacío. +
+3. Termina el caso de uso. +
+
+*FA02 - Nombre de categoría duplicado* +
+1. El _Sistema_ detecta que el nombre de la categoría ya existe. +
+2. El _Sistema_ informa del error al _AdminHotel_ y solicita un nombre diferente. +
+3. Regresa al flujo normal 3. 
+
+*Excepciones* +
+*EX01 – Error al conectarse a la base de datos* +
+1. El _Sistema_ informa al _AdminHotel_ que hubo un error al conectarse a la base de datos. +
+2. Termina el caso de uso. +
+
+*Postcondiciones:* La información de la categoría de servicio a la habitación es actualizada. +
+*Reglas de negocio:* N/A +
+*Incluye:* N/A +
+*Extiende:* N/A +
+---
+*CU22 - Eliminar categoría de servicio a la habitación* +
+*ID:* CU22 +
+*Nombre:* Eliminar categoría de servicio a la habitación +
+*Actores:* Administración del hotel (AdminHotel) +
+*Descripción:* El _AdminHotel_ elimina una categoría de servicio a la habitación del catálogo. +
+*Precondiciones:* Debe existir por lo menos una categoria de servicio. +
+
+*Flujo normal* +
+1. El _AdminHotel_ selecciona la categoría de servicio que desea eliminar. +
+2. El_Sisetema_ pide una confirmacion para la operacion.4
+4. El _AdminHotel_ confirma la elimincacion(ver FA01)
+3. El _Sistema_ valida que la categoría no tenga un historial de uso (ver EX01). +
+4. El _Sistema_ elimina la categoría del catálogo(ver EX01). +
+5. El _Sistema_ confirma la eliminación al _AdminHotel_. +
+6. Termina el caso de uso. +
+
+*Flujos alternos* +
+*FA01 - Cancelar operación* +
+1. El _AdminHotel_ cancela la operación antes de confirmar en el paso 3. +
+2. El _Sistema_ descarta los cambios y termina el caso de uso. +
+
+*Excepciones* +
+*EX01 - La categoría tiene un historial de uso* +
+1. El _Sistema_ detecta que la categoría ha sido usada en servicios asignados a habitaciones. +
+2. El _Sistema_ bloquea la eliminación y notifica al _AdminHotel_ que la acción no es posible. +
+3. Termina el caso de uso. +
+
+*EX02 – Error al conectarse a la base de datos* +
+1. El _Sistema_ informa al _AdminHotel_ que hubo un error al conectarse a la base de datos. +
+2. Termina el caso de uso. +
+
+*Postcondiciones:* La categoría de servicio es eliminada del sistema. +
+*Reglas de negocio:* No se puede eliminar una categoría de servicio que ya haya sido utilizada en registros históricos. +
+*Incluye:* N/A +
+*Extiende:* N/A +
+---
+
+*CU23- consultar categorías de servicio a la habitación* +
+*ID:* CU23 +
+*Nombre:* Consultar categorías de servicio a la habitación +
+*Actores:* Administración del hotel (AdminHotel) +
+*Descripción:* El _AdminHotel_ consulta la lista de todas las categorías de servicio a la habitación disponibles. +
+*Precondiciones:* Debe existir por lo menos una categoria de servicio en el sistema. +
+
+*Flujo normal* +
+1. El _AdminHotel_ inicia la función para consultar las categorías de servicio a la habitación. +
+2. El _Sistema_ muestra una lista con todas las categorías registradas (ver FA01)(ver EX01). +
+3. Termina el caso de uso. +
+
+*Flujos alternos* +
+*FA01 - No existen categorías* +
+1. El _Sistema_ no encuentra categorías de servicio registradas. +
+2. El _Sistema_ informa al _AdminHotel_ que el catálogo está vacío. +
+3. Termina el caso de uso. +
+
+*Excepciones* +
+*EX01 – Error al conectarse a la base de datos* +
+1. El _Sistema_ informa al _AdminHotel_ que hubo un error al conectarse a la base de datos. +
+2. Termina el caso de uso. +
+
+*Postcondiciones:* El _AdminHotel_ visualiza la lista de categorías de servicio a la habitación. +
+*Reglas de negocio:* N/A +
+*Incluye:* N/A +
+*Extiende:* N/A +
+
+--- 
+*CU24- consultar categorías de servicio a la habitación* +
+*ID:* CU24 +
+*Nombre:* Asignar categoría de servicio a la habitación +
+*Actores:* Administración del hotel (AdminHotel) +
+*Descripción:* El _AdminHotel_ asigna una categoría de servicio disponible a una habitación específica. +
+*Precondiciones:* Deben existir habitaciones registradas con categoria y categorías de servicio disponibles. +
+
+*Flujo normal* +
+1. El _AdminHotel_ selecciona la categoria de habitación a la que desea asignar un servicio. +
+2. El _Sistema_ muestra la lista de categorías de servicio disponibles.(ver EX01) +
+3. El _AdminHotel_ selecciona una categoría de servicio y confirma la asignación.(ver FA01) +
+4. El _Sistema_ guarda la relación entre la habitación y la categoría de servicio.(ver EX01)  +
+5. El _Sistema_ notifica al _AdminHotel_ que la asignación fue exitosa. +
+6. Termina el caso de uso. +
+
+*Flujos alternos* +
+
+*FA01 - Cancelar operación* +
+1. El _AdminHotel_ cancela la operación. +
+2. Regresa al flujo normal 2 +
+
+*Excepciones* +
+*EX01 – Error al conectarse a la base de datos* +
+1. El _Sistema_ informa al _AdminHotel_ que hubo un error al conectarse a la base de datos. +
+2. Termina el caso de uso. +
+
+*Postcondiciones:* La categoría de servicio seleccionada queda asociada a la habitación. +
+*Reglas de negocio:* Una habitación puede tener múltiples categorías de servicio asignadas. +
+*Incluye:* N/A +
+*Extiende:* N/A +
+
+---
 *CU25 - Retirar categoría de servicio a la habitación* +
 *ID:* CU25 +
 *Nombre:* Retirar categoría de servicio a la habitación +
