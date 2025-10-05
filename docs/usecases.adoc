@@ -65,7 +65,6 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 2. Regresa al flujo normal 2
 
 *Excepciones*
-
 *EX01 – Error al conectarse a la base de datos* +
 1. El _Sistema_ informa al _Huésped_ que hubo un error al conectarse a la base de datos +
 2. Termina el caso de uso
@@ -247,10 +246,9 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 *Flujos alternos*
 
 *Excepciones* +
-
 *EX01 – Error al conectarse a la base de datos* +
 1. El _Sistema_ informa al _Recepcionista_ que hubo un error al conectarse a la base de datos +
-2. Termina el caso de uso
+2. Termina el caso de uso.
 
 *EX02 – Error al procesar el pago* +
 1. El _Sistema_ informa al _Recepcionista_ que hubo un error al realizar el cobro +
