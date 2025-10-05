@@ -1,0 +1,36 @@
+
+==== Interesados
+
+*Huésped* +
+Cliente de la cadena, su interés es encontrar alojamiento de forma fácil, conveniente y satisfactoria, pagar con seguridad y poder hacer modificaciones a su reservación o estancia, tales como extenderla o cancelarla.
+
+*Personal de Recepción* +
+Son los encargados de recibir y atender las necesidades de los huéspedes en cuanto llegan al hotel. El sistema deberá apoyarlos a realizar las tareas de gestión de estancia y servicio al cliente con eficiencia y eficacia.
+
+*Administración de la Cadena* +
+Administradores del negocio, su interés es llevar un control del inventario a alto nivel, así como controlar los precios, tarifas y las políticas de la cadena. 
+
+*Administración del hotel*
+Administradores de la sucursal, se encargan de llevar el control del inventario del hotel (habitaciones, servicios a la habitación y consumos), y de administrar al Personal de Recepción.
+
+*Auditor*
+Se encargan de supervisar las actividades financieras de la cadena, verifica que los registros financieros y contables del hotel sean precisos, y que siguen todos los protocolos financieros, controles y normativas establecidas. Requiere acceso a los registros de reservación del hotel para verificar la trazabilidad de las operaciones.
+
+==== Intereses (Concerns)
+
+*Huésped y Administración de la Cadena*
+
+* Coherencia de precios mostrados: Los precios de las habitaciones cambiarán de forma dinámica, es posible que el precio de una habitación cambien mientras el huésped realiza una reservación, el sistema deberá asegurarse de que el precio mostrado al cliente al iniciar su reservación es el mismo precio que se le cobrará en la pasarela de pagos. Para evitar clientes insatisfechos y posibles reclamaciones a protección al consumidor, es crítico para la Administración de la Cadena que se respete el precio mostrado al cliente en todas las transacciones.
+* Confirmación de pagos: Los pagos deben procesarse una sola vez, independientemente de si ocurre un error y se recibe más de una solicitud, es crucial que no se realicen cobros dobles, pues comprometen la satisfacción del cliente, la imagen de la cadena, exponen a la empresa a quejas con protección al consumidor, y consumen recursos de la empresa al tener que dedicar tiempo a verificar y realizar devoluciones.
+* Privacidad y protección de la información: El sistema debe cumplir con las regulaciones de privacidad de datos personales y datos de pago de los clientes en todo momento. De no hacerlo la cadena hotelera tendrá que pagar costosas multas y demandas, se perderá la confianza de los clientes y la reputación del negocio se verá dañada. Todo lo cual se traduce en pérdidas economicas y competitivas para la cadena.
+* Manejo de picos de demanda: El sistema deberá diseñarse para tolerar aumentos, tanto esperados como inesperados de la demanda, evitando caídas totales del servicio y pasando a modo degrado de forma predecible. Es crucial que la experiencia del cliente se vea lo menos afectada que sea posible, para evitar que el cliente se frustre y recurra a una alternativa de la competencia, o pierda acceso a información sobre sus reservaciones. Desde la perspectiva de la Administración de la cadena, es importane que los sistemas de monitoreo de rendimiento, eventos y administración de seguridad se mantengan disponibles.
+
+*Huésped y Administración del Hotel*
+
+* Facilidad de Operación: El sistema deberá ofrecer una experiencia de usuario intuitiva y una interfaz facíl de usar, un flujo de reservación claro, con cinco o menos pasos es fundamental para la captación de nuevos clientes y asegurar que la mayor cantidad de huéspedes puedan realizar una reservación facilmente desde su primera interacción con el sistema. Por su parte, la recepción requiere que el sistema los apoye a realizar sus tareas con la mayor eficacia y eficiencia posible, se espera que incluso personal novato pueda operar el sistema exitosamente con un mínimmo de tiempo invertido en capacitación.
+* Optimización del Sistema: Para hacer el sistema a la mayor cantidad de usuarios posibles, y reducir la inversión en hardware por parte de la cadena tanto como sea posible, el sistema deberá poder accederse desde equipos de computo con recursos limitados. 
+* Gestión de inventario bajo concurrencia: El sistema deberá evitar por completo que ocurran dobles reservas, particularmente durante las temporadas de alta demanda cuando múltiples clientes intenten reservar una misma habitación al mismo tiempo, es crítico que esto se prevenga en su totalidad, pues un huésped jamás debería llegar al hotel y no tener ninguna habitación disponible para alojarse. Del mismo modo, la administación del hotel tampoco tendría que verse en la situación de tener que recibir más huéspedes de los que es posible para el hotel.
+
+*Auditor*
+
+* Integridad y trazabilidad de información: Para fines de la auditoria, es necesario que todas las operaciones de reservación lleven un registro preciso 

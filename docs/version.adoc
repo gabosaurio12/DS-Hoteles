@@ -1,13 +1,13 @@
 
-== Versión
+== Control de Versiones
 
 [cols="1,1,1,1"]
 
 |===
-|Versión
-|Fecha
-|Autor
-|Cambios significativos
+|**Versión**
+|**Fecha**
+|**Autor**
+|**Cambios significativos**
 
 |0.0.1
 |30/09/2025
