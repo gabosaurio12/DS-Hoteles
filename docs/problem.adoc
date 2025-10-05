@@ -1,12 +1,24 @@
 
-=== Planteamiento del problema (Aprox 450 palabras)
+=== Planteamiento del problema
 
 ==== Situación actual
 
-Actualmente la cadena tiene una solución distinta por sucursal, este acercamiento provoca *inconsistencias, errores y dificulta tener un control centralizado*. El proyecto busca reemplazar esa solución por una que sea *centralizada* y con soporte al *crecimiento constante* el cuál deberá tener un rendimiento optimizado. Deberá soportar operaciones diarias en más de *5,000 operacciones y 1,000,000* de habitaciones. Con una solución generalizada se podrían implementar precios dinámicos y políticas de ocupacíon avanzadas, incrementando los ingresos y mejorando la satisfacción del cliente.
+Actualmente cada hotel de la cadena utiliza su propia solución local para realizar el control de las reservaciones y estancias de la sucursal. Esta falta de estandarización es causa de inconsistencias y errores que impeden que la cadena se administre eficientemente. 
 
-==== Problema de Negocio
+==== Problemas del Negocio
 
+* Los clientes tienen que aprender a utilizar distintos sistemas de reservación por cada hotel de la cadena, lo que impulsa a los clientes a buscar soluciones de la competencia que les son más familiares.
+* Los empleados necesitan familiarizarse con el sistema de administración de cada local en particular, lo que eleva los costes de capacitación e implica volver a capacitar al empleado en caso de transferirlos a otra sucursal.
+* Cada sucursal lleva su control de inventario de formas distintas, lo que supone una gran perdida de tiempo en convertir los reportes en un formato estándar para la cadena, además este proceso es propenso a errores humanos, que comprometen la calidad de los datos.
+* Cada sucursal lleva su control de reservaciones de forma distinta, lo que supone una gran perdida de tiempo en convertir los reportes en un formato estándar para la cadena, además de ser propensos a errores, los datos suelen llegar demasiado tarde para que la administración de la cadena pueda aprovecharlos para ajustarse a la demanda.
+* La falta de formatos y procesos estandarizados dificulta el trabajo de los auditores cuando acuden a la cadena, relantizando la inspección.
 
 ==== Oportunidad de Negocio
 
+* Transformar el proceso de reservación hotelera, mediante un portal web y una aplicación web que permita a los huéspedes hacer reservaciones de forma rápida, eficaz, satisfactoria y segura.
+** Evitar por completo dobles reservas y dobles cobros.
+* Estandarizar la gestión de estancias, permitiendo capacitar a los empleados más rápidamente, reducir la tasa de errores y facilitar la rotación y transferencia de personal.
+** 90% de los recepcionistas novatos completan el check-in y el check-out por su cuenta al primer intento, después de solo 10 minutos de instrucción.
+* Centralizar la gestión de la cadena hotelera, facilitando el control de inventario, el cobro por servicios y consumos, la implementación de precios dinámicos, políticas de reservación y políticas de cancelación. 
+** Optimizar las operaciones diarias en más de *5,000* hoteles para más de *1,000,000 *de habitaciones.
+** Implementar y gestionar una politica de overbooking de 10% por tipo de habitación sin sobreventa accidental.
