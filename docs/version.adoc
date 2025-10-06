@@ -24,4 +24,9 @@
 |Gabriel Antonio González López
 |Redacción de Descripciones de caso de uso (CU01-CU12)
 
+|0.0.4
+|04/10/2025
+|Abel Hernández Yong
+|Refinamiento de visión y alcance. Agregado planteamiento del problema, alcance y proposito del diseño
+
 |===

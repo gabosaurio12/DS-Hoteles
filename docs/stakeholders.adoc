@@ -33,4 +33,4 @@ Se encargan de supervisar las actividades financieras de la cadena, verifica que
 
 *Auditor*
 
-* Integridad y trazabilidad de información: Para fines de la auditoria, es necesario que todas las operaciones de reservación lleven un registro preciso 
+* Integridad y trazabilidad de reservaciones: Para fines de la auditoria, es necesario que todas las operaciones de reservación lleven un registro detallado y preciso, que cada transacción realizada por medio del sistema pueda ser rastreada y verificada. Esta deber ser fácil de consultar y presentarse de forma clara para agilizaar el proceso de inspección tanto como sea posible.
