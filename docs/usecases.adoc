@@ -65,6 +65,7 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 2. Regresa al flujo normal 2
 
 *Excepciones*
+
 *EX01 – Error al conectarse a la base de datos* +
 1. El _Sistema_ informa al _Huésped_ que hubo un error al conectarse a la base de datos +
 2. Termina el caso de uso
@@ -246,9 +247,10 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 *Flujos alternos*
 
 *Excepciones* +
+
 *EX01 – Error al conectarse a la base de datos* +
 1. El _Sistema_ informa al _Recepcionista_ que hubo un error al conectarse a la base de datos +
-2. Termina el caso de uso.
+2. Termina el caso de uso
 
 *EX02 – Error al procesar el pago* +
 1. El _Sistema_ informa al _Recepcionista_ que hubo un error al realizar el cobro +
@@ -388,6 +390,39 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 *Extiende:* N/A
 
 ---
+
+*CU12 - Actualizar datos de hotel* +
+*ID:* CU012
+*Nombre:* Actualizar datos de hotel
+*Actores:* Administrador de la cadena (Admin) +
+*Descripción:* El _Admin_ modifica los datos de un hotel. +
+*Precondiciones:* Debe haber al menos un hotel registrado.
+
+*Flujo normal* +
+1. El _Admin_ selecciona el hotel que desea actualizar. +
+2. El _Sistema_ muestra lo datos del hotel seleccionado para actualizarlos (ver EX01). +
+3. El _Admin_ actualiza los datos del hotel (ver FA01). +
+4. El _Admin_ selecciona "Guardar". +
+5. El _Sistema_ actualiza los datos del hotel (ver EX01). +
+6. Termina el caso de uso.
+
+*Flujos alternos*
+
+*FA01 - Designar administrador de hotel* +
+1. El _Admin_ selecciona "Designar Administrador". +
+2. Extiende CU15.
+
+*Excepciones*
+
+*EX01 - Error al subir CSV* +
+1. El _Sistema_ informa al _Admin_ que hubo un error al subir el CSV +
+2. Termina el caso de uso
+
+*Postcondiciones:* Los datos del hotel seleccionado es actualizado. +
+*Reglas de negocio:* N/A +
+*Incluye:* N/A +
+*Extiende:* CU15 +
+
 ---
 
 *CU13 - Eliminar hotel* +
@@ -523,7 +558,7 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 1. El _Sistema_ muestra un mensaje que indica que el numero de habitacion que desea ingresarse ya existe.
 2. Regresa al flujo normal 3
 
-*Excepciones* +
+*Excepciones * +
 *EX01 – Error al conectarse a la base de datos* +
 1. El _Sistema_ informa al _AdminHotel_ que hubo un error al conectarse a la base de datos.+
 2. Termina el caso de uso +
@@ -548,7 +583,7 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 3. El _AdminHotel_ selecciona la habitación que desea modificar (ver FA01). +
 4. El _Sistema_ muestra los datos actuales de la habitación seleccionada. +
 5. El _AdminHotel_ edita los datos necesarios y confirma la actualización (ver FA02). +
-6. El _Sistema_ valida los datos y actualiza la información en la base de datos (ver EX01). +
+6. El _Sistema_ valida los datos y actualiza la información en la base de datos (ver EX02). +
 7. El _Sistema_ confirma que la actualización fue realizada con éxito. +
 8. Termina el caso de uso +
 
@@ -569,6 +604,9 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 1. El _Sistema_ informa al _AdminHotel_ que hubo un error al conectarse a la base de datos. +
 2. Termina el caso de uso +
 
+*EX02 – Error al guardar los cambios* +
+1. El _Sistema_ informa al _AdminHotel_ que no se pudieron guardar los cambios realizados. +
+2. Termina el caso de uso +
 
 *Postcondiciones:* La información de la habitación se actualiza correctamente en la base de datos. +
 *Reglas de negocio:* Los identificadores de las habitaciones no pueden modificarse. +
@@ -590,7 +628,7 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 3. El _AdminHotel_ selecciona la habitación que desea eliminar (ver FA01). +
 4. El _Sistema_ muestra los datos de la habitación seleccionada y solicita confirmación. +
 5. El _AdminHotel_ confirma la eliminación. +
-6. El _Sistema_ elimina la habitación de la base de datos(ver EX01). +
+6. El _Sistema_ elimina la habitación de la base de datos (ver EX02). +
 7. El _Sistema_ muestra un mensaje indicando que la habitación fue eliminada con éxito. +
 8. Termina el caso de uso +
 
@@ -606,6 +644,9 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 1. El _Sistema_ informa al _AdminHotel_ que hubo un error al conectarse a la base de datos. +
 2. Termina el caso de uso +
 
+*EX02 – Error al eliminar la habitación* +
+1. El _Sistema_ informa al _AdminHotel_ que ocurrió un error al intentar eliminar la habitación. +
+2. Termina el caso de uso +
 
 *Postcondiciones:* La habitación seleccionada es eliminada del sistema. +
 *Reglas de negocio:* No se podrá eliminar una habitación que tenga una reserva activa o pendiente. +
