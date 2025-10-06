@@ -772,7 +772,9 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 *Reglas de negocio:* N/A +
 *Incluye:* N/A +
 *Extiende:* N/A +
+
 ---
+
 *CU23 - Registrar categoria de servicio a la habitacion* +
 *ID:* CU23 +
 *Nombre:* Registrar categoría de servicio a la habitación +
