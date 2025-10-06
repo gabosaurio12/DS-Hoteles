@@ -1,4 +1,6 @@
 
+=== Alcance y propósito del diseño
+
 ==== Interesados
 
 *Huésped* +
