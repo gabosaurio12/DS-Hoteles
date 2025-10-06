@@ -18,7 +18,8 @@ Grado en el que un producto realiza sus funciones dentro de parámetros de tiemp
 - _ISO/IEC 25010_
 
 *Usabilidad* +
-Grado en el que un sistema, producto o servicio puede ser usado por usuarios especificos para conseguir objetivos especificos con eficacia, eficiencia y satisfacción en un contexto de uso especificado. -_ISO 9241-11:2018_
+Grado en el que un sistema, producto o servicio puede ser usado por usuarios especificos para conseguir objetivos especificos con eficacia, eficiencia y satisfacción en un contexto de uso especificado. +
+- _ISO 9241-11:2018_
 
 
 == Utility tree

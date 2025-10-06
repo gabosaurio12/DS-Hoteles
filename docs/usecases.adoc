@@ -5,7 +5,16 @@
 image::images/CU_Huesped.png[Use Case Diagram, width=600, align=center]
 
 .Casos de uso del Recepcionista
-image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
+image::images/CU_Recepcionista.png[Use Case Diagram, width=600, align=center]
+
+.Casos de uso del Administrador de la cadena
+image::images/CU_Administrador de Cadena.png[Use Case Diagram, width=600, align=center]
+
+.Casos de uso del Administrador del hotel
+image::images/CU_Administrador del hotel.png[Use Case Diagram, width=600, align=center]
+
+.Casos de uso del Auditor
+image::images/CU_Auditor.png[Use Case Diagram, width=600, align=center]
 
 ---
 
