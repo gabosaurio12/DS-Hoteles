@@ -29,4 +29,14 @@
 |Abel Hernández Yong
 |Refinamiento de visión y alcance. Agregado planteamiento del problema, alcance y proposito del diseño
 
+|0.0.5
+|05/10/2025
+|Abel Hernández Yong
+|Corrección de escenarios de atributos de calidad. Armado del utility tree
+
+|0.0.6
+|06/10/2025
+|Abel Hernández Yong
+|Corrección de numeración, formato y etiquetado en casos de uso.
+
 |===
