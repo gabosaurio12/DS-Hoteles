@@ -30,18 +30,28 @@
 |Refinamiento de visión y alcance. Agregado planteamiento del problema, alcance y proposito del diseño
 
 |0.0.5
+|04/10/2025
+|Christian Guillermo Rosas Hernández
+|Redacción de Descripciones de caso de uso (CU25-CU36)
+
+|0.0.6
 |05/10/2025
 |Abel Hernández Yong
 |Corrección de escenarios de atributos de calidad. Armado del utility tree
 
-|0.0.6
+|0.0.7
 |06/10/2025
 |Abel Hernández Yong
 |Corrección de numeración, formato y etiquetado en casos de uso.
 
-|0.0.7
+|0.0.8
 |05/10/2025
 |Gabriel Antonio González López
 |Diagrama de contexto, organización de documentos
+
+|0.0.9
+|05/10/2025
+|Christian Guillermo Rosas Hernández
+|Creacion y Correcion de Diagramas de CUs por Autor
 
 |===
