@@ -460,9 +460,137 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 *Extiende:* N/A +
 
 ---
+*CU15 - Agregar Administrador* +
+*ID:* CU30 +
+*Nombre:* Agregar Administrador +
+*Actores:* Administrador de la cadena (Admin) +
+*Descripción:* El _Admin_ registra un nuevo administrador del sistema. +
+*Precondiciones:* Debe existir al menos una categoría de servicios registrada. +
 
-*CU15 - Designar administrador de hotel* +
-*ID:* CU15 +
+*Flujo normal* +
+1. El _Admin_ accede a la sección de gestión de administradores. +
+2. El _Sistema_ muestra el formulario para agregar un nuevo administrador. +
+3. El _Admin_ ingresa los datos requeridos del nuevo administrador y confirma la acción. +
+4. El _Sistema_ valida la información ingresada (ver EX01)(ver EX02). +
+5. El _Sistema_ registra al nuevo administrador en la base de datos. +
+6. El _Sistema_ informa al _Admin_ que el registro fue exitoso. +
+7. Termina el caso de uso. +
+
+*Flujos alternos* +
+
+*FA01 - Datos incompletos o inválidos* +
+1. El _Sistema_ detecta que los datos ingresados son incorrectos o incompletos. +
+2. El _Sistema_ muestra un mensaje de error y solicita corregirlos. +
+3. Regresa al flujo normal en el paso 3. +
+
+*FA02 - Nombre de usuario duplicado* +
+1. El _Sistema_ detecta que el nombre de usuario ya existe. +
+2. El _Sistema_ solicita un nombre de usuario diferente. +
+3. Regresa al flujo normal en el paso 3. +
+
+*Excepciones* +
+
+*EX01 – Error al conectarse a la base de datos* +
+1. El _Sistema_ informa al _Admin_ que hubo un error al conectarse a la base de datos. +
+2. Termina el caso de uso. +
+
+*EX02 – Error al registrar el administrador* +
+1. El _Sistema_ informa al _Admin_ que ocurrió un error al intentar registrar el nuevo administrador. +
+2. Termina el caso de uso. +
+
+*Postcondiciones:* El nuevo administrador queda registrado en el sistema. +
+*Reglas de negocio:* Cada administrador debe tener un nombre de usuario único. +
+*Incluye:* N/A +
+*Extiende:* N/A +
+
+---
+
+*CU16 - Eliminar Administrador* +
+*ID:* CU16 +
+*Nombre:* Eliminar Administrador +
+*Actores:* Administrador de la cadena (Admin) +
+*Descripción:* El _Admin_ elimina del sistema un administrador previamente registrado. +
+*Precondiciones:* Debe existir al menos una categoría de servicios registrada. +
+
+*Flujo normal* +
+1. El _Admin_ selecciona el administrador que desea eliminar. +
+2. El _Sistema_ muestra los datos del administrador seleccionado para confirmar la acción. +
+3. El _Admin_ confirma la eliminación. +
+4. El _Sistema_ valida la acción y elimina el registro del administrador (ver EX01)(ver EX02). +
+5. El _Sistema_ informa al _Admin_ que la eliminación fue exitosa. +
+6. Termina el caso de uso. +
+
+*Flujos alternos* +
+
+*FA01 - Cancelar eliminación* +
+1. El _Admin_ decide no eliminar el administrador y cancela la acción. +
+2. Regresa al flujo normal 1. +
+
+*Excepciones* +
+
+*EX01 – Error al conectarse a la base de datos* +
+1. El _Sistema_ informa al _Admin_ que hubo un error al conectarse a la base de datos. +
+2. Termina el caso de uso. +
+
+*EX02 – Error al eliminar el registro* +
+1. El _Sistema_ informa al _Admin_ que ocurrió un error al intentar eliminar el administrador. +
+2. Termina el caso de uso. +
+
+*Postcondiciones:* El administrador seleccionado es eliminado del sistema. +
+*Reglas de negocio:* No se podrá eliminar un administrador que esté asignado a tareas críticas activas. +
+*Incluye:* N/A +
+*Extiende:* N/A +
+
+---
+
+*CU17 - Modificar Administrador* +
+*ID:* CU17 +
+*Nombre:* Modificar Administrador +
+*Actores:* Administrador de la cadena (Admin) +
+*Descripción:* El _Admin_ actualiza los datos de un administrador existente en el sistema. +
+*Precondiciones:* Debe existir al menos una categoría de servicios registrada. +
+
+*Flujo normal* +
+1. El _Admin_ accede a la sección de gestión de administradores. +
+2. El _Sistema_ muestra la lista de administradores registrados. +
+3. El _Admin_ selecciona el administrador que desea modificar. +
+4. El _Sistema_ muestra la información actual del administrador. +
+5. El _Admin_ actualiza los datos y confirma la modificación. +
+6. El _Sistema_ valida la información ingresada (ver EX01)(ver EX02). +
+7. El _Sistema_ guarda los cambios realizados. +
+8. El _Sistema_ informa al _Admin_ que la modificación fue exitosa. +
+9. Termina el caso de uso. +
+
+*Flujos alternos* +
+
+*FA01 - No existen administradores registrados* +
+1. El _Sistema_ informa al _Admin_ que no hay administradores registrados para modificar. +
+2. Termina el caso de uso. +
+
+*FA02 - Nombre de usuario duplicado* +
+1. El _Sistema_ detecta que el nuevo nombre de usuario ya existe. +
+2. El _Sistema_ solicita un nombre diferente. +
+3. Regresa al flujo normal en el paso 5. +
+
+*Excepciones* +
+
+*EX01 – Error al conectarse a la base de datos* +
+1. El _Sistema_ informa al _Admin_ que hubo un error al conectarse a la base de datos. +
+2. Termina el caso de uso. +
+
+*EX02 – Error al modificar el registro* +
+1. El _Sistema_ informa al _Admin_ que ocurrió un error al intentar modificar el administrador. +
+2. Termina el caso de uso. +
+
+*Postcondiciones:* La información del administrador es actualizada correctamente. +
+*Reglas de negocio:* El nombre de usuario debe ser único y válido. +
+*Incluye:* N/A +
+*Extiende:* N/A +
+
+---
+
+*CU18 - Designar administrador de hotel* +
+*ID:* CU18 +
 *Nombre:* Designar administrador de hotel +
 *Actores:* Administrador de la cadena (Admin) +
 *Descripción:* El _Admin_ asigna a un empleado como administrador de un hotel. +
@@ -496,8 +624,8 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 
 ---
 
-*CU16 - Registrar habitacion* +
-*ID:* 16 +
+*CU19 - Registrar habitacion* +
+*ID:* 19 +
 *Nombre:* Registrar habitacion +
 *Actores:* Administrador de la cadena (Admin)+
 *Descripción:* El _AdminHotel_ registra una nueva habitacion a un hotel +
@@ -535,8 +663,8 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 
 ---
 
-*CU17 - Actualizar habitación* +
-*ID:* CU17 +
+*CU20 - Actualizar habitación* +
+*ID:* CU20 +
 *Nombre:* Actualizar habitación +
 *Actores:* AdminHotel +
 *Descripción:* El _AdminHotel_ actualiza los datos de una habitación existente en el sistema. +
@@ -577,8 +705,8 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 
 ---
 
-*CU18 - Eliminar habitación* +
-*ID:* CU18 +
+*CU21 - Eliminar habitación* +
+*ID:* CU21 +
 *Nombre:* Eliminar habitación +
 *Actores:* AdminHotel +
 *Descripción:* El _AdminHotel_ elimina del sistema una habitación registrada en el hotel. +
@@ -614,8 +742,8 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 
 ---
 
-*CU19 - Consultar habitaciones* +
-*ID:* CU19 +
+*CU22 - Consultar habitaciones* +
+*ID:* CU22 +
 *Nombre:* Consultar habitaciones +
 *Actores:* AdminHotel +
 *Descripción:* El _AdminHotel_ consulta la lista de habitaciones registradas en su hotel y puede visualizar sus detalles. +
@@ -645,8 +773,8 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 *Incluye:* N/A +
 *Extiende:* N/A +
 ---
-*CU20 - Registrar categoria de servicio a la habitacion* +
-*ID:* CU20 +
+*CU23 - Registrar categoria de servicio a la habitacion* +
+*ID:* CU23 +
 *Nombre:* Registrar categoría de servicio a la habitación +
 *Actores:* Administración del hotel (AdminHotel) +
 *Descripción:* El _AdminHotel_ registra una nueva categoría de servicio a la habitación en el sistema. +
@@ -683,8 +811,8 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 *Extiende:* N/A 
 
 ---
-*CU21 - Actualizar categoria de servicio a la habitacion* +
-*ID:* CU21 +
+*CU24 - Actualizar categoria de servicio a la habitacion* +
+*ID:* CU24 +
 *Nombre:* Actualizar categoría de servicio a la habitación +
 *Actores:* Administración del hotel (AdminHotel) +
 *Descripción:* El _AdminHotel_ actualiza la información de una categoría de servicio a la habitación existente. +
@@ -720,8 +848,8 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 *Incluye:* N/A +
 *Extiende:* N/A +
 ---
-*CU22 - Eliminar categoría de servicio a la habitación* +
-*ID:* CU22 +
+*CU25 - Eliminar categoría de servicio a la habitación* +
+*ID:* CU25 +
 *Nombre:* Eliminar categoría de servicio a la habitación +
 *Actores:* Administración del hotel (AdminHotel) +
 *Descripción:* El _AdminHotel_ elimina una categoría de servicio a la habitación del catálogo. +
@@ -757,8 +885,8 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 *Extiende:* N/A +
 ---
 
-*CU23- consultar categorías de servicio a la habitación* +
-*ID:* CU23 +
+*CU26- consultar categorías de servicio a la habitación* +
+*ID:* CU26 +
 *Nombre:* Consultar categorías de servicio a la habitación +
 *Actores:* Administración del hotel (AdminHotel) +
 *Descripción:* El _AdminHotel_ consulta la lista de todas las categorías de servicio a la habitación disponibles. +
@@ -786,8 +914,8 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 *Extiende:* N/A +
 
 --- 
-*CU24- consultar categorías de servicio a la habitación* +
-*ID:* CU24 +
+*CU27- consultar categorías de servicio a la habitación* +
+*ID:* CU27 +
 *Nombre:* Asignar categoría de servicio a la habitación +
 *Actores:* Administración del hotel (AdminHotel) +
 *Descripción:* El _AdminHotel_ asigna una categoría de servicio disponible a una habitación específica. +
@@ -818,8 +946,147 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 *Extiende:* N/A +
 
 ---
-*CU25 - Retirar categoría de servicio a la habitación* +
-*ID:* CU25 +
+
+*CU28 - Registrar servicio a la habitación* +
+*ID:* CU28 +
+*Nombre:* Registrar servicio a la habitación +
+*Actores:* Administración del hotel (AdminHotel) +
+*Descripción:* El _AdminHotel_ registra un nuevo servicio a la habitación en el sistema. +
+*Precondiciones:* Debe existir al menos una categoría de servicio en el sistema.
+
+*Flujo normal:*
+1. El _AdminHotel_ selecciona la opción para crear un nuevo servicio a la habitación. +
+2. El _Sistema_ solicita los datos del servicio y la categoria a la que pertenecera(ver EX01). +
+3. El _AdminHotel_ ingresa la información y confirma. +
+4  El _Sistema_ valida la información y guarda el nuevo servicio (ver FA01)(ver FA02). +
+6. El _Sistema_ notifica al _AdminHotel_ que el registro fue exitoso. +
+7. Termina el caso de uso.
+
+*Flujos alternos:* +
+FA01 - Datos inválidos o incompletos +
+1. El _Sistema_ notifica al _AdminHotel_ que hay datos erróneos. +
+2. Regresa al flujo normal 3.
+
+FA02 - Nombre de servicio duplicado::
+1. El _Sistema_ detecta que el nombre del servicio ya existe. +
+2. Regresa al flujo normal 2.
+
+*Excepciones:*
+*EX01 – Error al conectarse a la base de datos* +
+1. El _Sistema_ informa al _AdminHotel_ que hubo un error al conectarse a la base de datos. +
+2. Termina el caso de uso.
+
+*Postcondiciones:* Se crea un nuevo servicio a la habitación en el sistema. +
+*Reglas de negocio:* El nombre de cada servicio debe ser único. +
+*Incluye / Extiende:* N/A
+
+---
+
+*CU29 - Actualizar servicio a la habitación* +
+*ID:* CU29 +
+*Nombre:* Actualizar servicio a la habitación +
+*Actores:* Administración del hotel (AdminHotel) +
+*Descripción:* El _AdminHotel_ actualiza la información de un servicio a la habitación existente. +
+*Precondiciones:* Debe existir al menos una categoría de servicio en el sistema y almenos un servicio registrado. +
+
+*Flujo normal:* +
+1. El _AdminHotel_ selecciona el servicio a modificar. +
+2. El _Sistema_ muestra los datos del servicio(ver EX01). +
+3. El _AdminHotel_ actualiza la información y confirma los cambios. +
+4. El _Sistema_ valida los nuevos datos (ver FA01). +
+5. El _Sistema_ guarda las modificaciones (ver EX01). +
+6. El _Sistema_ notifica al _AdminHotel_ el éxito de la operación. +
+7. Termina el caso de uso.
+
+
+*FA01 - Nombre de servicio duplicado* +
+1. El _Sistema_ detecta que el nombre del servicio ya existe. +
+2. El _Sistema_ solicita un nombre diferente. +
+3. Regresa al flujo normal 3.
+
+*FA01 - Cancelar operación* +
+1. El _AdminHotel_ cancela la operación. +
+2. Regresa al flujo normal 2 +
+
+
+*Excepciones:*
+EX01 – Error al conectarse a la base de datos::
+1. El _Sistema_ informa al _AdminHotel_ que hubo un error al conectarse a la base de datos.
+2. Termina el caso de uso.
+
+*Postcondiciones:* La información del servicio a la habitación es actualizada. +
+*Reglas de negocio:* N/A +
+*Incluye / Extiende:* N/A +
+
+---
+
+*CU30 - Eliminar servicio a la habitación* +
+*ID:* CU30 +
+*Nombre:* Eliminar servicio a la habitación +
+*Actores:* Administración del hotel (AdminHotel) +
+*Descripción:* El _AdminHotel_ elimina un servicio a la habitación del catálogo. +
+*Precondiciones:* Debe existir al menos una categoría de servicio en el sistema y un servicio. 
+
+*Flujo normal:* +
+1. El _AdminHotel_ selecciona el servicio que desea eliminar. +
+2. El _Sistema_ pide una confirmación para la operación. +
+3. El _AdminHotel_ confirma la eliminación (ver FA01). +
+4. El _Sistema_ valida que el servicio no tenga historial de uso (ver EX01). +
+5. El _Sistema_ elimina el servicio del catálogo (ver EX01). +
+6. El _Sistema_ confirma la eliminación al _AdminHotel_. +
+7. Termina el caso de uso.
+
+*Flujos alternos:* +
+*FA01 - Cancelar operación* +
+1. El _AdminHotel_ cancela la operación antes de confirmar. +
+2. El _Sistema_ descarta los cambios y termina el caso de uso. +
+
+*Excepciones:* +
+*EX01 - El servicio tiene historial de uso* +
+1. El _Sistema_ detecta que el servicio ha sido utilizado en habitaciones. +
+2. El _Sistema_ bloquea la eliminación y notifica al _AdminHotel_. +
+3. Termina el caso de uso. +
+
+*EX02 – Error al conectarse a la base de datos* +
+1. El _Sistema_ informa al _AdminHotel_ que hubo un error al conectarse a la base de datos. +
+2. Termina el caso de uso.
+
+*Postcondiciones:* El servicio es eliminado del sistema. +
+*Reglas de negocio:* No se puede eliminar un servicio que ya haya sido utilizado en registros históricos. +
+*Incluye / Extiende:* N/A +
+
+---
+*CU31 - Consultar servicio a la habitación* +
+*ID:* CU31 +
+*Nombre:* Consultar servicio a la habitación +
+*Actores:* Administración del hotel (AdminHotel) +
+*Descripción:* El _AdminHotel_ consulta la lista de todos los servicios a la habitación disponibles. +
+*Precondiciones:* Debe existir al menos una categoría de servicio en el sistema. +
+
+*Flujo normal:* +
+1. El _AdminHotel_ inicia la función para consultar los servicios a la habitación. +
+2. El _Sistema_ muestra una lista con todos los servicios registrados (ver FA01)(ver EX01). +
+3. Termina el caso de uso.
+
+*Flujos alternos:* +
+*FA01 - No existen servicios* +
+1. El _Sistema_ no encuentra servicios registrados. +
+2. El _Sistema_ informa al _AdminHotel_ que el catálogo está vacío. +
+3. Termina el caso de uso. +
+
+*Excepciones:* +
+*EX01 – Error al conectarse a la base de datos* +
+1. El _Sistema_ informa al _AdminHotel_ que hubo un error al conectarse a la base de datos. +
+2. Termina el caso de uso. +
+
+*Postcondiciones:* El _AdminHotel_ visualiza la lista de servicios a la habitación. +
+*Reglas de negocio:* N/A +
+*Incluye / Extiende:* N/A +
+
+---
+
+*CU32 - Retirar categoría de servicio a la habitación* +
+*ID:* CU32 +
 *Nombre:* Retirar categoría de servicio a la habitación +
 *Actores:* Administración del hotel (AdminHotel) +
 *Descripción:* El _AdminHotel_ deshabilita una categoría de servicio para que no esté disponible en una o más categorías de habitaciones. +
@@ -850,8 +1117,8 @@ image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
 *Extiende:* N/A +
 
 ---
-*CU26 - Consultar categorías de consumo del huésped* +
-*ID:* CU26 +
+*CU33 - Consultar categorías de consumo del huésped* +
+*ID:* CU33 +
 *Nombre:* Consultar categorías de consumo del huésped +
 *Actores:* Administración del hotel (AdminHotel) +
 *Descripción:* El _AdminHotel_ consulta la lista de todas las categorías de consumo del hotel. +
@@ -877,8 +1144,8 @@ N/A +
 *Extiende:* N/A +
 
 ---
-*CU27 - Registrar categoría de consumo del huésped* +
-*ID:* CU27 +
+*CU34 - Registrar categoría de consumo del huésped* +
+*ID:* CU34 +
 *Nombre:* Registrar categoría de consumo del huésped +
 *Actores:* Administración del hotel (AdminHotel) +
 *Descripción:* El _AdminHotel_ añade una nueva categoría de consumo al catálogo del sistema. +
@@ -905,8 +1172,8 @@ N/A +
 *Extiende:* N/A +
 
 ---
-*CU28 - Actualizar categoría de consumo del huésped* +
-*ID:* CU28 +
+*CU35 - Actualizar categoría de consumo del huésped* +
+*ID:* CU35 +
 *Nombre:* Actualizar categoría de consumo del huésped +
 *Actores:* Administración del hotel (AdminHotel) +
 *Descripción:* El _AdminHotel_ modifica la información de una categoría de consumo existente. +
@@ -932,8 +1199,8 @@ N/A +
 *Extiende:* N/A +
 
 ---
-*CU29 - Eliminar categoría de consumo del huésped* +
-*ID:* CU29 +
+*CU36 - Eliminar categoría de consumo del huésped* +
+*ID:* CU36 +
 *Nombre:* Eliminar categoría de consumo del huésped +
 *Actores:* Administración del hotel (AdminHotel) +
 *Descripción:* El _AdminHotel_ elimina una categoría de consumo del catálogo. +
@@ -960,8 +1227,145 @@ N/A +
 
 ---
 
-*CU30 - Registrar categoría de empleados* +
-*ID:* CU30 +
+*CU37 - Registrar producto a la habitación* +
+*ID:* CU37 +
+*Nombre:* Registrar producto para consumo+
+*Actores:* Administración del hotel (AdminHotel) +
+*Descripción:* El _AdminHotel_ registra un nuevo producto para consumoen el sistema. +
+*Precondiciones:* Debe existir al menos una categoría de producto en el sistema.
+
+*Flujo normal:*
+1. El _AdminHotel_ selecciona la opción para crear un nuevo producto a la habitación. +
+2. El _Sistema_ solicita los datos del producto y la categoria a la que pertenecera(ver EX01). +
+3. El _AdminHotel_ ingresa la información y confirma. +
+4  El _Sistema_ valida la información y guarda el nuevo producto (ver FA01)(ver FA02). +
+6. El _Sistema_ notifica al _AdminHotel_ que el registro fue exitoso. +
+7. Termina el caso de uso.
+
+*Flujos alternos:* +
+FA01 - Datos inválidos o incompletos +
+1. El _Sistema_ notifica al _AdminHotel_ que hay datos erróneos. +
+2. Regresa al flujo normal 3.
+
+FA02 - Nombre de producto duplicado::
+1. El _Sistema_ detecta que el nombre del producto ya existe. +
+2. Regresa al flujo normal 2.
+
+*Excepciones:*
+*EX01 – Error al conectarse a la base de datos* +
+1. El _Sistema_ informa al _AdminHotel_ que hubo un error al conectarse a la base de datos. +
+2. Termina el caso de uso.
+
+*Postcondiciones:* Se crea un nuevo producto para consumoen el sistema. +
+*Reglas de negocio:* El nombre de cada producto debe ser único. +
+*Incluye / Extiende:* N/A
+
+---
+
+*CU38 - Actualizar producto a la habitación* +
+*ID:* CU38 +
+*Nombre:* Actualizar producto para consumo+
+*Actores:* Administración del hotel (AdminHotel) +
+*Descripción:* El _AdminHotel_ actualiza la información de un producto para consumoexistente. +
+*Precondiciones:* Debe existir al menos una categoría de producto en el sistema y almenos un producto registrado. +
+
+*Flujo normal:* +
+1. El _AdminHotel_ selecciona el producto a modificar. +
+2. El _Sistema_ muestra los datos del producto(ver EX01). +
+3. El _AdminHotel_ actualiza la información y confirma los cambios. +
+4. El _Sistema_ valida los nuevos datos (ver FA01). +
+5. El _Sistema_ guarda las modificaciones (ver EX01). +
+6. El _Sistema_ notifica al _AdminHotel_ el éxito de la operación. +
+7. Termina el caso de uso.
+
+*FA01 - Nombre de producto duplicado* +
+1. El _Sistema_ detecta que el nombre del producto ya existe. +
+2. El _Sistema_ solicita un nombre diferente. +
+3. Regresa al flujo normal 3.
+
+*FA01 - Cancelar operación* +
+1. El _AdminHotel_ cancela la operación. +
+2. Regresa al flujo normal 2 +
+
+*Excepciones:*
+EX01 – Error al conectarse a la base de datos::
+1. El _Sistema_ informa al _AdminHotel_ que hubo un error al conectarse a la base de datos.
+2. Termina el caso de uso.
+
+*Postcondiciones:* La información del producto para consumoes actualizada. +
+*Reglas de negocio:* N/A +
+*Incluye / Extiende:* N/A +
+
+---
+
+*CU39 - Eliminar producto a la habitación* +
+*ID:* CU39 +
+*Nombre:* Eliminar producto para consumo+
+*Actores:* Administración del hotel (AdminHotel) +
+*Descripción:* El _AdminHotel_ elimina un producto para consumodel catálogo. +
+*Precondiciones:* Debe existir al menos una categoría de producto en el sistema y un producto. 
+
+*Flujo normal:* +
+1. El _AdminHotel_ selecciona el producto que desea eliminar. +
+2. El _Sistema_ pide una confirmación para la operación. +
+3. El _AdminHotel_ confirma la eliminación (ver FA01). +
+4. El _Sistema_ valida que el producto no tenga historial de uso (ver EX01). +
+5. El _Sistema_ elimina el producto del catálogo (ver EX01). +
+6. El _Sistema_ confirma la eliminación al _AdminHotel_. +
+7. Termina el caso de uso.
+
+*Flujos alternos:* +
+*FA01 - Cancelar operación* +
+1. El _AdminHotel_ cancela la operación antes de confirmar. +
+2. El _Sistema_ descarta los cambios y termina el caso de uso. +
+
+*Excepciones:* +
+*EX01 - El producto tiene historial de uso* +
+1. El _Sistema_ detecta que el producto ha sido utilizado en habitaciones. +
+2. El _Sistema_ bloquea la eliminación y notifica al _AdminHotel_. +
+3. Termina el caso de uso. +
+
+*EX02 – Error al conectarse a la base de datos* +
+1. El _Sistema_ informa al _AdminHotel_ que hubo un error al conectarse a la base de datos. +
+2. Termina el caso de uso.
+
+*Postcondiciones:* El producto es eliminado del sistema. +
+*Reglas de negocio:* No se puede eliminar un producto que ya haya sido utilizado en registros históricos. +
+*Incluye / Extiende:* N/A +
+
+---
+*CU40 - Consultar producto a la habitación* +
+*ID:* CU40 +
+*Nombre:* Consultar producto para consumo+
+*Actores:* Administración del hotel (AdminHotel) +
+*Descripción:* El _AdminHotel_ consulta la lista de todos los productos para consumodisponibles. +
+*Precondiciones:* Debe existir al menos una categoría de producto en el sistema. +
+
+*Flujo normal:* +
+1. El _AdminHotel_ inicia la función para consultar los productos a la habitación. +
+2. El _Sistema_ muestra una lista con todos los productos registrados (ver FA01)(ver EX01). +
+3. Termina el caso de uso.
+
+*Flujos alternos:* +
+*FA01 - No existen productos* +
+1. El _Sistema_ no encuentra productos registrados. +
+2. El _Sistema_ informa al _AdminHotel_ que el catálogo está vacío. +
+3. Termina el caso de uso. +
+
+*Excepciones:* +
+*EX01 – Error al conectarse a la base de datos* +
+1. El _Sistema_ informa al _AdminHotel_ que hubo un error al conectarse a la base de datos. +
+2. Termina el caso de uso. +
+
+*Postcondiciones:* El _AdminHotel_ visualiza la lista de productos a la habitación. +
+*Reglas de negocio:* N/A +
+*Incluye / Extiende:* N/A +
+
+
+---
+
+*CU41 - Registrar categoría de empleados* +
+*ID:* CU41 +
 *Nombre:* Registrar categoría de empleados +
 *Actores:* Administración del hotel (AdminHotel) +
 *Descripción:* El _AdminHotel_ registra una nueva categoría de empleados (rol) y le asigna permisos. +
@@ -987,8 +1391,8 @@ N/A +
 *Extiende:* N/A +
 
 ---
-*CU31 - Actualizar categoría de empleado* +
-*ID:* CU31 +
+*CU42 - Actualizar categoría de empleado* +
+*ID:* CU42 +
 *Nombre:* Actualizar categoría de empleado +
 *Actores:* Administración del hotel (AdminHotel) +
 *Descripción:* El _AdminHotel_ actualiza la información de una categoría de empleados. +
@@ -1014,8 +1418,8 @@ N/A +
 *Extiende:* N/A +
 
 ---
-*CU32 - Registrar empleado* +
-*ID:* CU32 +
+*CU43 - Registrar empleado* +
+*ID:* CU43 +
 *Nombre:* Registrar empleado +
 *Actores:* Administración del hotel (AdminHotel) +
 *Descripción:* El _AdminHotel_ registra un nuevo empleado en el sistema. +
@@ -1041,8 +1445,79 @@ N/A +
 *Extiende:* N/A +
 
 ---
-*CU33 - Consultar empleado* +
-*ID:* CU33 +
+*CU44 - Configurar tarifa de cancelación* +
+*ID:* CU44 +
+*Nombre:* Configurar tarifa de cancelación +
+*Actores:* Administración del hotel (AdminHotel) +
+*Descripción:* El _AdminHotel_ define o modifica la tarifa de cancelación que será aplicada a las reservas canceladas. +
+*Precondiciones:* Debe existir al menos un hotel. +
+
+*Flujo normal* +
+1. El _AdminHotel_ accede a la sección de configuración de políticas de cancelación. +
+2. El _Sistema_ muestra la tarifa actual de cancelación, si existe. +
+3. El _AdminHotel_ ingresa o modifica el valor de la tarifa de cancelación y confirma la operación. +
+4. El _Sistema_ valida los datos ingresados (ver FA01)(ver EX01). +
+5. El _Sistema_ guarda la nueva configuración de la tarifa en la base de datos (ver EX01). +
+6. El _Sistema_ notifica al _AdminHotel_ que la configuración se realizó correctamente. +
+7. Termina el caso de uso. +
+
+*Flujos alternos* +
+
+*FA01 - Datos inválidos o incompletos* +
+1. El _Sistema_ detecta que los datos ingresados son incorrectos o están incompletos. +
+2. El _Sistema_ muestra un mensaje de error y solicita corrección. +
+3. Regresa al flujo normal en el paso 3. +
+
+*Excepciones* +
+
+*EX01 – Error al conectarse a la base de datos* +
+1. El _Sistema_ informa al _AdminHotel_ que hubo un error al conectarse a la base de datos. +
+2. Termina el caso de uso. +
+
+*Postcondiciones:* La tarifa de cancelación queda registrada o actualizada en el sistema. +
+*Reglas de negocio:* La tarifa de cancelación debe expresarse como porcentaje o monto fijo y aplicarse a todas las reservas del hotel. +
+*Incluye:* N/A +
+*Extiende:* N/A +
+
+---
+
+*CU45 - Configurar política de cambio de reserva* +
+*ID:* CU45 +
+*Nombre:* Configurar política de cambio de reserva +
+*Actores:* Administración del hotel (AdminHotel) +
+*Descripción:* El _AdminHotel_ define o modifica las políticas que determinan bajo qué condiciones un huésped puede cambiar su reserva. +
+*Precondiciones:* Debe existir al menos una categoria de hotel. +
+
+*Flujo normal* +
+1. El _AdminHotel_ accede a la sección de configuración de políticas de cambio de reserva. +
+2. El _Sistema_ muestra la política de cambio actual, si existe. +
+3. El _AdminHotel_ ingresa o modifica las condiciones para realizar cambios en reservas y confirma la operación. +
+4. El _Sistema_ valida los datos ingresados (ver FA01)(ver EX01). +
+5. El _Sistema_ guarda la política actualizada en la base de datos (ver EX01). +
+6. El _Sistema_ notifica al _AdminHotel_ que la configuración se realizó correctamente. +
+7. Termina el caso de uso. +
+
+*Flujos alternos* +
+
+*FA01 - Datos inválidos o incompletos* +
+1. El _Sistema_ detecta que los datos ingresados son incorrectos o están incompletos. +
+2. El _Sistema_ muestra un mensaje de error y solicita corrección. +
+3. Regresa al flujo normal en el paso 3. +
+
+*Excepciones* +
+
+*EX01 – Error al conectarse a la base de datos* +
+1. El _Sistema_ informa al _AdminHotel_ que hubo un error al conectarse a la base de datos. +
+2. Termina el caso de uso. +
+
+*Postcondiciones:* La política de cambio de reserva queda registrada o actualizada en el sistema. +
+*Reglas de negocio:* Las políticas de cambio deben especificar plazos y condiciones bajo las cuales los huéspedes pueden modificar sus reservas. +
+*Incluye:* N/A +
+*Extiende:* N/A +
+
+---
+*CU46 - Consultar empleado* +
+*ID:* CU46 +
 *Nombre:* Consultar empleado +
 *Actores:* Administración del hotel (AdminHotel) +
 *Descripción:* El _AdminHotel_ consulta la información de un empleado del sistema. +
@@ -1071,8 +1546,8 @@ N/A +
 
 ---
 
-*CU34 - Consultar estado del sistema* +
-*ID:* CU34 +
+*CU47 - Consultar estado del sistema* +
+*ID:* CU47 +
 *Nombre:* Consultar estado del sistema +
 *Actores:* Auditor +
 *Descripción:* El _Auditor_ verifica el estado operativo y rendimiento del sistema. +
@@ -1098,8 +1573,8 @@ N/A +
 *Extiende:* N/A +
 
 ---
-*CU35 - Consultar registros de operación* +
-*ID:* CU35 +
+*CU48 - Consultar registros de operación* +
+*ID:* CU48 +
 *Nombre:* Consultar registros de operación +
 *Actores:* Auditor +
 *Descripción:* El _Auditor_ revisa el historial completo de una operación para fines de auditoría. +

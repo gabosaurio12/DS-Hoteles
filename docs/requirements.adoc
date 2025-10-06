@@ -1,9 +1,2 @@
 
-== Definición de requerimientos
-
-include::problem.adoc[]
-
-=== Alcance y propósito del diseño
-
-include::stakeholders.adoc[]
-
+== Alcance y propósito del diseño
