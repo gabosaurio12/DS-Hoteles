@@ -54,4 +54,11 @@
 |Christian Guillermo Rosas Hernández
 |Creacion y Correcion de Diagramas de CUs por Autor
 
+|0.0.10
+|05/10/2001
+|Seth Marquez Rodriguez
+|Diagramas de flujo de datos
+|Correcion de numeracion
+|Elaboracion CU 13-30, 40-45, 
+|Contribucion en el utily tree
 |===
