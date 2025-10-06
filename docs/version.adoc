@@ -39,4 +39,9 @@
 |Abel Hernández Yong
 |Corrección de numeración, formato y etiquetado en casos de uso.
 
+|0.0.7
+|05/10/2025
+|Gabriel Antonio González López
+|Diagrama de contexto, organización de documentos
+
 |===

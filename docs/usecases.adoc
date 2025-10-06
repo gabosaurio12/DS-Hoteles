@@ -1,11 +1,20 @@
 
 === Diagramas de caso de uso
 
-.Casos de uso del Huesped
-image::images/CU_Huesped.png[Use Case Diagram, width=600, align=center]
+.Diagrama de casos de uso del Huesped
+image::CU_Huesped.png[Diagrama de caso de uso del huesped, width=600, align=center]
 
-.Casos de uso del Recepcionista
-image::images/CU_Recepcionista.png[Use Case Diagrama, width=600, align=center]
+.Diagrama de casos de uso del Recepcionista
+image::CU_Recepcionista.png[Diagrama de casos de uso del Recepcionista, width=600, align=center]
+
+.Diagrama de casos de uso de Auditor
+image::CU_Auditor.png[Diagrama de casos de uso de Auditor, width=600, align=center]
+
+.Diagrama de casos de uso de Administrador de cadena
+image::CU_AdministradorCadena.png[.Diagrama de casos de uso de Administrador de cadena, width=600, align=center]
+
+.Diagrama de casos de uso de Administrador de hotel
+image::CU_AdministradorHotel.png[.Diagrama de casos de uso de Administrador de hotel, width=600, align=center]
 
 ---
 

@@ -23,7 +23,7 @@ Grado en el que un sistema, producto o servicio puede ser usado por usuarios esp
 
 == Utility tree
 
-image::images/UtilityTreeHoteles.png[Utility tree, align=center, width=800]
+image::UtilityTreeHoteles.png[Utility tree, align=center, width=800]
 
 == Escenarios de atributos de calidad
 
