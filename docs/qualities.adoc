@@ -1,5 +1,5 @@
 
-== Impulsores arquitectónicos (ASRs) y Priorización
+== Impulsores arquitectónicos
 
 === Atributos de Calidad Principales
 
@@ -23,71 +23,178 @@ Grado en el que un sistema, producto o servicio puede ser usado por usuarios esp
 
 == Utility tree
 
-* Tabla o diagrama que represente el árbol.
+image::images/UtilityTreeHoteles.png[Utility tree, align=center, width=800]
 
 == Escenarios de atributos de calidad
 
 === Seguridad
+
+==== Confidencialidad
+
 ==== Fuente
-Un adversario intenta ser un MitM durante una transacción
+Un adversario externo a la organización.
 
 ==== Estímulo
-El adversario quiere capturar los métodos de pago del usuario
+Intenta capturar los datos de pago de un cliente con un ataque Man-in-the-Middle
 
 ==== Artefacto
 Sistema de pagos
 
 ==== Entorno
-Conectado a la red
+El sistema esta en linea
 
 ==== Respuesta
-- Terminar/Cancelar la transacción
-- Alertar a las operaciones de seguridad
-- Bloquear la conexión sospechosa
-- Forzar reautenticación del usuariox
+- El sistema cancela la transacción.
+- El sistema bloquea la conexión sospechosa
 
 ==== Medida
-Aplicar TLS obligatorio, tokenización de tarketas y pinning o mTLS para los clientes.
+El sistema detecta y detiene estos ataques en el 99% de los casos.
 
-=== Integridad
+==== Integridad
 
-=== Disponibilidad
 ==== Fuente
-Usuarios masivos (huéspedes) durante un evento regional no planificado.
+Un empleado dentro de la empresa.
 
 ==== Estímulo
-Aumento repentino y sostenido de consultas de disponibilidad y solicitudes de reserva, superando las 10 TPS.
+Realiza un cargo falso a la estancia de un cliente.
 
 ==== Artefacto
-Servicio de Consulta de Disponibilidad y Servicio de Reservas.
+Portal de recepción.
 
 ==== Entorno
-Modo normal de operación, pero bajo condiciones de carga extrema no prevista en la estimación inicial.
+Conectado de la red de la cadena.
 
 ==== Respuesta
-El sistema debe mantenerse operativo, sin caídas totales. Las respuestas pueden ser más lentas, pero deben ser correctas y eventualmente consistentes. No debe generarse doble reserva ni inconsistencia de inventario.
+- El sistema registra que empleado realizo el cargo.
+- El sistema restaura el balance real.
 
 ==== Medida
-El sistema debe mantener una disponibilidad ≥ 99.9% (tiempo de inactividad total < 9 horas/año) incluso durante estos picos. La degradación del rendimiento (latencia) es aceptable, pero no la indisponibilidad del servicio.
+30 segundos después de recibir un reporte.
+
+=== Disponibilidad
+
+==== Recuperación de fallas
+
+==== Fuente
+El servicio de consulta de disponibilidad.
+
+==== Estímulo
+Registra un aumento inesperado y sostenido en el número de solicitudes que expiran.
+
+==== Artefacto
+El servicio de consulta de disponibilidad.
+
+==== Entorno
+Operación normal.
+
+==== Respuesta
+El sistema aumenta el máximo de solicitudes que pueden ser atendidas a costa de la velocidad de respuesta individual.
+
+==== Medida
+El sistema entra y sale del modo degradado respectivamente en menos de 5 minutos tras regresar a carga habitual.
+
+==== Detección de fallas
+
+==== Fuente
+El interfaz del proveedor bancario.
+
+==== Estímulo
+Pasa más de 30 segunoods sin responder las solicitudes de pago.
+
+==== Artefacto
+El servicio de reservación.
+
+==== Entorno
+Operación normal.
+
+==== Respuesta
+El sistema cancela las transacciones en curso, desactiva el servicio de reservación, notifica al portal de clientes y a la administración de la cadena..
+
+==== Medida
+El servicio de reservación vuelve a estar habilitado en menos de 60 segundos tras restablecerse la comunicación con el proveedor.
 
 === Rendimiento
 
+==== Tiempo de Respuesta
+
 ==== Fuente
-Un recepcionista del hotel
+Un huésped
 
 ==== Estímulo
-Solicita la disponibilidad de habitaciones para una fecha específica durante temporada alta
+Hace una búsqueda de alojamiento durante temporada alta.
 
 ==== Artefacto
-Módulo de reservas del sistema de gestión de la cadena hotelera
+En el portal de clientes.
 
 ==== Entorno
-El sistema está en operación normal, con múltiples usuarios concurrentes realizando consultas y reservas (pico de carga en temporada alta)
+El sistema está bajo carga máxima.
 
 ==== Respuesta
-El sistema procesa la solicitud, accede a la base de datos centralizada de hoteles, recupera la información y muestra las habitaciones disponibles en pantalla
+El sistema devuelve con los resultados de la búsqueda.
 
 ==== Medida
-* La respuesta debe generarse en *menos de 2 segundos* para consultas de disponibilidad
-* Confirmación de reserva en *menos de 5 segundos*
-* Soporta al menos *500 usuarios concurrentes* sin degradación perceptible del servicio
+En 2 segundos o menos para el 95% de las peticiones.
+
+=== Rendimiento
+
+==== Capacidad de procesamiento
+
+==== Fuente
+Multiples huespedes
+
+==== Estímulo
+Confirmación su reservación durante temporada altaa.
+
+==== Artefacto
+En el portal de clientes.
+
+==== Entorno
+El sistema está bajo carga máxima.
+
+==== Respuesta
+El sistema confirma la reservación.
+
+==== Medida
+En 2.5 segundos o menos para el 95% de las peticiones durante picos de 3 transacciones por segundo.
+
+=== Usabilidad
+
+==== Capacidad de aprendizaje
+
+==== Fuente
+Recpecionista
+
+==== Estímulo
+Necesita aprender las tareas de check-in y check-out.
+
+==== Artefacto
+En el portal de clientes.
+
+==== Entorno
+En tiempo de ejecución.
+
+==== Respuesta
+El sistema guia al usuario con navegación intuitiva y mensajes informativos.
+
+==== Medida
+Más del 90% de los recepcionistas novatos pueden completar el check-in y el check-out exitosamente con 10 minutos de instrucción por tarea.
+
+==== Confianza y satisfacción
+
+==== Fuente
+Huésped
+
+==== Estímulo
+Intenta realizar su primera reservación
+
+==== Artefacto
+En el portal de clientes.
+
+==== Entorno
+En tiempo de ejecución.
+
+==== Respuesta
+El sistema guia al usuario con navegación intuitiva a través del flujo de reservación con menos de 5 pasos.
+
+==== Medida
+El 80% de los nuevos usuarios reportan que el sistema es agradable de usar en la encuesta de satisfacción.
