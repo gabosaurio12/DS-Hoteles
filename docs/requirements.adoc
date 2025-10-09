@@ -1,2 +1,14 @@
 
 == Alcance y propósito del diseño
+
+=== Restricciones
+* CON-1: La solución deberá ser implementada para la web oficial de la cadena (Negocio)
+* CON-2: La solución deberá ser implementada par la aplicación movil de la cadena (Negocio)
+* CON-3: El costo de una reservación se paga en su totalidad por adelantado. (Negocio)
+* CON-4: La solución debera conectarse a una interfaz bancaria externa para la realización de los pagos. (Técnico)
+* CON-5: Las operaciones de reserva y pago deben realizarse utilizando un RDBMS (Técnico)
+
+=== Preocupaciones
+* CRN-1:  
+* CRN-2:
+* CRN-3:
