@@ -32,7 +32,7 @@
 |0.0.5
 |04/10/2025
 |Christian Guillermo Rosas Hernández
-|Redacción de Descripciones de caso de uso (CU32-CU36 y 41-48)
+|Redacción de Descripciones de caso de uso (CU32-CU36 y CU41-CU48)
 
 |0.0.6
 |05/10/2025
