@@ -1,0 +1,9 @@
+
+== Estructura estática
+
+== Modelo de coneptos de Negocio (MCN)
+
+El MCN nos sirve para ver las relaciones de los conceptos importantes de nuestro problema. En este caso nos permite ver cómo se relacionan los roles principales que tiene el sistema y sus interacciones, como _Huésped_ con _Estancia_ o _Recepcionista_.
+
+.Modelo de Conceptos de Negocio
+image:../images/modeloConceptosNegocio.png[Modelo de conceptos de negocio, width=600, align=center]
