@@ -97,7 +97,7 @@ image::CU_AdministradorHotel.png[.Diagrama de casos de uso de Administrador de h
 *Flujo Normal* +
 1. El _Sistema_ muestra los datos de la habitación solicitada (Ver EX01) +
 2. El _Huésped_ selecciona "Reservar la habitación" (ver FA01) +
-3. El _Sistema_ solicita los datos de pago al _Huésped_ +
+3. El _Sistema_ solicita los datos de pago al _Huésped_ (ver FA02) +
 4. El _Huésped_ ingresa sus datos de pago y selecciona “Pagar” +
 5. El _Sistema_ envía los datos al Sistema de cobros (Ver EX02) +
 6. El _Sistema_ envía al _Huésped_ su comprobante de pago y de reservación +
@@ -108,6 +108,10 @@ image::CU_AdministradorHotel.png[.Diagrama de casos de uso de Administrador de h
 *FA01 - Cancelar* +
 1. El _Huésped_ selecciona "Cancelar"
 2. Termina el caso de uso
+
+*FA02 - Iniciar sesión*
+1. Si el _Huésped_ no ha iniciado sesión debe iniciar sesión con sus credenciales. +
+2. Regresa al flujo normal 3.
 
 *Excepciones*
 
