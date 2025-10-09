@@ -32,7 +32,7 @@
 |0.0.5
 |04/10/2025
 |Christian Guillermo Rosas Hernández
-|Redacción de Descripciones de caso de uso (CU25-CU36)
+|Redacción de Descripciones de caso de uso (CU32-CU36 y CU41-CU48)
 
 |0.0.6
 |05/10/2025
@@ -58,5 +58,10 @@
 |05/10/2001
 |Seth Marquez Rodriguez
 |Diagramas de flujo de datos, Correcion de numeracion, Elaboracion CU 13-30, 40-45, Contribucion en el utily tree
+
+|0.0.11
+|09/10/2025
+|Christian Guillermo Rosas Hernández
+|Redacción de Explicacion del Proceso ADD y CBSE
 
 |===

@@ -1,6 +1,22 @@
 
 == Método de diseño
-Para el proyecto se usara ADD (Attribute Driven Desing) para el diseño y CBSE (Cheesman & Daniels) como proceso de especificación.
+
+La arquitectura para el *Sistema de Reservaciones* fue derivada mediante un proceso de diseño de software estructurado, iterativo y deliberado, con el objetivo de asegurar que la solución final no solo cumpla con los requisitos funcionales, sino que también exhiba las cualidades sistémicas cruciales para el éxito del negocio hotelero. El método principal que guio este proceso fue el *Attribute-Driven Design (ADD)*, seleccionado específicamente porque pone los atributos de calidad, como la seguridad, el rendimiento y la disponibilidad, en el centro de la toma de decisiones. En un sistema transaccional de alta concurrencia como este, dichos atributos no son un lujo, sino un requisito fundamental.
+
+Este enfoque nos obligó a justificar cada decisión arquitectónica importante en función de cómo contribuía a satisfacer uno o más de los impulsores clave del sistema, garantizando así que el diseño resultante es racional y no arbitrario. Para la definición y especificación de las piezas de software resultantes de estas decisiones, se aplicaron los principios de *Component-Based Software Engineering (CBSE)*, siguiendo el proceso de *Identificación, Interacción y Especificación* propuesto por Cheesman & Daniels. Este complemento metodológico nos permitió gestionar la complejidad del sistema a través de la modularización, definiendo componentes con responsabilidades claras e interfaces bien establecidas.
+
+El proceso de diseño se documentó de manera integrada. En lugar de utilizar un registro de decisiones de arquitectura (ADR) por separado, cada decisión se documentó dentro de la descripción de la iteración correspondiente, vinculando explícitamente el problema (el impulsor) con la solución (la táctica o patrón de diseño aplicado).
+
+=== Backlog de Impulsores Arquitectónicos (Drivers)
+
+El backlog de impulsores representa el conjunto de requisitos de calidad, restricciones y metas de negocio que tuvieron la mayor influencia en la forma de la arquitectura. Estos fueron extraídos y priorizados a partir de un análisis detallado de los intereses de los stakeholders (sección 3.3) y los escenarios de calidad formalizados en el Utility Tree (sección 5).
+
+* *Seguridad (Confidencialidad):* Proteger los datos de pago del cliente contra ataques Man-in-the-Middle. La confianza del cliente es primordial; una brecha de seguridad en los pagos no solo acarrearía multas y sanciones legales, sino que dañaría irreparablemente la reputación de la cadena hotelera.
+* *Disponibilidad (Recuperación de Fallas):* Soportar picos de demanda inesperados (ej. ofertas de temporada) sin una caída total del servicio. El sistema debe poder entrar en un modo de operación degradado de forma predecible y recuperarse completamente en menos de 5 minutos una vez que la carga se normalice. La indisponibilidad durante estos picos se traduce directamente en pérdida de ingresos.
+* *Rendimiento (Tiempo de Respuesta):* Devolver los resultados de una búsqueda de alojamiento en 2 segundos o menos para el 95% de las peticiones, incluso bajo la carga máxima de temporada alta. Un sistema lento frustra al usuario e incentiva el abandono del flujo de reservación en favor de la competencia.
+* *Integridad de Datos (Consistencia):* Evitar por completo que ocurran dobles reservas. Este es un fallo catastrófico desde la perspectiva del negocio y del cliente, ya que genera una pésima experiencia de usuario y problemas logísticos y de reputación significativos para el hotel.
+* *Usabilidad (Facilidad de Aprendizaje):* Asegurar que el 90% de los recepcionistas novatos puedan completar las tareas de check-in y check-out de forma autónoma con solo 10 minutos de instrucción. Esto es vital para reducir los costos y el tiempo de capacitación de personal, dada la alta rotación en el sector.
+* *Escalabilidad:* Diseñar la arquitectura para soportar las operaciones de una cadena de más de 5,000 hoteles y 1,000,000 de habitaciones. La arquitectura debe poder crecer junto con el negocio sin necesidad de un rediseño costoso y disruptivo.
 
 === ADD
 

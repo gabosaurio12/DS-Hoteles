@@ -1174,7 +1174,7 @@ EX01 – Error al conectarse a la base de datos::
 *Postcondiciones:* La categoría de servicio ya no está disponible para las categorías de habitación seleccionadas. +
 *Reglas de negocio:* Una categoría de servicio no puede ser retirada si tiene consumos asociados aún activos. +
 *Incluye:* N/A +
-*Extiende:* N/A +
+*Extiende:* CU26 Consultar categorías de servicio a la habitación +
 
 ---
 
@@ -1231,7 +1231,7 @@ N/A +
 *Postcondiciones:* Se crea una nueva categoría de consumo en el sistema. +
 *Reglas de negocio:* El nombre de cada categoría de consumo debe ser único. +
 *Incluye:* N/A +
-*Extiende:* N/A +
+*Extiende:* CU33 Consultar categorias de consumo +
 
 ---
 
@@ -1259,7 +1259,7 @@ N/A +
 *Postcondiciones:* La información de la categoría de consumo es actualizada. +
 *Reglas de negocio:* N/A +
 *Incluye:* N/A +
-*Extiende:* N/A +
+*Extiende:* CU33 Consultar categorias de consumo +
 
 ---
 
@@ -1287,7 +1287,7 @@ N/A +
 *Postcondiciones:* La categoría de consumo es eliminada del sistema. +
 *Reglas de negocio:* No se puede eliminar una categoría de consumo que ya ha sido asociada a registros de huéspedes para mantener la integridad de los datos históricos. +
 *Incluye:* N/A +
-*Extiende:* N/A +
+*Extiende:* CU33 Consultar categorias de consumo +
 
 ---
 
@@ -1509,7 +1509,7 @@ N/A +
 *Postcondiciones:* Se crea un nuevo registro de empleado en el sistema. +
 *Reglas de negocio:* El ID de cada empleado debe ser único. +
 *Incluye:* N/A +
-*Extiende:* N/A +
+*Extiende:* CU46 Consultar empleado +
 
 ---
 
