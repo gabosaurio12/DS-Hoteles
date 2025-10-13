@@ -64,4 +64,9 @@
 |Christian Guillermo Rosas Hernández
 |Redacción de Explicacion del Proceso ADD y CBSE
 
+|0.1.0
+|09/10/2025
+|Gabriel Antonio González López
+|Modelo de conceptos de negocio, priorización de atributos y vista lógica
+
 |===
