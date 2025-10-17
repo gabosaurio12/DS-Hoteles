@@ -18,6 +18,73 @@ El backlog de impulsores representa el conjunto de requisitos de calidad, restri
 * *Usabilidad (Facilidad de Aprendizaje):* Asegurar que el 90% de los recepcionistas novatos puedan completar las tareas de check-in y check-out de forma autónoma con solo 10 minutos de instrucción. Esto es vital para reducir los costos y el tiempo de capacitación de personal, dada la alta rotación en el sector.
 * *Escalabilidad:* Diseñar la arquitectura para soportar las operaciones de una cadena de más de 5,000 hoteles y 1,000,000 de habitaciones. La arquitectura debe poder crecer junto con el negocio sin necesidad de un rediseño costoso y disruptivo.
 
+=== Diseño por Iteraciones
+
+==== Iteración 1: El Núcleo Transaccional Seguro y Consistente
+
+*Objetivo de la iteración:* Diseñar el corazón del sistema, enfocándose en la capacidad de procesar una reservación de manera segura, confiable y atómica para construir una base sólida de confianza tanto para el cliente como para el negocio.
+
+*Drivers Atendidos:* #1 (Seguridad) y #4 (Integridad de Datos).
+
+*Decisiones de Diseño (Tácticas y Patrones):*
+
+* Para el driver de *Integridad*, se adoptó una base de datos relacional (RDBMS) que garantiza transacciones **ACID** (Atomicidad, Consistencia, Aislamiento, Durabilidad).
+
+* Para manejar la alta concurrencia en reservaciones, se aplicó la táctica de **Bloqueo Pesimista** sobre el recurso "habitación" durante el proceso de pago.
+
+* Para el driver de *Seguridad*, se aplicó la táctica de **No Almacenar Datos Sensibles** (ej. números de tarjeta), delegando esta responsabilidad.
+
+* Se decidió la **Integración con una Pasarela de Pagos Externa** certificada (PCI-DSS) para procesar las transacciones de forma segura.
+
+* Se impuso la táctica de **Forzar Comunicación Segura (HTTPS/TLS)** en todos los endpoints para mitigar ataques Man-in-the-Middle.
+
+*Proceso CBSE - Identificación:* En esta fase, a partir de los casos de uso como CU03 ("Reservar estancia") y CU05 ("Cancelar reservación"), y apoyándonos en el modelo de conceptos de negocio, se *identificaron* los componentes lógicos iniciales. El modelo de negocio nos mostró entidades centrales como `Hotel`, `Habitación`, `Estancia` y `Huésped` y sus relaciones. A partir de esto, se definieron los componentes de software para gestionar esa lógica: El `GestorDeReservaciones` se concibió como el orquestador principal, encapsulando la lógica de negocio que vincula a un `Huésped` con una `Estancia` y genera los eventos de `Check-in` y `Check-out`. El `ControladorDeInventario` se identificó como el responsable de gestionar el estado de las entidades `Hotel` y `Habitación`, asegurando que el inventario reflejado al cliente sea siempre consistente. Finalmente, el `IntegradorDePagos`, aunque no es una entidad de negocio directa, se identificó como un componente técnico crucial de tipo "gateway" para manejar las transacciones monetarias asociadas a una `Estancia`.
+
+*Criterios de "Suficiente":* Se determinó que el diseño era suficiente para esta iteración una vez que el modelo de datos garantizaba la consistencia transaccional en pruebas conceptuales y el flujo de la reserva, incluyendo la comunicación con la pasarela de pago, demostraba no tener puntos donde la información sensible viajara sin encriptación.
+
+==== Iteración 2: Rendimiento y Disponibilidad a Escala
+
+*Objetivo de la iteración:* Abordar la necesidad del sistema de responder rápidamente a las interacciones del usuario y de manejar grandes volúmenes de tráfico sin fallar, asegurando que la plataforma pueda crecer y operar de manera eficiente durante los periodos de mayor demanda.
+
+*Drivers Atendidos:* #2 (Disponibilidad), #3 (Rendimiento) y #6 (Escalabilidad).
+
+*Decisiones de Diseño (Tácticas y Patrones):*
+
+* Se adoptó el patrón arquitectónico de **Microservicios** para desacoplar el sistema y permitir la escalabilidad independiente de las capacidades (ej. `ServicioDeBusqueda` vs. `ServicioDeReservaciones`).
+
+* Se aplicó la táctica de **Escalado Horizontal** para cada microservicio, permitiendo manejar picos de demanda.
+
+* Se implementó la táctica de **Caching** mediante el patrón de diseño **Proxy**. Un caché en memoria (ej. Redis) actúa como un proxy frente al servicio de inventario para acelerar las consultas de disponibilidad y cumplir con el objetivo de <2 segundos.
+
+* Se incluyó un **Balanceador de Carga** para distribuir el tráfico uniformemente entre las instancias de los servicios.
+
+* Se decidió usar una plataforma de **Orquestación de Contenedores** (ej. Kubernetes) para automatizar el despliegue y la **Recuperación de Fallas** (reinicio automático de servicios caídos).
+
+*Proceso CBSE - Interacción:* Esta iteración se centró en definir las *interacciones* entre los componentes (ahora microservicios). Se decidió que la comunicación entre el front-end y los servicios, y entre la mayoría de los servicios, sería principalmente síncrona a través de APIs REST. Sin embargo, para operaciones que no requieren una respuesta inmediata, como el envío de un correo de confirmación tras una reserva, se especificó una interacción asíncrona mediante una *Cola de Mensajes* (ej. RabbitMQ). Esta táctica de *desacoplamiento* mejora la resiliencia del sistema; si el servicio de notificaciones falla, las reservaciones no se ven afectadas.
+
+*Criterios de "Suficiente":* El diseño de esta iteración se consideró completo al tener un plan claro de despliegue y escalado para cada microservicio, y cuando las pruebas de carga simuladas demostraron que el uso de la caché y el escalado horizontal podían mantener los tiempos de respuesta dentro de los límites definidos en los escenarios de calidad.
+
+==== Iteración 3: Usabilidad y Experiencia de Usuario
+
+*Objetivo de la iteración:* Enfocarse en la capa de presentación y la interacción directa con los usuarios (huéspedes y personal), con el fin de crear una experiencia fluida, intuitiva y que minimice la carga cognitiva y el tiempo de aprendizaje.
+
+*Drivers Atendidos:* #5 (Usabilidad).
+
+*Decisiones de Diseño (Tácticas y Patrones):*
+
+* Se adoptó el patrón **Single Page Application (SPA)** para crear dos interfaces de usuario separadas y especializadas: "Portal de Clientes" y "Portal de Gestión".
+
+* Las aplicaciones SPA se estructuraron internamente con el patrón **MVC (Model-View-Controller)** (o sus variantes) para una clara separación de responsabilidades y mantenibilidad.
+
+* Se aplicó el patrón **Backend for Frontend (BFF)**, creando dos APIs especializadas (una para cada SPA) que agregan y formatean datos de los microservicios de back-end.
+
+* Para la *Usabilidad* del personal, se adoptó la táctica de diseño de **Flujos Guiados (Wizards)** para simplificar procesos complejos como el check-in y check-out.
+
+*Proceso CBSE - Especificación:* El foco de esta iteración fue la *especificación* detallada de las interfaces. Se utilizó la especificación *OpenAPI* para definir los "contratos" de los BFFs. Por ejemplo, el contrato para la operación `realizarCheckIn` especificó los datos requeridos (`idReservacion`), los posibles códigos de respuesta (200 OK, 404 Not Found, 500 Server Error) y la estructura exacta del objeto JSON devuelto. Se definió que el componente `PortalDeGestion` *requiere* esta interfaz, mientras que el `BFF-Gestion` la *provee*.
+
+*Criterios de "Suficiente":* Se alcanzó el criterio de "suficiente" cuando los prototipos de alta fidelidad de los flujos de usuario (reserva en <5 pasos y check-in guiado) fueron validados con usuarios de prueba, confirmando que el diseño cumplía con los objetivos de usabilidad y satisfacción definidos en los escenarios de calidad.
+
+
 === ADD
 
 El ADD debe recibir ciertas entradas para poder comenzar, así que lo primero que hicimos fue definir cuáles serían las funcionalidades principales y qué atributos de calidad íbamos a considerar como los más importantes; esto último enfocándonos en los problemas actuales para solucionarlos.
