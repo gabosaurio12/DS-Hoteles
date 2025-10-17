@@ -3,12 +3,16 @@
 
 === Restricciones
 * CON-1: La solución deberá ser implementada para la web oficial de la cadena (Negocio)
-* CON-2: La solución deberá ser implementada par la aplicación movil de la cadena (Negocio)
-* CON-3: El costo de una reservación se paga en su totalidad por adelantado. (Negocio)
-* CON-4: La solución debera conectarse a una interfaz bancaria externa para la realización de los pagos. (Técnico)
-* CON-5: Las operaciones de reserva y pago deben realizarse utilizando un RDBMS (Técnico)
+* CON-2: La solución para los clientes deberá ser implementada para la aplicación movil de la cadena (Negocio)
+* CON-3: El costo de una reservación deberá pagarse en su totalidad por adelantado. (Negocio)
+* CON-4: El pago de una reservación deberá ser realizado mediante una interfaz bancaria externa. (Técnico)
+* CON-5: Las operaciones de reserva y pago deben realizarse utilizando un Sistema Gestor de Base de Datos Relacionales para asegurar la consistencia y evitar dobles cargos o dobles reservas. (Técnico)
+* CON-6: El sistema deberá soportar una política de overbooking del 10% por tipo de habitación y por fecha, evitando sobreventa accidental. (Negocio) 
+* CON-7: La recolección y manejo de datos personales de los clientes deberá ir acorde con la Ley Federal de Protección de Datos Personales. (Legal)
+* CON-8: El proceso de y la reservación deberá cumplir con los requisitos mínimos de un contrato de servicios turísticos de acuerdo con la Norma Oficial Mexicana NOM-010-TUR-2001 (Legal)
+* CON-9: El sistema de reservaciones deberá cumplir con todas las regulaciones pertinentes estipuladas en la Ley Federal de Protección al Consumidor. Especialmente con el cápitulo VII BIS. (Legal)
 
 === Preocupaciones
-* CRN-1:  
+* CRN-1: 
 * CRN-2:
 * CRN-3:
