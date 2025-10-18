@@ -69,4 +69,9 @@
 |Gabriel Antonio González López
 |Modelo de conceptos de negocio, priorización de atributos y vista lógica
 
+|0.1.1
+|16/10/2025
+|Abel Hernánndez Yong
+|Identificación de Restricciones y Concerns
+
 |===
