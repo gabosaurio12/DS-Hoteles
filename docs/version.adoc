@@ -74,4 +74,9 @@
 |Abel Hernánndez Yong
 |Identificación de Restricciones y Concerns
 
+|0.1.2
+|17/10/2025
+|Gabriel Antonio González López
+|Vista lógica
+
 |===

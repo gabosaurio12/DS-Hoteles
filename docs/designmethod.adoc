@@ -1,11 +1,34 @@
 
 == Método de diseño
 
-La arquitectura para el *Sistema de Reservaciones* fue derivada mediante un proceso de diseño de software estructurado, iterativo y deliberado, con el objetivo de asegurar que la solución final no solo cumpla con los requisitos funcionales, sino que también exhiba las cualidades sistémicas cruciales para el éxito del negocio hotelero. El método principal que guio este proceso fue el *Attribute-Driven Design (ADD)*, seleccionado específicamente porque pone los atributos de calidad, como la seguridad, el rendimiento y la disponibilidad, en el centro de la toma de decisiones. En un sistema transaccional de alta concurrencia como este, dichos atributos no son un lujo, sino un requisito fundamental.
+La arquitectura para el *Sistema de Reservaciones* fue derivada mediante un proceso de diseño de software estructurado, iterativo y deliberado, con el objetivo de asegurar que la solución final no solo cumpla con los requisitos funcionales, sino que también exhiba las cualidades sistémicas cruciales para el éxito del negocio hotelero. El método principal que guió este proceso fue el *Attribute-Driven Design (ADD)*, seleccionado específicamente porque pone los atributos de calidad, como la seguridad, el rendimiento y la disponibilidad, en el centro de la toma de decisiones. En un sistema transaccional de alta concurrencia como este, dichos atributos no son un lujo, sino un requisito fundamental.
 
 Este enfoque nos obligó a justificar cada decisión arquitectónica importante en función de cómo contribuía a satisfacer uno o más de los impulsores clave del sistema, garantizando así que el diseño resultante es racional y no arbitrario. Para la definición y especificación de las piezas de software resultantes de estas decisiones, se aplicaron los principios de *Component-Based Software Engineering (CBSE)*, siguiendo el proceso de *Identificación, Interacción y Especificación* propuesto por Cheesman & Daniels. Este complemento metodológico nos permitió gestionar la complejidad del sistema a través de la modularización, definiendo componentes con responsabilidades claras e interfaces bien establecidas.
 
 El proceso de diseño se documentó de manera integrada. En lugar de utilizar un registro de decisiones de arquitectura (ADR) por separado, cada decisión se documentó dentro de la descripción de la iteración correspondiente, vinculando explícitamente el problema (el impulsor) con la solución (la táctica o patrón de diseño aplicado).
+
+=== ADD
+
+El ADD debe recibir ciertas entradas para poder comenzar, así que lo primero que hicimos fue definir cuáles serían las funcionalidades principales y qué atributos de calidad íbamos a considerar como los más importantes; esto último enfocándonos en los problemas actuales para solucionarlos.
+
+Definimos cuatro atributos de calidad importantes:
+
+* Seguridad
+* Disponibilidad
+* Rendimiento
+* Usabilidad
+
+La importancia de estos no fue decidida arbitrariamente, usamos una matriz de importancia de atributos de calidad (ver Matriz de priorización de atributos) donde < significa que el atributo de la fila importa más que el de la columna, mientras que el ^ significa lo contrario.
+
+.Matriz de priorización de atributos
+image:images/priorizacionAtributos.png[Priorización de atributos, width=600, align=center]
+
+El resultado de la matriz indicó que el más importante sería el atributo de *Seguridad*, nuestra justificación fue porque los _Huéspedes_ ingresarán al sistema datos personales y sus tarjetas o métodos de pago y es inaceptable que estos datos estén en riesgo ya que aparte del peligro para los _Huéspedes_ podría resultar en un problema legal con un gran impacto para los interesados.
+
+*Disponibilidad* y *Rendimiento* resultaron con la misma importancia, pero decidimos darle más peso a la *Disponibilidad* porque queremos un sistema que se pueda consultar en cualquier momento por comodidad de los _Huéspedes_ pero sobre todo del _Auditor_ que debe poder acceder al sistema a cualquier hora del día. Dejamos el *Rendimiento* en segundo plano porque con una buena *Disponibilidad* el *Rendimiento* debe mejorar, es decir, al concentrarnos en la *Disponibilidad* podremos mejorar el rendimiento y que el enfoque en este sea a cumplir con métricas específicas sin arriesgar la seguridad.
+
+Por último, la *Usabilidad* porque será un sistema que los _Huéspedes_ y empleados del hotel deben usar, si es muy complejo o se requiere una capacitación para usarlo sería aumentar costos a la empresa y eso no es lo que buscamos. Por otro lado, una mala usabilidad puede resultar en bajas en las reservaciones del hotel por parte de los clientes.
+
 
 === Backlog de Impulsores Arquitectónicos (Drivers)
 
@@ -83,26 +106,3 @@ El backlog de impulsores representa el conjunto de requisitos de calidad, restri
 *Proceso CBSE - Especificación:* El foco de esta iteración fue la *especificación* detallada de las interfaces. Se utilizó la especificación *OpenAPI* para definir los "contratos" de los BFFs. Por ejemplo, el contrato para la operación `realizarCheckIn` especificó los datos requeridos (`idReservacion`), los posibles códigos de respuesta (200 OK, 404 Not Found, 500 Server Error) y la estructura exacta del objeto JSON devuelto. Se definió que el componente `PortalDeGestion` *requiere* esta interfaz, mientras que el `BFF-Gestion` la *provee*.
 
 *Criterios de "Suficiente":* Se alcanzó el criterio de "suficiente" cuando los prototipos de alta fidelidad de los flujos de usuario (reserva en <5 pasos y check-in guiado) fueron validados con usuarios de prueba, confirmando que el diseño cumplía con los objetivos de usabilidad y satisfacción definidos en los escenarios de calidad.
-
-
-=== ADD
-
-El ADD debe recibir ciertas entradas para poder comenzar, así que lo primero que hicimos fue definir cuáles serían las funcionalidades principales y qué atributos de calidad íbamos a considerar como los más importantes; esto último enfocándonos en los problemas actuales para solucionarlos.
-
-Definimos cuatro atributos de calidad importantes:
-
-* Seguridad
-* Disponibilidad
-* Rendimiento
-* Usabilidad
-
-La importancia de estos no fue decidida arbitrariamente, usamos una matriz de importancia de atributos de calidad (ver Matriz de priorización de atributos) donde < significa que el atributo de la fila importa más que el de la columna, mientras que el ^ significa lo contrario.
-
-.Matriz de priorización de atributos
-image:images/priorizacionAtributos.png[Priorización de atributos, width=600, align=center]
-
-El resultado de la matriz indicó que el más importante sería el atributo de *Seguridad*, nuestra justificación fue porque los _Huéspedes_ ingresarán al sistema datos personales y sus tarjetas o métodos de pago y es inaceptable que estos datos estén en riesgo ya que aparte del peligro para los _Huéspedes_ podría resultar en un problema legal con un gran impacto para los interesados.
-
-*Disponibilidad* y *Rendimiento* resultaron con la misma importancia, pero decidimos darle más peso a la *Disponibilidad* porque queremos un sistema que se pueda consultar en cualquier momento por comodidad de los _Huéspedes_ pero sobre todo del _Auditor_ que debe poder acceder al sistema a cualquier hora del día. Dejamos el *Rendimiento* en segundo plano porque con una buena *Disponibilidad* el *Rendimiento* debe mejorar, es decir, al concentrarnos en la *Disponibilidad* podremos mejorar el rendimiento y que el enfoque en este sea a cumplir con métricas específicas sin arriesgar la seguridad.
-
-Por último, la *Usabilidad

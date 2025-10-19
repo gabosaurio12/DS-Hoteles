@@ -1,5 +1,5 @@
 
-== Alcance y propósito del diseño
+== Impulsores Arquitectónicos y Priorización
 
 === Restricciones
 * CON-1: La solución deberá ser implementada para la web oficial de la cadena. (Negocio)
