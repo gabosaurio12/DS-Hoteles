@@ -106,3 +106,61 @@ El resultado de la matriz indicó que el más importante sería el atributo de *
 *Disponibilidad* y *Rendimiento* resultaron con la misma importancia, pero decidimos darle más peso a la *Disponibilidad* porque queremos un sistema que se pueda consultar en cualquier momento por comodidad de los _Huéspedes_ pero sobre todo del _Auditor_ que debe poder acceder al sistema a cualquier hora del día. Dejamos el *Rendimiento* en segundo plano porque con una buena *Disponibilidad* el *Rendimiento* debe mejorar, es decir, al concentrarnos en la *Disponibilidad* podremos mejorar el rendimiento y que el enfoque en este sea a cumplir con métricas específicas sin arriesgar la seguridad.
 
 Por último, la *Usabilidad
+
+== Especificacion
+
+=== Identificacion de CoreTyoes
+
+image:images/Identificacion de Cores.jpg[Identificacion de coreTYpes, width=600, align=center]
+
+=== Especificacion inicial de interfaces del negocio
+
+image:images/DiagramaInterfaces.jpg[Identificacion incial interfaces, width=600, align=center]
+
+=== Justificación
+
+Para comprender adecuadamente la justificación del diseño propuesto, es necesario recordar qué implica trabajar con una arquitectura centrada en microservicios. Este tipo de arquitectura se basa en la descomposición del sistema en unidades pequeñas, independientes y especializadas, denominadas microservicios, que cooperan entre sí a través de interfaces bien definidas.
+
+En el diagrama mosrtado en esta seccion del proyecto se han representado los distintos microservicios mediante cuadros azules, identificando cinco unidades principales que conforman la estructura del sistema:
+
+1.*MicroservicioCadenaHotel*
+
+Este microservicio es accesible únicamente por el AdministradorDeLaCadena. Sus responsabilidades se limitan a la administración global de la cadena de hoteles y a la gestión de sus atributos principales. Actúa como el núcleo de control a nivel corporativo, centralizando la información de las distintas sedes sin involucrarse directamente en la operativa de cada hotel.
+
+2.*MicroservicioHotel*
+
+El AdministradorHotel es el único usuario autorizado para interactuar con este servicio. Su propósito es gestionar toda la información operativa de un hotel en particular, incluyendo la administración de habitaciones, productos y servicios que este ofrece.
+
+Además, internamente dispone de una interfaz dedicada a la gestión de empleados, permitiendo administrar el personal, roles y funciones relacionadas con las operaciones diarias del hotel. Este microservicio también expone información clave que puede ser utilizada por otros servicios para el correcto funcionamiento del sistema global.
+
+3.*MicroservicioCliente*
+
+Este servicio constituye el pilar de la administración de clientes. Su función principal es ofrecer métodos para el registro, edición, modificación y consulta de datos de clientes. A futuro, podría ampliarse para incorporar funcionalidades como la gestión de programas de fidelidad o beneficios personalizados.
+
+El microservicio expone información relevante de los clientes que es utilizada por los servicios de reservación y estancia, así como los métodos de pago asociados a cada usuario, permitiendo una integración fluida con los demás componentes del sistema.
+
+4.*MicroservicioReservacionEstancia*
+
+Este es el servicio más complejo del sistema, ya que concentra la lógica central relacionada con la gestión de reservaciones y estancias dentro de los hoteles. Se encarga de recopilar información proveniente de los demás microservicios (Hotel, Cliente y Pago) para administrar de manera eficiente el calendario de reservaciones, así como las estancias activas, incluyendo el registro de productos o servicios adicionales consumidos por el huésped.
+
+Entre los métodos que expone este microservicio se incluyen, por ejemplo:
+
+- HacerReservacion
+
+- ReservacionMgt
+
+- TomarReservacion
+
+- CheckIn
+
+- CheckOut
+
+Estas operaciones representan las principales interacciones del cliente con el sistema, y su correcta definición dentro de la interfaz es fundamental para mantener la coherencia del flujo de información entre servicios.
+
+5.*MicroservicioPago*
+
+Finalmente, el MicroservicioPago es responsable de comunicar al resto del sistema el resultado de cada operación.En caso de éxito, este servicio notifica a los demás microservicios que la transacción ha sido completada, permitiendo actualizar el estado de las reservaciones o estancias correspondientes.
+
+
+
+En conjunto, esta estructura basada en microservicios permite un sistema modular, escalable y fácilmente mantenible, donde cada componente puede evolucionar de manera independiente sin afectar el funcionamiento del resto. Las interfaces, al actuar como puntos de conexión estables y bien definidos, aseguran la interoperabilidad entre los distintos servicios, consolidando una arquitectura coherente, robusta y adaptable a futuras necesidades.
