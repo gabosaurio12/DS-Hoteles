@@ -145,23 +145,23 @@ Para comprender adecuadamente la justificación del diseño propuesto, es necesa
 
 En el diagrama mosrtado en esta seccion del proyecto se han representado los distintos microservicios mediante cuadros azules, identificando cinco unidades principales que conforman la estructura del sistema:
 
-1.*MicroservicioCadenaHotel*
+1.*ServicioCadenaHotel*
 
 Este microservicio es accesible únicamente por el AdministradorDeLaCadena. Sus responsabilidades se limitan a la administración global de la cadena de hoteles y a la gestión de sus atributos principales. Actúa como el núcleo de control a nivel corporativo, centralizando la información de las distintas sedes sin involucrarse directamente en la operativa de cada hotel.
 
-2.*MicroservicioHotel*
+2.*ServicioHotel*
 
 El AdministradorHotel es el único usuario autorizado para interactuar con este servicio. Su propósito es gestionar toda la información operativa de un hotel en particular, incluyendo la administración de habitaciones, productos y servicios que este ofrece.
 
 Además, internamente dispone de una interfaz dedicada a la gestión de empleados, permitiendo administrar el personal, roles y funciones relacionadas con las operaciones diarias del hotel. Este microservicio también expone información clave que puede ser utilizada por otros servicios para el correcto funcionamiento del sistema global.
 
-3.*MicroservicioCliente*
+3.*ServicioHuesped*
 
 Este servicio constituye el pilar de la administración de clientes. Su función principal es ofrecer métodos para el registro, edición, modificación y consulta de datos de clientes. A futuro, podría ampliarse para incorporar funcionalidades como la gestión de programas de fidelidad o beneficios personalizados.
 
 El microservicio expone información relevante de los clientes que es utilizada por los servicios de reservación y estancia, así como los métodos de pago asociados a cada usuario, permitiendo una integración fluida con los demás componentes del sistema.
 
-4.*MicroservicioReservacionEstancia*
+4.*ServicioReservacionEstancia*
 
 Este es el servicio más complejo del sistema, ya que concentra la lógica central relacionada con la gestión de reservaciones y estancias dentro de los hoteles. Se encarga de recopilar información proveniente de los demás microservicios (Hotel, Cliente y Pago) para administrar de manera eficiente el calendario de reservaciones, así como las estancias activas, incluyendo el registro de productos o servicios adicionales consumidos por el huésped.
 
@@ -179,7 +179,7 @@ Entre los métodos que expone este microservicio se incluyen, por ejemplo:
 
 Estas operaciones representan las principales interacciones del cliente con el sistema, y su correcta definición dentro de la interfaz es fundamental para mantener la coherencia del flujo de información entre servicios.
 
-5.*MicroservicioPago*
+5.*ServicioPago*
 
 Finalmente, el MicroservicioPago es responsable de comunicar al resto del sistema el resultado de cada operación.En caso de éxito, este servicio notifica a los demás microservicios que la transacción ha sido completada, permitiendo actualizar el estado de las reservaciones o estancias correspondientes.
 
