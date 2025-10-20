@@ -1,2 +1,30 @@
 
-== Estructura estática
+== Vista lógica
+
+El sistema está basado en el estilo arquitectónico de Microservicios, esto nos obliga a que cada uno de los servicios pueda operar independientemente de los demás, incluyendo bases de datos y componentes dependientes. Resulta importante definir el tamaño de estos "microservicios" ya que no forzosamente deben ser sumamente pequeños, esto lo podemos delimitar fácilmente mediante su objetivo, el servicio debe ser extremadamente funcional, contribuyendo un comportamiento importante a todo el sistema.
+
+Tomando en cuenta que necesitamos un alto grado de *seguridad*, un servicio que maneje los datos del _Huésped_ es necesario, de esta forma podríamos limitar el impacto de un ataque. Como también la *disponiblidad* es un atributo clave en el sistema, se aprovecha el punto fuerte de la arquitectura de microservicios que tiene una alta tolerancia a los fallos. Lamentablemente, una de las debilidades de este estilo es el *rendimiento*, así que tendremos que usar ciertas tácticas para mejorarlo, como _controlar la demanda y los recursos_.
+
+Podemos observar en el siguiente diagrama la estructura del estilo:
+
+image::../images/logicaMicroservicios.png[Logica, width=600, align=center]
+
+Como podemos ver cada servicio tiene ciertas interfaces que deben implementar, cada uno tiene un rol el cual va acorde al rol del usuario que lo utiliza.
+
+Tenemos el *ServicioCadenaHotel* el cual implementará la interfaz _ICadenaHotelManager_, este servicio está pensado para que lo use el _Administrador de la cadena_
+
+== Modelo de Conceptos de Negocio (MCN)
+
+El MCN nos sirve para ver las relaciones de los conceptos importantes de nuestro problema. En este caso nos permite ver cómo se relacionan los roles principales que tiene el sistema y sus interacciones, como _Huésped_ con _Estancia_ o _Recepcionista_. Nos sirve como un vocabulario común para el diseño de la capa de negocio y de datos.
+
+.Modelo de Conceptos de Negocio
+image::../images/modeloConceptosNegocio.png[MCN, width=600, align=center]
+
+== Modelo de Tipos de Negocio (MTN)
+
+Comenzamos especializando el MCN conviriténdolo en un Modelo de Tipos de Negocio (MTN) para que solo contenga la información que el sistema necesita. Los tipos de negocio pueden ser físicos o no físicos, como por ejemplo, una habitación es un tipo físico mientras que un servicio es no físico.
+
+El MCN nos da como resultado:
+
+.Modelo de Tipos de Negocio
+image::../images/modeloTiposNegocio.png[MTN, width=600, align=center]
