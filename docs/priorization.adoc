@@ -21,5 +21,6 @@
 * CRN-5: Garantizar coherencia de precios: Para cumplir con las regulaciones de protección al consumidor, y procurar la satisfacción del cliente, se debe respetar el precio mostrado al cliente al comenzar su reservación.
 * CRN-6: Garantizar cobros únicos: Cuando un cliente realice un intento de pago, el sistema debe garantizar que solo se procese una vez, incluso si la solicitud de pago se repite erroneamente. La tasa de dobles cobros debe ser cero.
 * CRN-7: Soportar modificación de las politicas de negocio: Las tarifas de cancelación, la política de overbooking y los cambios en la reserva están sujetos a cambio en el futuro, por lo que el sistema deberá estar preparado para su eventual ajuste.
-* CRN-8 Diseñar para escalar: Puesto que es posible que la carga real del sistema exceda significativamente las estimaciones iniciales, el sistema deberá estar preparado para escalar en un futuro.
+* CRN-8: Diseñar para escalar: Puesto que es posible que la carga real del sistema exceda significativamente las estimaciones iniciales, el sistema deberá estar preparado para escalar en un futuro.
 * CRN-9: Gestión de picos de demanda: El sistema deberá diseñarse para manejar aumentos esperados e inesperados en la demanda, debe evitarse el colapso del sistema, la degradación del servicio debe ser predecible.
+* CRN-10: Privacidad e integridad de información de _Huéspedes_: El sistema deberá diseñarse para evitar el acceso no autorizado a la información de los _Huéspedes_ así como para mantener su integridad, incluso ante ataques.
