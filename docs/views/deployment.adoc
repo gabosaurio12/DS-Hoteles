@@ -1,3 +1,0 @@
-
-[[deployment-view]]
-== Vista de Despliegue

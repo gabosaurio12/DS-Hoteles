@@ -1,8 +1,7 @@
 
-image::images/PortadaDocumento.jpg[Portada, align=center, width=800]
-
 :doctype: book
-:toc: left
+:toc: macro
+:toc-title: Contenido
 :sectnums:
 :icons: font
 :source-highlighter: highlight.js
@@ -22,6 +21,9 @@ image::images/PortadaDocumento.jpg[Portada, align=center, width=800]
 :tip-caption: Consejo
 :warning-caption: Advertencia
 
+image::PortadaDocumento.jpg[Portada, align=center, width=800]
+toc::[]
+
 include::version.adoc[]
 include::introduction.adoc[]
 include::problem.adoc[]
@@ -39,5 +41,5 @@ include::views/concurrency.adoc[]
 include::views/deployment.adoc[]
 include::views/development.adoc[]
 include::views/operational.adoc[]
-include::decisions.adoc[]
-include::appendix.adoc[]
+
+include::adr.adoc[]

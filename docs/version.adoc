@@ -84,4 +84,9 @@
 |Gabriel Antonio González López
 |Modelo de tipos de negocio, explicación de vista lógica (diagramas y redacción)
 
+|0.1.4
+|23/10/2025
+|Gabriel Antonio González López
+|ADR
+
 |===
