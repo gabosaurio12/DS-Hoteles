@@ -29,7 +29,6 @@ El resultado de la matriz indicó que el más importante sería el atributo de *
 
 Por último, la *Usabilidad* porque será un sistema que los _Huéspedes_ y empleados del hotel deben usar, si es muy complejo o se requiere una capacitación para usarlo sería aumentar costos a la empresa y eso no es lo que buscamos. Por otro lado, una mala usabilidad puede resultar en bajas en las reservaciones del hotel por parte de los clientes.
 
-
 === Backlog de Impulsores Arquitectónicos (Drivers)
 
 El backlog de impulsores representa el conjunto de requisitos de calidad, restricciones y metas de negocio que tuvieron la mayor influencia en la forma de la arquitectura. Estos fueron extraídos y priorizados a partir de un análisis detallado de los intereses de los stakeholders (sección 3.3) y los escenarios de calidad formalizados en el Utility Tree (sección 5).
@@ -109,11 +108,11 @@ El backlog de impulsores representa el conjunto de requisitos de calidad, restri
 
 == Especificacion
 
-=== Identificacion de CoreTyoes
+=== Identificación de Core Types
 
-image:Identificacion de Cores.jpg[Identificacion de coreTYpes, width=600, align=center]
+image:Identificacion de Cores.jpg[Identificacion de core types, width=600, align=center]
 
-=== Especificacion inicial de interfaces del negocio
+=== Especificación inicial de interfaces del negocio
 
 image:DiagramaInterfaces.jpg[Identificacion incial interfaces, width=600, align=center]
 
