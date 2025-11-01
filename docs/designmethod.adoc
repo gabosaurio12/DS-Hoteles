@@ -114,7 +114,7 @@ image:Identificacion de Cores.jpg[Identificacion de core types, width=600, align
 
 === Especificación inicial de interfaces del negocio
 
-image:DiagramaInterfaces.jpg[Identificacion incial interfaces, width=600, align=center]
+image:images/DiagramaInterfaces.jpg[Identificacion incial interfaces, width=600, align=center]
 
 === Justificación
 
