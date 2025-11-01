@@ -1,53 +1,141 @@
 
 == Vista lógica
 
-El sistema está basado en el estilo arquitectónico de Microservicios, esto nos obliga a que cada uno de los servicios pueda operar independientemente de los demás, incluyendo bases de datos y componentes dependientes. Resulta importante definir el tamaño de estos "microservicios" ya que no forzosamente deben ser sumamente pequeños, esto lo podemos delimitar fácilmente mediante su objetivo, el servicio debe ser extremadamente funcional, contribuyendo un comportamiento importante a todo el sistema.
+El sistema está basado en el estilo arquitectónico por lo que cada una de las capas puede modificarse sin afectar a las demás, lo cual hace que el sistema sea escalable incluyendo bases de datos y componentes. Resulta importante definir el tamaño de estas capas, esto lo podemos delimitar fácilmente mediante su objetivo, la capa debe ser independiente y contribuír un comportamiento importante a todo el sistema.
 
-Tomando en cuenta que necesitamos un alto grado de *seguridad*, un servicio que maneje los datos del _Huésped_ es necesario, de esta forma podríamos limitar el impacto de un ataque. Como también la *disponiblidad* es un atributo clave en el sistema, se aprovecha el punto fuerte de la arquitectura de microservicios que tiene una alta tolerancia a los fallos. Lamentablemente, una de las debilidades de este estilo es el *rendimiento*, así que tendremos que usar ciertas tácticas para mejorarlo, como _controlar la demanda y los recursos_.
+Tomando en cuenta que necesitamos un alto grado de *seguridad*, un componente que maneje los datos del _Huésped_ es necesario. Lamentablemente, una de las debilidades de este estilo es la *tolerancia a fallos* así que tendremos que usar ciertas tácticas para mejorarlo, como _redundancia_ en componentes críticos o _automatización_ de recuperación.
 
-=== ¿Por qué Microservicios?
+=== ¿Por qué usar la arquitectura por capas?
 
-El estilo arquitectónico de _Microservicios_ tiene múltiples ventajas que favorecen nuestras preocupaciones y ASRs, siendo los dos principales la *Seguridad* y la *Disponiblilidad*, como ya se mencionó, la _tolerancia a fallos_ es uno de los puntos más fuertes de este estilo y definitivamente fue una de las razones principales por las que se eligió. Pero en el ámbito de la *seguridad* se eligió por tres razones principales:
-* Al tener el sistema dividido se le puede dar a cada servicio un trato de seguridad especial
-** Podemos darle prioridad a la seguridad en el servicio que maneja los datos del _Huesped_
-* Es fácil de desplegar
-** Si existe una vulnerabilidad, el desplegar la prevención y mitigación de la vulnerabilidad será sencillo y el sistema estará "abajo" menos tiempo
-* Es una solución sumamente escalable, por lo que agregar de medidas de seguridad no afectará al sistema existente
-** Con las constantes actualizaciones de los atacantes el sistema debe mantenerse seguro sin afectar lo ya diseñado e implementado
-** Se ven muchas oportunidades de escalar el sistema para beneficiar el negocio
+Esta arquitectura se eligió principalmente por su sencillez para implementarla y su bajo costo. Esta arquitectura se recomienda para aplicaciones o páginas web pequeñas, como la que se está diseñando. También se consideró que al tener componentes en distintas capas se pueden mejorar dos de nuestros ASRs: la *Seguridad* y la *Disponiblilidad*. En el ámbito de la *seguridad* se eligió por tres razones principales:
+* Al tener el sistema dividido se le puede dar a cada capa un trato de seguridad especial
+** Podemos darle prioridad a la seguridad en el componente que maneja los datos del _Huesped_
 
 En cuanto al *Rendimiento*, si bien esta arquitectura no destaca por su excelente rendimiento, se priorizó el poder agregar ciertas funcionalidades (como lo son mejoras a la seguridad) y reducir el tiempo que el sistema no está disponible para disminuir las pérdidas económicas que esa baja podría generar. Tampoco se espera que el sistema sea lento, solo no será tan rápido como otras arquitecturas.
 
-Como ya se comentó es una solución altamente escalable, lo cual nos interesa por la cantidad de hoteles que manejará el sistema (más de 5000), por lo que la necesidad de funciones específicas o no solicitadas en primera instancia surgirá y el sistema debe poder implementarlas sin afectar lo existente.
+Finalmente, la *Usabilidad* es un punto clave ya que no solo es atractiva para los _Huespedes_, sino también para los empleados del hotel, una buena usabilidad puede ahorrar la necesidad del negocio de invertir en una larga capacitación. Este estilo arquitectónico nos beneficia en este atributo porque al tener una capa de presentación podemos mejorar y actualizar la interfaz gráfica como sea necesario por el bajo acoplamiento que se genera.
 
-Finalmente, la *Usabilidad* es un punto clave ya que no solo es atractiva para los _Huespedes_, sino también para los empleados del hotel, una buena usabilidad puede ahorrar la necesidad del negocio de invertir en una larga capacitación. El estilo arquitectónico no afecta mucho en este atributo, sin embargo, por el bajo acoplamiento que se genera es posible cambiar la interfaz gráfica libremente sin tener que cambiar la lógica detrás.
+=== Estructura por capas
 
-=== Representación de los microservicios
+Se puede observar en el siguiente diagrama la estructura del estilo:
 
-Podemos observar en el siguiente diagrama la estructura del estilo:
+image::../images/Logica/Capas.png[Capas del sistema, width=600, align=center]
 
-image::../images/logicaMicroservicios.png[Logica, width=600, align=center]
+==== Componentes del sistema
 
-Como podemos ver cada servicio tiene ciertas interfaces que deben implementar, cada uno tiene un rol el cual va acorde al rol del usuario que lo utiliza.
+En *SistemaCadenaHotel* el cual implementará la interfaz _ICadenaHotelManager_, este componente está pensado para que lo use el _Administrador de la cadena_ y que desde ahí pueda administar lo que le interesa. Este necesita poder interactuar con _IHotelManager_ de *SistemaHotel*.
 
-Tenemos el *ServicioCadenaHotel* el cual implementará la interfaz _ICadenaHotelManager_, este servicio está pensado para que lo use el _Administrador de la cadena_ y que desde ahí pueda administar lo que le interesa.
+image::../images/Components/SistemaCadenaHotel.png[Sistema Cadena de Hotel, width=600]
 
-Después el *ServicioCadenaHotel* se comunica con el *ServicioHotel* al cual solo puede acceder el _Administrador del hotel_. Tiene como propósito gestionar la información del hotel que dirige. Además el _Administrador del hotel_ podrá administrar al personal del hotel.
+El *SistemaHotel* al cual solo puede acceder el _Administrador del hotel_. Tiene como propósito gestionar la información del hotel que dirige. Además el _Administrador del hotel_.
 
-Por el lado del _Huesped_ el *ServicioHuesped* manejará toda la información sensible del _Huesped_ (datos personales y métodos de pago). 
+image::../images/Components/SistemaHotel.png[Sistema Hotel, width=600]
 
-El *ServicioHuesped* puede implementa el *ServicioReservacion* el cual se comunica con todos los otros servicios que necesite para recopilar la información necesaria para poder hacer reservaciones, evitando el overbooking, reflejando el pago eficientemente y generando el comprobante de reservación.
+Por el lado del _Huesped_ el *SistemaHuesped* manejará toda la información sensible del _Huesped_ (datos personales y métodos de pago).
 
-Aparte del *ServicioReservacion* está el *ServicioEstancia* el cual podrá usar el _Recepcionista_ para realizar los _Check-In_ y _Check-Out_.
+image::../images/Components/SistemaHuesped.png[Sistema Huesped, width=600]
+
+El *SistemaHuesped* puede implementar el *SistemaReservacion* el cual se comunica con todos los otros servicios que necesite para recopilar la información necesaria para poder hacer reservaciones, evitando el overbooking, reflejando el pago eficientemente y generando el comprobante de reservación.
+
+image::../images/Components/SistemaReservacion.png[Sistema Reservación, width=600]
+
+Aparte del *SistemaReservacion* está el *SistemaEstancia* el cual podrá usar el _Recepcionista_ para realizar los _Check-In_ y _Check-Out_.
+
+image::../images/Components/SistemaEstancia.png[Sistema Estancia, width=600]
 
 Finalmente se representa el *SistemaDePago*, el cual al ser un sistema externo solo nos interesa la interfaz que nos sirve de pegamento para poder enviar de forma segura el método de pago del _Huesped_.
 
-==== Representación de los microservicios en clases
+image::../images/Components/PasarelaPagos.png[Pasarela de Pagos, width=600]
 
-image::../images/logicaMicroserviciosClases.png[Logica clases, width=600, align=center]
-_Nota: Este no es un diagrama de implementación_
+---
 
-En esta otra representación del estilo que estamos usando podemos ver mejor qué roles implementarán cada Servicio y cómo están comunicados los servicios.
+=== Interfaces SistemaCadenaHotel
+
+==== ICadenaHotelManager
+
+* getHotelesCadena()
+* getHotel(string hotel)
+* agregarHotel(Hotel hotel)
+* editarHotel(Hotel hotel)
+* eliminarHotel(int hotelID)
+
+---
+
+=== Interfaces SistemaHotel
+
+==== IHotelManager
+
+* getDatosHotel()
+* getPreciosHotel()
+* actualizarPreciosHotel(string rutaPrecios)
+
+==== IHabitacionManager
+
+* getHabitaciones()
+* getHabitacion(int habitacionID)
+* agregarHabitacion(Habitacion habitacion)
+* editarHabitacion(Habitacion habitacion)
+* eliminarHabitacion(int habitacionID)
+
+==== IProductoManager
+
+* getProducto()
+* getProducto(string nombreProducto)
+* agregarProducto(Producto producto)
+* editarProducto(Producto producto)
+* eliminarProducto(int productoID)
+
+==== IServicioManager
+
+* getServicios()
+* getServicio(string nombreServicio)
+* agregarServicio(Servicio servicio)
+* editarServicio(Servicio servicio)
+* eliminarServicio(int servicioID)
+
+==== IEmpleadoManager
+
+* getEmpleados()
+* getEmpleado(string nombreEmpleado)
+* agregarEmpleado(Empleado empleado)
+* editarEmpleado(Empleado empleado)
+* eliminarEmpleado(int empleadoID)
+
+---
+
+=== Interfaces SistemaReservacion
+
+==== IReservacionManager
+
+* solicitarRervacion(Reservacion reservacion)
+* editarResrvacion(Resrvacion resrvacion)
+* cancelarReservacion(Reservacion resrvacion)
+* getReservaciones(Huesped huesped)
+* getReservacionesHotel()
+
+---
+
+=== Interfaces SistemaEstancia
+
+==== IEstanciaManager
+
+* checkIn(Reservacion reservacion)
+* checkOut(Estancia estancia)
+* agregarServicioEstancia(Servicio servicio, Estancia estancia)
+* agregarProductoEstancia(Producto producto, Estancia estancia)
+* editarEstancia(Estancia estancia)
+
+---
+
+=== Interfaces SistemaHuesped
+
+==== IHuespedManager
+
+* getHuespedes()
+* getHuesped(string nombreHuesped)
+* registrarHuesped(Huesped huesped)
+* editarHuesped(Huesped huesped)
+* eliminarHuesped(int huespedID)
 
 == Trade-Offs
 
