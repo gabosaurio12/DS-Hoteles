@@ -89,4 +89,9 @@
 |Gabriel Antonio González López
 |ADR
 
+|0.1.5
+|29/10/2025
+|Gabriel Antonio González López
+|Especificación de componentes
+
 |===
