@@ -288,7 +288,7 @@ image::../images/Logica/Interfaces/IReservacionManager.png[IReservacionManager, 
 
 *solicitarReservacion(reservacion: Reservacion, metodoPago: MetodoPago) : boolean* +
 ``pre:`` +
-No hay otra reservacion cuya Reservacion.fechaCheckIn >= in:reservacion.fechaCheckIn && Reservacion.fechaCheckOut <= in:reservacion.fechaCheckOut para alguna de las habitaciones en in:reservacion.Habitacion[] +
+No hay otra reservacion cuya Reservacion.fechaInicio >= in:reservacion.fechaInicio && Reservacion.fechaFin <= in:reservacion.fechaFin para alguna de las habitaciones en in:reservacion.Habitacion[] +
 Completar la reservacion no infringira la Politica de Overbooking configurada para la CategoriaHabitacion o las fechas check-in y check-out asociadas a la Reservacion +
 La pasarela de pagos debe estar disponible +
 La transaccion debe ser aprobada por la pasarela de pagos +
@@ -302,7 +302,7 @@ Devuelve true si la Reservacion fue completada exitosamente
 ``pre:`` +
 El huesped tiene al menos una Reservacion activa +
 Hay una reservacion cuyo ID es igual a in:reservacionID +
-No hay otra reservacion cuya Reservacion.fechaCheckIn >= in:newDetallesReservacion.fechaCheckIn && Reservacion.fechaCheckOut <= in:newDetallesReservacion.fechaCheckOut para alguna de las habitaciones asociadas a la reservacion cuyo ID es igual a in:reservacionID +
+No hay otra reservacion cuya Reservacion.fechaInicio >= in:newDetallesReservacion.fechaInicio && Reservacion.fechaFin <= in:newDetallesReservacion.fechaFin para alguna de las habitaciones asociadas a la reservacion cuyo ID es igual a in:reservacionID +
 Cambiar la duracion de la estancia no infringira la Politica de Overbooking configurada para la CategoriaHabitacion o las fechas check-in y check-out asociadas a la Reservacion +
 Cambiar la duracion de la estancia no infringe la Politica de cambio de reserva configurada en el sistema +
 La pasarela de pagos debe estar disponible +
@@ -329,14 +329,14 @@ Devuelve true si la Reservacion fue cancelada exitosamente
 ``pre:`` +
 El huesped cuyo ID es igual in:huspedID tiene al menos una Reservacion activa +
 ``pos:`` +
-Devuelve todas las Reservaciones activas del huesped, incluyendo los datos: Hotel.nombre, Hotel.direccion, Habitacion.numero, Huesped.nombre, Huesped.email, Huesped.telefono, Reservacion.fechaCheckIn, Reservacion.fechaCheckOut, y los Servicio.nombre[] pertenecientes a la CategoriaServicio asociada a la CategoriaHabitacion por cada Habitacion en Reservacion.Habitacion[]
+Devuelve todas las Reservaciones activas del huesped, incluyendo los datos: Hotel.nombre, Hotel.direccion, Habitacion.numero, Huesped.nombre, Huesped.email, Huesped.telefono, Reservacion.fechaInicio, Reservacion.fechaFin, y los Servicio.nombre[] pertenecientes a la CategoriaServicio asociada a la CategoriaHabitacion por cada Habitacion en Reservacion.Habitacion[]
 
 *getReservacionesHotel(hotelID:int): Reservacion[]* +
 ``pre:`` +
 Hay al menos un hotel cuyo ID es igual a in:hotelID +
 Hay al menos una Reservacion activa para el hotel cuyo ID es igual a in:hotelID +
 ``pos:`` +
-Devuelve todas las Reservaciones activas del hotel cuyo ID es igual in:hotelID, incluyendo los datos: Habitacion.numero, Huesped.nombre, Huesped.email, Huesped.telefono, Reservacion.fechaCheckIn, Reservacion.fechaCheckOut.
+Devuelve todas las Reservaciones activas del hotel cuyo ID es igual in:hotelID, incluyendo los datos: Habitacion.numero, Huesped.nombre, Huesped.email, Huesped.telefono, Reservacion.fechaInicio, Reservacion.fechaFin.
 
 ---
 
