@@ -94,4 +94,9 @@
 |Gabriel Antonio González López
 |Especificación de componentes
 
+|0.1.6
+|01/11/2025
+|Abel Hernandez Yong
+|Especificacion de Interfaces: ICadenaHotelManager, IHabitacionManager, IHuespedManager, IReservacionManage e IServicioManager
+
 |===
