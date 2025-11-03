@@ -72,19 +72,19 @@ El backlog de impulsores representa el conjunto de requisitos de calidad, restri
 
 *Decisiones de Diseño (Tácticas y Patrones):*
 
-* Se adoptó el patrón arquitectónico de **Microservicios** para desacoplar el sistema y permitir la escalabilidad independiente de las capacidades (ej. `ServicioDeBusqueda` vs. `ServicioDeReservaciones`).
+* Se adoptó el patrón arquitectónico de **por capas** para desacoplar el sistema y permitir la escalabilidad independiente de las capacidades (ej. `ServicioDeBusqueda` vs. `ServicioDeReservaciones`).
 
-* Se aplicó la táctica de **Escalado Horizontal** para cada microservicio, permitiendo manejar picos de demanda.
+* Se aplicó la táctica de **Escalado Horizontal** para cada sistema, permitiendo manejar picos de demanda.
 
 * Se implementó la táctica de **Caching** mediante el patrón de diseño **Proxy**. Un caché en memoria (ej. Redis) actúa como un proxy frente al servicio de inventario para acelerar las consultas de disponibilidad y cumplir con el objetivo de <2 segundos.
 
-* Se incluyó un **Balanceador de Carga** para distribuir el tráfico uniformemente entre las instancias de los servicios.
+* Se incluyó un **Balanceador de Carga** para distribuir el tráfico uniformemente entre las instancias de los sistemas.
 
-* Se decidió usar una plataforma de **Orquestación de Contenedores** (ej. Kubernetes) para automatizar el despliegue y la **Recuperación de Fallas** (reinicio automático de servicios caídos).
+* Se decidió usar una plataforma de **Orquestación de Contenedores** (ej. Kubernetes) para automatizar el despliegue y la **Recuperación de Fallas** (reinicio automático de sistemas caídos).
 
-*Proceso CBSE - Interacción:* Esta iteración se centró en definir las *interacciones* entre los componentes (ahora microservicios). Se decidió que la comunicación entre el front-end y los servicios, y entre la mayoría de los servicios, sería principalmente síncrona a través de APIs REST. Sin embargo, para operaciones que no requieren una respuesta inmediata, como el envío de un correo de confirmación tras una reserva, se especificó una interacción asíncrona mediante una *Cola de Mensajes* (ej. RabbitMQ). Esta táctica de *desacoplamiento* mejora la resiliencia del sistema; si el servicio de notificaciones falla, las reservaciones no se ven afectadas.
+*Proceso CBSE - Interacción:* Esta iteración se centró en definir las *interacciones* entre los componentes (ahora sistemas). Se decidió que la comunicación entre el front-end y los sistemas, y entre la mayoría de los sistemas, sería principalmente síncrona a través de APIs REST. Sin embargo, para operaciones que no requieren una respuesta inmediata, como el envío de un correo de confirmación tras una reserva, se especificó una interacción asíncrona mediante una *Cola de Mensajes* (ej. RabbitMQ). Esta táctica de *desacoplamiento* mejora la resiliencia del sistema; si el servicio de notificaciones falla, las reservaciones no se ven afectadas.
 
-*Criterios de "Suficiente":* El diseño de esta iteración se consideró completo al tener un plan claro de despliegue y escalado para cada microservicio, y cuando las pruebas de carga simuladas demostraron que el uso de la caché y el escalado horizontal podían mantener los tiempos de respuesta dentro de los límites definidos en los escenarios de calidad.
+*Criterios de "Suficiente":* El diseño de esta iteración se consideró completo al tener un plan claro de despliegue y escalado para cada sistema, y cuando las pruebas de carga simuladas demostraron que el uso de la caché y el escalado horizontal podían mantener los tiempos de respuesta dentro de los límites definidos en los escenarios de calidad.
 
 ==== Iteración 3: Usabilidad y Experiencia de Usuario
 
@@ -98,7 +98,7 @@ El backlog de impulsores representa el conjunto de requisitos de calidad, restri
 
 * Las aplicaciones SPA se estructuraron internamente con el patrón **MVC (Model-View-Controller)** (o sus variantes) para una clara separación de responsabilidades y mantenibilidad.
 
-* Se aplicó el patrón **Backend for Frontend (BFF)**, creando dos APIs especializadas (una para cada SPA) que agregan y formatean datos de los microservicios de back-end.
+* Se aplicó el patrón **Backend for Frontend (BFF)**, creando dos APIs especializadas (una para cada SPA) que agregan y formatean datos de los sistemas de back-end.
 
 * Para la *Usabilidad* del personal, se adoptó la táctica de diseño de **Flujos Guiados (Wizards)** para simplificar procesos complejos como el check-in y check-out.
 
@@ -118,31 +118,31 @@ image:images/DiagramaInterfaces.jpg[Identificacion incial interfaces, width=600,
 
 === Justificación
 
-Para comprender adecuadamente la justificación del diseño propuesto, es necesario recordar qué implica trabajar con una arquitectura centrada en microservicios. Este tipo de arquitectura se basa en la descomposición del sistema en unidades pequeñas, independientes y especializadas, denominadas microservicios, que cooperan entre sí a través de interfaces bien definidas.
+Para comprender adecuadamente la justificación del diseño propuesto, es necesario recordar qué implica trabajar con una arquitectura en capas. Este tipo de arquitectura se basa en la descomposición del sistema en capas bien definidas, independientes y especializadas, que cooperan entre sí a través de interfaces bien definidas.
 
-En el diagrama mosrtado en esta seccion del proyecto se han representado los distintos microservicios mediante cuadros azules, identificando cinco unidades principales que conforman la estructura del sistema:
+En el diagrama mosrtado en esta seccion del proyecto se han representado los distintos sistemas mediante cuadros azules, identificando cinco unidades principales que conforman la estructura del sistema:
 
-1.*ServicioCadenaHotel*
+1.*SistemaCadenaHotel*
 
-Este microservicio es accesible únicamente por el AdministradorDeLaCadena. Sus responsabilidades se limitan a la administración global de la cadena de hoteles y a la gestión de sus atributos principales. Actúa como el núcleo de control a nivel corporativo, centralizando la información de las distintas sedes sin involucrarse directamente en la operativa de cada hotel.
+Este sistema es accesible únicamente por el AdministradorDeLaCadena. Sus responsabilidades se limitan a la administración global de la cadena de hoteles y a la gestión de sus atributos principales. Actúa como el núcleo de control a nivel corporativo, centralizando la información de las distintas sedes sin involucrarse directamente en la operativa de cada hotel.
 
-2.*ServicioHotel*
+2.*SistemaHotel*
 
-El AdministradorHotel es el único usuario autorizado para interactuar con este servicio. Su propósito es gestionar toda la información operativa de un hotel en particular, incluyendo la administración de habitaciones, productos y servicios que este ofrece.
+El AdministradorHotel es el único usuario autorizado para interactuar con este Sistema. Su propósito es gestionar toda la información operativa de un hotel en particular, incluyendo la administración de habitaciones, productos y sistemas que este ofrece.
 
-Además, internamente dispone de una interfaz dedicada a la gestión de empleados, permitiendo administrar el personal, roles y funciones relacionadas con las operaciones diarias del hotel. Este microservicio también expone información clave que puede ser utilizada por otros servicios para el correcto funcionamiento del sistema global.
+Además, internamente dispone de una interfaz dedicada a la gestión de empleados, permitiendo administrar el personal, roles y funciones relacionadas con las operaciones diarias del hotel. Este sistema también expone información clave que puede ser utilizada por otros sistemas para el correcto funcionamiento del sistema global.
 
-3.*ServicioHuesped*
+3.*SistemaHuesped*
 
-Este servicio constituye el pilar de la administración de clientes. Su función principal es ofrecer métodos para el registro, edición, modificación y consulta de datos de clientes. A futuro, podría ampliarse para incorporar funcionalidades como la gestión de programas de fidelidad o beneficios personalizados.
+Este Sistema constituye el pilar de la administración de clientes. Su función principal es ofrecer métodos para el registro, edición, modificación y consulta de datos de clientes. A futuro, podría ampliarse para incorporar funcionalidades como la gestión de programas de fidelidad o beneficios personalizados.
 
-El microservicio expone información relevante de los clientes que es utilizada por los servicios de reservación y estancia, así como los métodos de pago asociados a cada usuario, permitiendo una integración fluida con los demás componentes del sistema.
+El sistema expone información relevante de los clientes que es utilizada por los sistemas de reservación y estancia, así como los métodos de pago asociados a cada usuario, permitiendo una integración fluida con los demás componentes del sistema.
 
-4.*ServicioReservacionEstancia*
+4.*SistemaReservacionEstancia*
 
-Este es el servicio más complejo del sistema, ya que concentra la lógica central relacionada con la gestión de reservaciones y estancias dentro de los hoteles. Se encarga de recopilar información proveniente de los demás microservicios (Hotel, Cliente y Pago) para administrar de manera eficiente el calendario de reservaciones, así como las estancias activas, incluyendo el registro de productos o servicios adicionales consumidos por el huésped.
+Este es el Sistema más complejo del sistema, ya que concentra la lógica central relacionada con la gestión de reservaciones y estancias dentro de los hoteles. Se encarga de recopilar información proveniente de los demás sistemas (Hotel, Cliente y Pago) para administrar de manera eficiente el calendario de reservaciones, así como las estancias activas, incluyendo el registro de productos o sistemas adicionales consumidos por el huésped.
 
-Entre los métodos que expone este microservicio se incluyen, por ejemplo:
+Entre los métodos que expone este sistema se incluyen, por ejemplo:
 
 - HacerReservacion
 
@@ -154,10 +154,10 @@ Entre los métodos que expone este microservicio se incluyen, por ejemplo:
 
 - CheckOut
 
-Estas operaciones representan las principales interacciones del cliente con el sistema, y su correcta definición dentro de la interfaz es fundamental para mantener la coherencia del flujo de información entre servicios.
+Estas operaciones representan las principales interacciones del cliente con el sistema, y su correcta definición dentro de la interfaz es fundamental para mantener la coherencia del flujo de información entre sistemas.
 
-5.*ServicioPago*
+5.*SistemaPagos*
 
-Finalmente, el MicroservicioPago es responsable de comunicar al resto del sistema el resultado de cada operación.En caso de éxito, este servicio notifica a los demás microservicios que la transacción ha sido completada, permitiendo actualizar el estado de las reservaciones o estancias correspondientes.
+Finalmente, el SistemaPagos es responsable de comunicar al resto del sistema el resultado de cada operación.En caso de éxito, este sistema notifica a los demás sistemas que la transacción ha sido completada, permitiendo actualizar el estado de las reservaciones o estancias correspondientes.
 
-En conjunto, esta estructura basada en microservicios permite un sistema modular, escalable y fácilmente mantenible, donde cada componente puede evolucionar de manera independiente sin afectar el funcionamiento del resto. Las interfaces, al actuar como puntos de conexión estables y bien definidos, aseguran la interoperabilidad entre los distintos servicios, consolidando una arquitectura coherente, robusta y adaptable a futuras necesidades.
+En conjunto, esta estructura basada en sistemas permite un sistema modular, escalable y fácilmente mantenible, donde cada componente puede evolucionar de manera independiente sin afectar el funcionamiento del resto. Las interfaces, al actuar como puntos de conexión estables y bien definidos, aseguran la interoperabilidad entre los distintos sistemas, consolidando una arquitectura coherente, robusta y adaptable a futuras necesidades.

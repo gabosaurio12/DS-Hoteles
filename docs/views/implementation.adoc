@@ -1,0 +1,49 @@
+
+== Vista de Implementación
+
+=== Descripción general
+
+La vista de implementación describe la estructura física del sistema hotelero y la manera en que sus componentes se organizan e interconectan dentro del entorno de ejecución. La vista muestra cómo los módulos de software se distribuyen en diferentes capas y cómo se integran.
+
+=== Contenido semántico
+
+El sistema se organiza en componentes que representan los principales servicios del negocio hotelero.
+Cada componente tiene una función específica y se comunica con otros a través de las interfaces:
+
+* Sistema Cadena de Hotel: Se encarga de gestionar la cadena de hoteles en general.
+* Sistema de Hotel: Gestiona la información operativa del hotel.
+* Sistema Huésped: Ofrece funcionalidades al cliente para registrarse y consultar sus datos.
+* Sistema de Estancia: Se encarga de gestionar todas las estancias desde el check-in hasta el check-out
+* Sistema de Reservas: Se encarga de gestionar las reservas desde que el cliente las solicita hasta que se realiza el pago, así como modificarlas.
+* Pasarela de Pagos: Es un sistema externo con el que nos comunicaremos mediante una interfaz para poder procesar los pagos que se deban realizar.
+
+Estos componentes pueden acceder a una base de datos centralizada.
+
+Contenido sintáctico
+
+La implementación se estructura en una arquitectura de capas, donde cada capa agrupa componentes con responsabilidades similares:
+
+* Capa de Presentación: interfaz web utilizada por huéspedes, recepcionistas, administradores y auditores.
+* Capa de Lógica de Negocio: Contiene los servicios de negocio (reservas, estancias, auditorías).
+* Capa de Datos: base de datos relacional (por ejemplo, SQL Server o PostgreSQL), se encarga de almacenar los datos de forma persistente e íntegra.
+* Capa de Integración: gestiona la comunicación con sistemas externos (pasarela de pagos).
+
+El sistema se despliega en un entorno cliente-servidor con acceso remoto a través de Internet, asegurando la disponibilidad y escalabilidad del servicio.
+
+.Sistema Cadena de Hotel
+image::../images/Components/SistemaCadenaHotel.png[Sistema Cadena de Hotel, width=600]
+
+.Sistema Hotel
+image::../images/Components/SistemaHotel.png[Sistema Hotel, width=600]
+
+.Sistema Reservación
+image::../images/Components/SistemaReservacion.png[Sistema Reservación, width=600]
+
+.Sistema Estancia
+image::../images/Components/SistemaEstancia.png[Sistema Estancia, width=600]
+
+.Sistema Huésped
+image::../images/Components/SistemaHuesped.png[Sistema Huésped, width=600]
+
+.Pasarela de Pagos
+image::../images/Components/PasarelaPagos.png[Pasarela de Pagos, width=600]
