@@ -89,4 +89,31 @@
 |Gabriel Antonio González López
 |ADR
 
-|===
+|0.1.5
+|29/10/2025
+|Gabriel Antonio González López
+|Especificación de componentes
+
+|0.1.6
+|01/11/2025
+|Abel Hernandez Yong
+|Especificacion de Interfaces: ICadenaHotelManager, IHabitacionManager, IHuespedManager, IReservacionManage e IServicioManager
+
+|0.1.7
+|02/111/2001
+|Seth Marquez Rodriguez
+|Especificacion de interfaces IHotelManager, IProductoManager, IEmpleadoManager, IestanciaManager
+
+|0.1.8
+|02/111/2001
+|Seth Marquez Rodriguez
+|Identificacion de CoreTypes y justificacion (ya realizado pero no registrado en el Log)
+
+|0.1.9
+|02/111/2001
+|Seth Marquez Rodriguez
+|Elaboracion de diagrama de interfaces y justificacion (ya realizado pero no registrado en el Log)
+
+
+
+
