@@ -6,4 +6,11 @@ build/
 
 # Gabo
 Contribucion_Gabriel.txt
-DS-Hoteles.qea
+DS-Hoteles.ldb
+
+# Enterprise Architect
+*.feap
+*.qea
+*.qeap
+*.eapx
+*.ldb
