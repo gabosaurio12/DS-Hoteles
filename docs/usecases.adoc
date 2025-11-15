@@ -1426,67 +1426,10 @@ EX01 – Error al conectarse a la base de datos::
 *Reglas de negocio:* N/A +
 *Incluye / Extiende:* N/A +
 
-
 ---
 
-*CU41 - Registrar categoría de empleados* +
+*CU41 - Registrar empleado* +
 *ID:* CU41 +
-*Nombre:* Registrar categoría de empleados +
-*Actores:* Administración del hotel (AdminHotel) +
-*Descripción:* El _AdminHotel_ registra una nueva categoría de empleados (rol) y le asigna permisos. +
-*Precondiciones:* El _AdminHotel_ tiene permisos para gestionar roles.
-
-*Flujo normal* +
-1. El _AdminHotel_ inicia la función para crear una nueva categoría de empleado. +
-2. El _Sistema_ solicita los datos del rol y presenta la lista de permisos disponibles. +
-3. El _AdminHotel_ ingresa los datos, selecciona los permisos y confirma. +
-4. El _Sistema_ valida que el nombre del rol sea único (ver EX01). +
-5. El _Sistema_ guarda la nueva categoría y sus permisos. +
-6. Termina el caso de uso. +
-
-*Excepciones* +
-*EX01 - El nombre del rol ya existe* +
-1. El _Sistema_ detecta que el nombre del rol ya está en uso. +
-2. El _Sistema_ informa al _AdminHotel_ y solicita un nombre diferente. +
-3. El caso de uso regresa al paso 3. +
-
-*Postcondiciones:* Se crea una nueva categoría de empleado en el sistema. +
-*Reglas de negocio:* El nombre de cada categoría de empleado debe ser único. +
-*Incluye:* N/A +
-*Extiende:* N/A +
-
----
-
-*CU42 - Actualizar categoría de empleado* +
-*ID:* CU42 +
-*Nombre:* Actualizar categoría de empleado +
-*Actores:* Administración del hotel (AdminHotel) +
-*Descripción:* El _AdminHotel_ actualiza la información de una categoría de empleados. +
-*Precondiciones:* La categoría de empleado a modificar debe existir.
-
-*Flujo normal* +
-1. El _AdminHotel_ selecciona la categoría de empleado a modificar. +
-2. El _Sistema_ muestra los datos actuales y permite su edición. +
-3. El _AdminHotel_ actualiza la información (nombre, permisos) y confirma. +
-4. El _Sistema_ valida los nuevos datos y guarda los cambios. +
-5. El _Sistema_ notifica al _AdminHotel_ el éxito de la operación. +
-6. Termina el caso de uso. +
-
-*Flujos alternos* +
-N/A +
-
-*Excepciones* +
-N/A +
-
-*Postcondiciones:* La información de la categoría de empleado es actualizada. +
-*Reglas de negocio:* N/A +
-*Incluye:* N/A +
-*Extiende:* N/A +
-
----
-
-*CU43 - Registrar empleado* +
-*ID:* CU43 +
 *Nombre:* Registrar empleado +
 *Actores:* Administración del hotel (AdminHotel) +
 *Descripción:* El _AdminHotel_ registra un nuevo empleado en el sistema. +
@@ -1513,8 +1456,8 @@ N/A +
 
 ---
 
-*CU44 - Configurar tarifa de cancelación* +
-*ID:* CU44 +
+*CU42 - Configurar tarifa de cancelación* +
+*ID:* CU42 +
 *Nombre:* Configurar tarifa de cancelación +
 *Actores:* Administración del hotel (AdminHotel) +
 *Descripción:* El _AdminHotel_ define o modifica la tarifa de cancelación que será aplicada a las reservas canceladas. +
@@ -1549,8 +1492,8 @@ N/A +
 
 ---
 
-*CU45 - Configurar política de cambio de reserva* +
-*ID:* CU45 +
+*CU43 - Configurar política de cambio de reserva* +
+*ID:* CU43 +
 *Nombre:* Configurar política de cambio de reserva +
 *Actores:* Administración del hotel (AdminHotel) +
 *Descripción:* El _AdminHotel_ define o modifica las políticas que determinan bajo qué condiciones un huésped puede cambiar su reserva. +
@@ -1585,8 +1528,8 @@ N/A +
 
 ---
 
-*CU46 - Consultar empleado* +
-*ID:* CU46 +
+*CU44 - Consultar empleado* +
+*ID:* CU44 +
 *Nombre:* Consultar empleado +
 *Actores:* Administración del hotel (AdminHotel) +
 *Descripción:* El _AdminHotel_ consulta la información de un empleado del sistema. +
@@ -1615,8 +1558,8 @@ N/A +
 
 ---
 
-*CU47 - Consultar estado del sistema* +
-*ID:* CU47 +
+*CU45 - Consultar estado del sistema* +
+*ID:* CU45 +
 *Nombre:* Consultar estado del sistema +
 *Actores:* Auditor +
 *Descripción:* El _Auditor_ verifica el estado operativo y rendimiento del sistema. +
@@ -1642,8 +1585,9 @@ N/A +
 *Extiende:* N/A +
 
 ---
-*CU48 - Consultar registros de operación* +
-*ID:* CU48 +
+
+*CU46 - Consultar registros de operación* +
+*ID:* CU46 +
 *Nombre:* Consultar registros de operación +
 *Actores:* Auditor +
 *Descripción:* El _Auditor_ revisa el historial completo de una operación para fines de auditoría. +

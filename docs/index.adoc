@@ -33,7 +33,6 @@ include::usecases.adoc[]
 include::asrs.adoc[]
 include::priorization.adoc[]
 include::designmethod.adoc[]
-include::architecture.adoc[]
 include::views/logic.adoc[]
 include::views/implementation.adoc[]
 
@@ -44,4 +43,4 @@ include::views/deployment.adoc[]
 include::views/development.adoc[]
 include::views/operational.adoc[]
 
-include::decisions.adoc[]
+include::trazability.adoc[]

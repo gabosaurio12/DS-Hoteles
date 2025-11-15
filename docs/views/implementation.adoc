@@ -10,16 +10,16 @@ La vista de implementación describe la estructura física del sistema hotelero 
 El sistema se organiza en componentes que representan los principales servicios del negocio hotelero.
 Cada componente tiene una función específica y se comunica con otros a través de las interfaces:
 
-* Sistema Cadena de Hotel: Se encarga de gestionar la cadena de hoteles en general.
-* Sistema de Hotel: Gestiona la información operativa del hotel.
-* Sistema Huésped: Ofrece funcionalidades al cliente para registrarse y consultar sus datos.
-* Sistema de Estancia: Se encarga de gestionar todas las estancias desde el check-in hasta el check-out
-* Sistema de Reservas: Se encarga de gestionar las reservas desde que el cliente las solicita hasta que se realiza el pago, así como modificarlas.
-* Pasarela de Pagos: Es un sistema externo con el que nos comunicaremos mediante una interfaz para poder procesar los pagos que se deban realizar.
+* SistemaCadenaHotel: Se encarga de gestionar la cadena de hoteles en general.
+* SistemaHotel: Gestiona la información operativa del hotel.
+* SistemaHuésped: Ofrece funcionalidades al cliente para registrarse y consultar sus datos.
+* SistemaEstancia: Se encarga de gestionar todas las estancias desde el check-in hasta el check-out
+* SistemaReservacion: Se encarga de gestionar las reservas desde que el cliente las solicita hasta que se realiza el pago, así como modificarlas.
+* PasarelaPagos: Es un sistema externo con el que nos comunicaremos mediante una interfaz para poder procesar los pagos que se deban realizar.
 
 Estos componentes pueden acceder a una base de datos centralizada.
 
-Contenido sintáctico
+=== Contenido sintáctico
 
 La implementación se estructura en una arquitectura de capas, donde cada capa agrupa componentes con responsabilidades similares:
 
@@ -32,37 +32,121 @@ El sistema se despliega en un entorno cliente-servidor con acceso remoto a trav�
 
 == Especificación de componentes
 
-El *SistemaCadenaHotel* únicamente se comunica con el *SistemaHotel* para poder administrar los hoteles, a este componente solo tendrá acceso el actor _Administrador de la cadena_. El sistema cuenta con la interfaz *ICadenaHotelManager* la cual define básicamente un CRUD de los hoteles de la cadena.
+=== SistemaCadenaHotel
 
-.Sistema Cadena de Hotel
 image::../images/Components/SistemaCadenaHotel.png[Sistema Cadena de Hotel, width=600]
 
-Por otro lado tenemos el *SistemaHotel* el cual se encarga de administrar un hotel en específico, se espera que lo use el actor _Administrador de hotel_. El sistema cuenta con varias interfaces como *IHabitacionManager*, *IServicioManager*, *IProductoManager* e *IEmpleadoManager*.
+*Propósito:* Administrar los hoteles de la cadena.
 
-.Sistema Hotel
+*Responsabilidades:* 
+
+* Agregar hoteles.
+* Consultar hoteles.
+* Editar hoteles.
+* Eliminar hoteles.
+* Actualizar la información general de los hoteles.
+* Asignar un _Administrador_ a un hotel.
+
+*Reglas o Restricciones:* El acceso está restringido exclusivamente al _Administrador de la cadena_.
+
+*Dependencias:* Depende del *SistemaHotel*.
+
+*Interfaces:* ICadenaHotel.
+
+=== SistemaHotel
+
 image::../images/Components/SistemaHotel.png[Sistema Hotel, width=600]
 
-El *SistemaReservacion* se encarga de hacer las reservaciones de habitaciones en el hotel, nos ayuda a evitar el overbooking y tiene la interfaz *IReservacionManager*.
+*Propósito:* Administrar un hotel en específico.
 
-.Sistema Reservación
+*Responsabilidades:* 
+
+* Registrar habitaciones, servicios, productos y empleados del hotel.
+* Consultar habitaciones, servicios, productos y empleados del hotel.
+* Editar habitaciones, servicios, productos y empleados del hotel.
+* Eliminar habitaciones, servicios, productos y empleados del hotel.
+
+*Reglas o Restricciones:* 
+
+* El acceso está restringido exclusivamente al _Administrador del hotel_.
+* Un _Hotel_ no puede eliminarse si tiene estancias o reservas activas.
+* No se puede eliminar una _Habitación_ si tiene una _Estancia_ activa.
+
+*Interfaces:* IHabitacionManager, IServicioManager, IProductoManager, IEmpleadoManager.
+
+=== SistemaReservacion
+
 image::../images/Components/SistemaReservacion.png[Sistema Reservación, width=600]
 
-El *SistemaEstancia* se encarga de gestionar la estancia desde el momento en el que se hace un check-in a una reservación, maneja los productos y servicios que se agreguen a la estancia.
+*Propósito:* Gestiona las _Reservaciones_ desde el momento en el que se hace una reservación desde el sitio web evitando el overbooking.
 
-.Sistema Estancia
+*Responsabilidades:* Solicitar, editar (esto incluye agregar servicios o productos) y cancelar reservación.
+
+*Reglas o Restricciones:* 
+
+* No se puede confirmar una reservación si la _Habitación_ solicitada no está disponible los días solicitados.
+* No se puede solicitar una reservación si el pago no se ha procesado o si la *PasarelaPagos* no está disponible.
+
+*Dependencias:* Depende del *SistemaHotel* (_IHotelManager_), la *PasarelaPagos* y *SistemaHuesped*.
+
+*Interfaces:* IReservacionManager.
+
+=== SistemaEstancia
+
 image::../images/Components/SistemaEstancia.png[Sistema Estancia, width=600]
 
-El *SistemaHuesped* se encarga de gestionar a los _Huéspedes_, debe tener una seguridad alta ya que maneja datos sensibles como métodos de pago y la información personal de los _Huéspedes_.
+*Propósito:* Gestiona las _Estancias_ desde el momento en el que se realiza el check-in de una reservación hasta el check-out.
 
-.Sistema Huésped
+*Responsabilidades:* 
+
+* Gestionar la información de la estancia (consultar, editar, cancelar).
+* Administrar los consumos asociados a la estancia (agregar/quitar productos y servicios).
+* Realizar check-in y check-out.
+
+*Dependencias:* Depende del *SistemaHotel* (_IHotelManager_), la *PasarelaPagos* y *SistemaHuesped*.
+
+*Reglas o Restricciones:* 
+
+* La *PasarelaPagos* debe estar disponible para agregar productos o servicios.
+* No se puede realizar un check-out si el pago no se ha procesado.
+
+*Interfaces:* IEstanciaManager.
+
+=== SistemaHuesped
+
 image::../images/Components/SistemaHuesped.png[Sistema Huésped, width=600]
 
-Por úlitmo, está la *PasarelaPagos* a la cual el sistema se comunicará mediante una interfaz (se recomienda el uso de una _façade_ o un _adapter_) y se le enviarán los datos para realizar el cobro de la reservación o estancia al _Huésped_.
+*Propósito:* Gestiona la información de los _Huéspedes_, maneja los datos sensibles como métodos de pago y su información personal.
 
-.Pasarela de Pagos
+*Responsabilidades:* Registrar, editar y actualizar _Huéspedes_, así como dar de baja sus cuentas.
+
+*Dependencias:* Depende del *SistemaHotel* (_IHotelManager_) y la *PasarelaPagos*.
+
+*Reglas o Restricciones:* 
+
+* La información sensible debe estar encriptada.
+* No se puede eliminar un _Huésped_ si tiene estancias activas.
+* Si se elimina un _Huésped_ y tiene reservaciones activas estas se cancelan.
+
+*Interfaces:* IHuespedManager.
+
+=== PasarelaPagos
+
 image::../images/Components/PasarelaPagos.png[Pasarela de Pagos, width=600]
 
-.Componentes del sistema
+*Propósito:* Procesa los pagos de los _Huéspedes_.
+
+*Responsabilidades:* Realiza los cobros y genera los recibos de los pagos.
+
+*Reglas o Restricciones:* 
+
+* La comunicación con este sistema debe tener una alta seguridad.
+* Usar una Façade para comunicarse con la _Pasarela de pagos_.
+
+*Interfaces:* IPagosManager.
+
+=== Componentes del sistema
+
 image::../images/Components/Sistemas.png[Componentes del sistema, width=600]
 
 ---

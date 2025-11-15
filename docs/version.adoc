@@ -114,6 +114,19 @@
 |Seth Marquez Rodriguez
 |Elaboracion de diagrama de interfaces y justificacion (ya realizado pero no registrado en el Log)
 
+|0.2.0
+|5/11/2025
+|Gabriel Antonio González López
+|Reordenamiento de secciones
 
+|0.2.1
+|08/11/2025
+|Gabriel Antonio González López
+|Especificación de Componentes (Refinamiento)
+
+|0.2.2
+|15/11/2025
+|Gabriel Antonio González López
+|Especificación de Componentes (Refinamiento)
 
 |===

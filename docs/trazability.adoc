@@ -50,3 +50,21 @@
 * Al delegar la responsabilidad a otro módulo de almacenar datos sensibles se debe tener en cuenta que la comunicación con ese módulo debe ser muy segura para evitar ataques MitM, lo cuál cubrimos usando *HTTPS/TLS*. La desventaja es la dependencia con el módulo al que se delegó la información 
 * Mediante la *Façade* reducimos acoplamiento y la superficie de ataque, mejorando la flexibilidad y seguridad a futuro, pero hay que escalarla bien para no generar un cuello de botella
 * Al usar *HTTPS/TLS* es importante renovar y configurar los certificados correctamente pero a cambio nos aseguramos que hablamos con el servidor correcto (*TLS*) y obtenemos seguridad entre _módulos internos_
+
+== Matriz de Trazabilidad
+
+[cols="1,1,1,1"]
+
+|===
+
+|Driver
+|Decisión de Diseño
+|Artefactos Afectados
+|Estado
+
+| QAS: Seguridad
+| Utilizar una Façade para la comunicación con la Pasarela de pagos
+| Vista de implementacion
+| Cumple
+
+|===

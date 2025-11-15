@@ -21,7 +21,7 @@ Definimos cuatro atributos de calidad importantes:
 La importancia de estos no fue decidida arbitrariamente, usamos una matriz de importancia de atributos de calidad (ver Matriz de priorización de atributos) donde < significa que el atributo de la fila importa más que el de la columna, mientras que el ^ significa lo contrario.
 
 .Matriz de priorización de atributos
-image:priorizacionAtributos.png[Priorización de atributos, width=600, align=center]
+image:../images/priorizacionAtributos.png[Priorización de atributos, width=600, align=center]
 
 El resultado de la matriz indicó que el más importante sería el atributo de *Seguridad*, nuestra justificación fue porque los _Huéspedes_ ingresarán al sistema datos personales y sus tarjetas o métodos de pago y es inaceptable que estos datos estén en riesgo ya que aparte del peligro para los _Huéspedes_ podría resultar en un problema legal con un gran impacto para los interesados.
 
@@ -114,7 +114,7 @@ image:Identificacion de Cores.jpg[Identificacion de core types, width=600, align
 
 === Especificación inicial de interfaces del negocio
 
-image:images/DiagramaInterfaces.jpg[Identificacion incial interfaces, width=600, align=center]
+image:DiagramaInterfaces.jpg[Identificacion incial interfaces, width=600, align=center]
 
 === Justificación
 
