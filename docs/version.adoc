@@ -129,4 +129,9 @@
 |Gabriel Antonio González López
 |Especificación de Componentes (Refinamiento)
 
+|0.2.3
+|15/11/2025
+|Gabriel Antonio González López
+|Actualización de matriz de trazabilidad
+
 |===
