@@ -62,9 +62,14 @@
 |Artefactos Afectados
 |Estado
 
-| QAS: Seguridad
-| Utilizar una Façade para la comunicación con la Pasarela de pagos
-| Vista de implementacion
+| QAS: Seguridad - Proteger datos sensibles del _Huésped_, CRN2
+| Utilizar una Façade para la comunicación con la Pasarela de pagos para controlar los datos que se envían
+| Especificación de componentes, vista de implementación
 | Cumple
+
+| CRN-11
+| Utilizar una Façade para la comunicación entre interfaces, limitando los datos que se comparten y los métodos que puede usar un componente
+| Especificación de componentes, vista de implementación
+| Pendiente
 
 |===
