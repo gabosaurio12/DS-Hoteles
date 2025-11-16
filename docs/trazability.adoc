@@ -67,4 +67,9 @@
 | Vista de implementacion
 | Cumple
 
+| QAS: Rendimiento
+| Utilizar una Façade para acceder únicamente a los métodos que necesitan los componentes para llevar a cabo sus funciones
+| Vista de implementacion
+| Cumple
+
 |===
