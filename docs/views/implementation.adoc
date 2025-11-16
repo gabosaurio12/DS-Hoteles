@@ -148,43 +148,43 @@ image:../images/Components/Sistemas.png[Componentes del sistema, width=600]
 
 == Interacción de componentes
 
-En esta sección se demuestra cómo los componentes de software, colaboran para realizar las funcionalidades clave del sistema. Siguiendo las directrices del proceso de diseño, se utiliza un *Diagrama de Comunicación UML* por cada operación principal de la interfaz de sistema.
+En esta sección se demuestra cómo los componentes de software, definidos en la Capa de Negocio, colaboran para realizar las funcionalidades clave del sistema. Siguiendo las directrices del proceso de diseño, se utiliza un **Diagrama de Comunicación UML** por cada operación principal de la "interfaz de sistema".
 
-El objetivo de estos diagramas es validar que las interfaces de negocio (como `IHotelMgr`, `IHuespedMgr`, `IPagos`, etc.) son suficientes y correctas para orquestar las operaciones que el sistema ofrece (como `ICheckIn` o `solicitarReservacion`). Cada diagrama muestra las instancias de los componentes y la secuencia numerada de mensajes que intercambian para completar una tarea.
+El objetivo de estos diagramas es validar que las interfaces de negocio (como `IHotelManager`, `IHuespedManager`, `IPagosManager`, etc.) son suficientes y correctas para orquestar las operaciones que el sistema ofrece (como `ICheckIn` o `solicitarReservacion`) . Cada diagrama muestra las instancias de los componentes y la secuencia numerada de mensajes que intercambian para completar una tarea.
 
 === Interacción: solicitarReservacion
 
-El siguiente diagrama de comunicación ilustra la secuencia de mensajes para la operación `solicitarReservacion(reservacion, metodoPago)`. El componente `SistemaReservacion` actúa como coordinador principal, colaborando con `IHabitacionManager` (en `SistemaHotel`) para obtener los datos de la habitación (`getHabitacion`), `IHuespedManager` (en `SistemaHuesped`) para los datos del cliente (`getHuesped`), `IPagos` (en `SistemaPago`) para procesar el pago (`procesarPago`), y finalmente con `IHabitacionManager` de nuevo para actualizar el estado de la habitación (`editarHabitacion`).
+El siguiente diagrama de comunicación ilustra la secuencia de mensajes para la operación `solicitarReservacion(reservacion, metodoPago)`. El componente `SistemaReservacion` actúa como coordinador principal, colaborando con `IHabitacionManager` (en `SistemaHotel`) para obtener los datos de la habitación (`getHabitacion`), `IHuespedManager` (en `SistemaHuesped`) para los datos del cliente (`getHuesped`), `IPagosManager` (en `PasarelaPagos`) para procesar el pago (`procesarPago`), y finalmente con `IHabitacionManager` de nuevo para actualizar el estado de la habitación (`editarHabitacion`).
 
 image:../images/DC/DC solicitarRervacion.png[Diagrama de Comunicación - Solicitar Reservación, width=600]
 
 === Interacción: cancelarReservacion
 
-Este diagrama muestra la colaboración de componentes para la operación `cancelarReservacion(reservacionID)`. El `SistemaReservacion` coordina con `SistemaPago` para gestionar el reembolso (`procesarReembolso`) y con `SistemaHotel` (interfaz `IHabitacionManager`) para obtener la habitación (`getHabitacion`) y luego actualizar su estado a "Disponible" (`editarHabitacion`).
+Este diagrama muestra la colaboración de componentes para la operación `cancelarReservacion(reservacionID, metodoPago)`. El `SistemaReservacion` coordina con `IPagosManager` (en `PasarelaPagos`) para gestionar el reembolso (`procesarReembolso`) y con `IHabitacionManager` (en `SistemaHotel`) para obtener la habitación (`getHabitacion`) y luego actualizar su estado a "Disponible" (`editarHabitacion`).
 
 image:../images/DC/DC cancelarReservacion.png[Diagrama de Comunicación - Cancelar Reservación, width=600]
 
 === Interacción: checkIn
 
-A continuación, se presenta la interacción para la operación `checkIn(reservacion)`. El componente `SistemaEstancia` orquesta la colaboración, llamando a `IHuespedManager` (en `SistemaHuesped`) para verificar los datos del cliente (`getHuesped`) y a `IHabitacionManager` (en `SistemaHotel`) para actualizar el estado de la habitación de "Reservada" a "Ocupada" (`editarHabitacion`).
+A continuación, se presenta la interacción para la operación `checkIn(reservacion)`. El componente `SistemaEstancia` orquesta la colaboración, llamando a `IHabitacionManager` (en `SistemaHotel`) para obtener la habitación (`getHabitacion`) y luego actualizar su estado de "Reservada" a "Ocupada" (`editarHabitacion`), formalizando así el inicio de la estancia.
 
 image:../images/DC/DC checkIn.png[Diagrama de Comunicación - Check-In, width=600]
 
 === Interacción: checkOut
 
-Este diagrama detalla la operación de `checkOut(estancia)`. Esta es una colaboración crítica donde `SistemaEstancia` se comunica con `IPagos` (en `SistemaPago`) para calcular y procesar los cargos finales (`procesarPago`). Una vez aprobado el pago, `SistemaEstancia` notifica a `IHabitacionManager` (en `SistemaHotel`) para que la habitación sea liberada y marcada como "Disponible" (`editarHabitacion`).
+Este diagrama detalla la operación de `checkOut(estancia)`. Esta es una colaboración crítica donde `SistemaEstancia` se comunica con `IPagosManager` (en `PasarelaPagos`)  para calcular y procesar los cargos finales (`procesarPago`). Una vez aprobado el pago, `SistemaEstancia` notifica a `IHabitacionManager` (en `SistemaHotel`) para que la habitación sea liberada y marcada como "Disponible" (`editarHabitacion`).
 
 image:../images/DC/DC checkOut.png[Diagrama de Comunicación - Check-Out, width=600]
 
 === Interacción: agregarServicioEstancia
 
-El siguiente diagrama muestra la secuencia para `agregarServicioEstancia(servicio, estancia)`. Para añadir un cargo a una estancia activa, `SistemaEstancia` primero consulta a `IServicioManager` (en `SistemaHotel`) para obtener la información y precio oficial del servicio (`getServicio`). Luego, notifica a `IPagos` (en `SistemaPago`) para que registre este nuevo cargo en el balance de la estancia (`registrarCargo`).
+El siguiente diagrama muestra la secuencia para `agregarServicioEstancia(servicio, estancia)`. Para añadir un cargo a una estancia activa, `SistemaEstancia` primero consulta a `IServicioManager` (en `SistemaHotel`) para obtener la información y precio oficial del servicio (`getServicio`). Luego, notifica a `IPagosManager` (en `PasarelaPagos`)  para que registre este nuevo cargo en el balance de la estancia (`registrarCargo`).
 
 image:../images/DC/DC agregarServicioEstancia.png[Diagrama de Comunicación - Agregar Servicio, width=600]
 
 === Interacción: agregarProductoEstancia
 
-De manera similar al servicio, este diagrama ilustra la operación `agregarProductoEstancia(producto, estancia)`. El `SistemaEstancia` colaborará con `IProductoManager` (en `SistemaHotel`) para verificar el precio del producto (`getProducto`) y con `IPagos` (en `SistemaPago`) para registrar el cargo correspondiente en la cuenta de la estancia activa (`registrarCargo`).
+De manera similar al servicio, este diagrama ilustra la operación `agregarProductoEstancia(producto, estancia)`. El `SistemaEstancia` colaborará con `IProductoManager` (en `SistemaHotel`) para verificar el precio del producto (`getProducto`) y con `IPagosManager` (en `PasarelaPagos`)  para registrar el cargo correspondiente en la cuenta de la estancia activa (`registrarCargo`).
 
 image:../images/DC/DC agregarProductoEstancia.png[Diagrama de Comunicación - Agregar Producto, width=600]
 
