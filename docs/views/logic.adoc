@@ -27,7 +27,7 @@ En *SistemaCadenaHotel* el cual implementará la interfaz _ICadenaHotelManager_,
 
 image::../images/Components/SistemaCadenaHotel.png[Sistema Cadena de Hotel, width=600]
 
-El *SistemaHotel* al cual solo puede acceder el _Administrador del hotel_. Tiene como propósito gestionar la información del hotel que dirige. Además el _Administrador del hotel_.
+El *SistemaHotel* tiene como propósito gestionar la información de un hotel, así como las habitaciones (incluyendo su estado, si está reservada, ocupada o libre), servicios y productos.
 
 image::../images/Components/SistemaHotel.png[Sistema Hotel, width=600]
 
@@ -35,7 +35,7 @@ Por el lado del _Huesped_ el *SistemaHuesped* manejará toda la información sen
 
 image::../images/Components/SistemaHuesped.png[Sistema Huesped, width=600]
 
-El *SistemaHuesped* puede implementar el *SistemaReservacion* el cual se comunica con todos los otros servicios que necesite para recopilar la información necesaria para poder hacer reservaciones, evitando el overbooking, reflejando el pago eficientemente y generando el comprobante de reservación.
+El *SistemaHuesped* puede implementar el *SistemaReservacion* el cual se comunica con todos los otros sistemas que necesite para recopilar la información necesaria para poder hacer reservaciones, evitando el overbooking, reflejando el pago eficientemente y generando el comprobante de reservación.
 
 image::../images/Components/SistemaReservacion.png[Sistema Reservación, width=600]
 
