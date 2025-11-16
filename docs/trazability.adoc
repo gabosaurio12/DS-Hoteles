@@ -109,12 +109,12 @@
 
 | CON-1 La solución deberá ser implementada para la web oficial de la cadena. (Negocio)
 | Adoptar el patrón Single Page Application (SPA) para crear dos interfaces de usuario separadas y especializadas: "Portal de Clientes" y "Portal de Gestión". Aplicar el *patrón MVC* para permitir que la vista de la aplicación movil se conecte con el resto de los sistemas de la cadena.
-| Metodo de diseño (Iteracion-3) 
+| Metodo de diseño (Iteracion-3), Vista de implementación
 | Pendiente (Materializacion de MVC en un diagrama de despliegue)
 
 | CON-2 Para los clientes, además deberá ser implementada una solución para la aplicación movil de la cadena. (Negocio)
 | Aplicar el *patrón MVC* para permitir que la vista de la aplicación movil se conecte con el resto de los sistemas de la cadena .
-| Metodo de diseño (Iteracion-3) 
+| Metodo de diseño (Iteracion-3),  Vista de Implementacion (Sistema Huesped, Sistema Reservacion, Sistema Estancia)
 | Pendiente (Materializacion de MVC en un diagrama de despliegue)
 
 | CON-3 El costo de una reservación deberá pagarse en su totalidad por adelantado. (Negocio)
@@ -129,7 +129,7 @@
 
 | CON-5: Las operaciones de reserva y pago deben realizarse utilizando un Sistema Gestor de Base de Datos Relacional para asegurar la consistencia y evitar dobles cargos o dobles reservas. (Técnico)
 | Adoptar una base de datos relacional (RDBMS) para garantizar transacciones **ACID**. 
-| Metodo de diseño (Iteracion-1)
+| Metodo de diseño (Iteracion-1), 
 | Pendiente (Arquitectura del sistema en un diagrama de despliegue)
 
 | CON-6 El sistema deberá soportar una política de overbooking del 10% por tipo de habitación y por fecha, evitando sobreventa accidental. (Negocio) 
