@@ -345,3 +345,34 @@ El huesped no tiene una Reservacion activa +
 ``pos:`` +
 El sistema elimina el huesped cuyo ID coincide con in:huespedID +
 Devuelve true si el huesped fue eliminado exitosamente
+
+=== IPasarelaPago
+
+
+image::../images/Logica/Interfaces/IPasarelaPago.png[IPasarelaPago, width=600]
+
+*ConsultarTransaccion(transaccionID: int, fechaInicio: date, fechaFin: date) : Transaccion* +
+``pre:`` +
+Hay una transacción cuyo ID es igual a in:transaccionID +
+Las fechas in:fechaInicio e in:fechaFin corresponden al periodo válido para consultar la transacción +
+``pos:`` +
+Devuelve la Transaccion cuyo ID es igual a in:transaccionID, incluyendo los datos: Transaccion.fecha, Transaccion.monto y la información del MetodoPago utilizado.
+
+*RealizarCobroTarjetaCredito(transaccionID: int, monto: float, tarjeta: MetodoPago, meses: int[]) : cobroID* +
+``pre:`` +
+La pasarela de pagos debe estar disponible +
+Los datos de in:tarjeta deben ser válidos (NombrePropietario, numeroTarjeta, cvc, fechaCaducidad) +
+La tarjeta debe permitir pagos diferidos según los valores en in:meses +
+El monto in:monto debe ser mayor a 0 +
+``pos:`` +
+Registra un cobro con tarjeta de crédito asociado a in:transaccionID +
+Devuelve el identificador del cobro (cobroID) si la transacción fue aprobada
+
+*RealizarCobroTarjetaDebito(transaccionID: int, monto: float, tarjeta: MetodoPago) : cobroID* +
+``pre:`` +
+La pasarela de pagos debe estar disponible +
+Los datos de in:tarjeta deben ser válidos +
+El monto in:monto debe ser mayor a 0 +
+``pos:`` +
+Registra un cobro con tarjeta de débito asociado a in:transaccionID +
+Devuelve el identificador del cobro (cobroID) si la transacción fue aprobada
