@@ -62,14 +62,144 @@
 |Artefactos Afectados
 |Estado
 
-| QAS: Seguridad
-| Utilizar una Façade para la comunicación con la Pasarela de pagos
-| Vista de implementacion
+| QAS: Seguridad - Confiencialidad: Un adversario externo a la organización. Intenta capturar los datos de pago de un _huesped_ con un ataque Man-in-the-Middle.
+| Utilizar una Façade para la comunicación con la Pasarela de pagos para reducir la superficie de ataque. Táctica de **Forzar Comunicación Segura (HTTPS/TLS)** en todos los endpoints para mitigar ataques Man-in-the-Middle.
+| Especificación de componentes (CmpSpecPasarelaPagos), vista de implementación (IPasarelaPagosManager). 
+| Parcial (Pendiente especificacion de la comunicacion HTTP/TLS en un diagrama)
+
+| QAS: Seguridad - Integridad: Un empleado dentro de la empresa realiza un cargo falso a la estancia de un cliente.
+| ?
+| ?
+| ?
+
+| QAS: Disponibilidad - Recuperacion de fallas: El servicio de consulta de disponibilidad registra un aumento inesperado y sostenido en el número de solicitudes que expiran.
+| Aplicar la táctica de **Escalado Horizontal** para cada sistema, permitiendo manejar picos de demanda. Usar un **Balanceador de Carga** para distribuir el tráfico uniformemente entre las instancias de los sistemas.
+| Metodo de diseño (Iteraccion-2)
+| Parcial (Pendiente Materializacion en un diagrama de despliegue)
+
+| QAS: Disponibilidad - Detección de fallas: La interfaz del proveedor bancario pasa más de 30 segundos sin responder las solicitudes de pago. 
+| 
+|
+|
+
+| QAS: Rendimiento - Tiempo de respuesta: Huesped hace una búsqueda de alojamiento durante temporada alta.
+| Aplicar táctica de **Caching** mediante el patrón de diseño **Proxy**. Para acelerar las consultas de disponibilidad. 
+| Metodo de diseño (Iteraccion-2), ?
+| Pendiente. (Materializacion del proxy en un diagrama)
+
+| QAS: Rendimiento - Capacidad de procesamiento: Multiples huespedes confirman su reservación durante temporada altaa.
+|
+|
+|
+
+| QAS: Usabilidad - Capacidad de aprendizaje:  Recepcionista necesita aprender las tareas de check-in y check-out.
+| Aplicar táctica de diseño de **Flujos Guiados (Wizards)** para simplificar procesos complejos como el check-in y check-out.
+| Metodo de diseño (Iteracion-3), 
 | Cumple
 
-| QAS: Rendimiento
-| Utilizar una Façade para acceder únicamente a los métodos que necesitan los componentes para llevar a cabo sus funciones
-| Vista de implementacion
+| QAS: Usabilidad - Confianza y satisfacción: Huésped intenta realizar su primera reservación
+| Aplicar el *patrón MVC* para permitir que el flujo de reservación evolucione iterativamente para mejorar la satisfacción del usuario.
+| Metodo de diseño (Iteracion-3)
+| Pendiente (Manifestacion de MVC en un diagrama)
+
+| CRN-11 Evitar accesos directos entre componentes sensibles
+| Utilizar una Façade para la comunicación entre interfaces, limitando los datos que se comparten y los métodos que puede usar un componente
+| Especificación de componentes, vista de implementación
+| Pendiente
+
+| CON-1 La solución deberá ser implementada para la web oficial de la cadena. (Negocio)
+| Adoptar el patrón Single Page Application (SPA) para crear dos interfaces de usuario separadas y especializadas: "Portal de Clientes" y "Portal de Gestión". Aplicar el *patrón MVC* para permitir que la vista de la aplicación movil se conecte con el resto de los sistemas de la cadena.
+| Metodo de diseño (Iteracion-3), Vista de implementación
+| Pendiente (Materializacion de MVC en un diagrama de despliegue)
+
+| CON-2 Para los clientes, además deberá ser implementada una solución para la aplicación movil de la cadena. (Negocio)
+| Aplicar el *patrón MVC* para permitir que la vista de la aplicación movil se conecte con el resto de los sistemas de la cadena .
+| Metodo de diseño (Iteracion-3),  Vista de Implementacion (Sistema Huesped, Sistema Reservacion, Sistema Estancia)
+| Pendiente (Materializacion de MVC en un diagrama de despliegue)
+
+| CON-3 El costo de una reservación deberá pagarse en su totalidad por adelantado. (Negocio)
+| Delegar la responsabilidad de la confirmacion del pago a una **Pasarela de Pagos Externa** para procesar las transacciones de forma segura. 
+| Especificación de componentes (CmpSpecPasarelaPagos), vista de implementación (IPasarelaPagosManager).
 | Cumple
+
+| CON-4 El pago de una reservación deberá ser realizado mediante una interfaz bancaria externa. (Técnico)
+| **Integración con una Pasarela de Pagos Externa** certificada (PCI-DSS) para procesar las transacciones de forma segura.
+| Metodo de Diseño (Iteracion-1),  Especificación de componentes (CmpSpecPasarelaPagos), vista de implementación (IPasarelaPagosManager).
+| Pendiente (Materializacion en un diagrama de despliegue)
+
+| CON-5: Las operaciones de reserva y pago deben realizarse utilizando un Sistema Gestor de Base de Datos Relacional para asegurar la consistencia y evitar dobles cargos o dobles reservas. (Técnico)
+| Adoptar una base de datos relacional (RDBMS) para garantizar transacciones **ACID**. 
+| Metodo de diseño (Iteracion-1), 
+| Pendiente (Arquitectura del sistema en un diagrama de despliegue)
+
+| CON-6 El sistema deberá soportar una política de overbooking del 10% por tipo de habitación y por fecha, evitando sobreventa accidental. (Negocio) 
+| Táctica de **Bloqueo Pesimista** sobre el recurso "habitación" durante el proceso de pago. Adoptar una base de datos relacional (RDBMS) para garantizar transacciones **ACID**. 
+| Metodo de diseño (Iteracion-1, Iteracion-2)
+| Pendiente (Diagrama que demuestre el bloque pesimista, Arquitectura de la BD en un diagrama de despliegue)
+
+| CON-7: La recolección y manejo de datos personales de los clientes deberá ir acorde con la Ley Federal de Protección de Datos Personales. (Legal)
+| Aplicar táctica **No Almacenar Datos Sensibles**, para la informacion de pago de los huespedes, delegando la responsabilidad a un proveedor de pagos externo. Adoptar una base de datos relacional (RDBMS) para garantizar que los datos del _huesped_ se mantengan integros. Aplicar el patrón **MVC (Model-View-Controller)** para permitir cambios rápidos en la interfaz en caso de cambios en la politica de privacidad de la cadena.
+| Especificación de componentes (CmpSpecPasarelaPagos), vista de implementación (IPasarelaPagosManager). 
+| Pendiente (Materializacion de MVC en un diagrama de despliegue, registro de una tactica de proteccion de datos de los cliente) 
+
+| CON-8: El proceso de y la reservación deberá cumplir con los requisitos mínimos de un contrato de servicios turísticos de acuerdo con la Norma Oficial Mexicana NOM-010-TUR-2001 (Legal)
+| Aplicar el patrón **MVC (Model-View-Controller)** para permitir cambios rápidos en la interfaz en caso de cambios en las politicas del hotel.
+| Metodo de diseño (Iteracion-3)
+| Pendiente (Materializacion de MVC en un diagrama de despliegue)
+
+| CON-9: El sistema de reservaciones deberá cumplir con todas las regulaciones pertinentes estipuladas en la Ley Federal de Protección al Consumidor. Especialmente con el cápitulo VIII BIS. (Legal)
+| Aplicar táctica **No Almacenar Datos Sensibles**, para la informacion de pago de los huespedes, delegando la responsabilidad a un proveedor de pagos externo. Aplicar el patrón el patrón **MVC (Model-View-Controller)** para permitir cambios rápidos en la interfaz en caso de cambios en las politicas del hotel.
+| Metodo de diseño (Iteracion-1 e Iteracion-3), Especificación de componentes (CmpSpecPasarelaPagos), vista de implementación (IPasarelaPagosManager). 
+| Pendiente (Materializacion de MVC en un diagrama de despliegue)
+
+| CON-10: Garantizar la consistencia y trazabilidad de las operaciones de reservación es prioritario por sobre el rendimiento de las transacciones. (Negocio)
+| Adoptar una base de datos relacional (RDBMS) para garantizar transacciones **ACID**. 
+| Metodo de diseño (Iteracion 1)
+| Pendiente (Arquitectura del sistema en un diagrama de despliegue)
+
+| CRN-2 Asegurar la trazabilidad de las transacciones
+|  Adoptar una base de datos relacional (RDBMS) para garantizar transacciones **ACID** y llevar el registro de las operaciones criticas.
+| Metodo de diseño (Iteracion 1)
+| Pendiente (Arquitectura del sistema en un diagrama de despliegue)
+
+| CRN-3 Soportar cambios rápidos en la presentación del sistema
+| Aplicar el patrón el patrón **MVC (Model-View-Controller)** para permitir cambios rápidos en la interfaz de usuario.
+| Metodo de diseño (Iteracion-3)
+| Pendiente (Materializacion de MVC en un diagrama de despliegue)
+
+| CRN-4 Gestionar concurrencia en reservación
+| Táctica de **Bloqueo Pesimista** sobre el recurso "habitación" durante el proceso de pago. Adoptar una base de datos relacional (RDBMS) para garantizar transacciones **ACID**. 
+| Metodo de diseño (Iteracion-1, Iteracion-2)
+| Pendiente (Diagrama que demuestre el bloque pesimista, Mostrar la BD en un diagrama de despliegue)
+
+| CRN-5: Garantizar coherencia de precios
+| Aplicar el patrón el patrón **MVC (Model-View-Controller)** para asegurarse de que los precios mostrados a los clientes sean actualizados en tiempo real
+| Metodo de diseño (Iteracion-1, Iteracion-2)
+| Pendiente (tactica/patrón para asegurar la coherencia de precios una vez iniciada una reservacion) (Manifestacion de MVC)
+
+| CRN-6: Garantizar cobros únicos
+| Delegar la responsabilidad de la confirmación del cobro a una **Pasarela de Pagos Externa**.
+| Metodo de diseño (Iteracion 1) Especificación de componentes (CmpSpecPasarelaPagos), vista de implementación (IPasarelaPagosManager).
+| Cumple
+
+| CRN-7: Soportar modificación de las politicas de negocio
+| ?
+| ?
+| ?
+
+| CRN-8: Diseñar para escalar
+| Se adoptó el patrón arquitectónico de **por capas** para desacoplar el sistema y permitir la escalabilidad independiente de las capacidades. Aplicar táctica de **Escalado Horizontal**.
+| Metodo de diseño (Iteracion-2) Vista logica (Capas) 
+| Pendiente (Demostracion de escalado horizontal en un diagrama de despliegue)
+
+| CRN-9: Gestión de picos de demanda
+| Aplicar táctica de **Escalado Horizontal**. Usar un **Balanceador de Carga** para distribuir el tráfico uniformemente entre las instancias de los sistemas.
+| Metodo de diseño (Iteracion-2)
+| Pendiente (Materializacion en un diagrama de despliegue)
+
+| CRN-10: Privacidad e integridad de información de _Huéspedes_
+| Aplicar táctica **No Almacenar Datos Sensibles**, para la informacion de pago de los huespedes.
+| Especificación de componentes (CmpSpecPasarelaPagos), vista de implementación (IPasarelaPagosManager). 
+| Pendiente (tactica de proteccion de datos personales)
 
 |===

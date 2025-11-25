@@ -3,7 +3,7 @@
 
 === Descripción general
 
-La vista de implementación describe la estructura física del sistema hotelero y la manera en que sus componentes se organizan e interconectan dentro del entorno de ejecución. La vista muestra cómo los módulos de software se distribuyen en diferentes capas y cómo se integran.
+La vista de implementación describe la estructura física del sistema hotelero y la manera en que sus componentes se organizan e interconectan dentro del entorno de ejecución. Como se está usando el estilo arquitectónico por capas, la vista muestra cómo los módulos de software se distribuyen en diferentes capas y cómo se integran.
 
 === Contenido semántico
 
@@ -12,7 +12,7 @@ Cada componente tiene una función específica y se comunica con otros a través
 
 * SistemaCadenaHotel: Se encarga de gestionar la cadena de hoteles en general.
 * SistemaHotel: Gestiona la información operativa del hotel.
-* SistemaHuésped: Ofrece funcionalidades al cliente para registrarse y consultar sus datos.
+* SistemaHuesped: Ofrece funcionalidades al cliente para registrarse y consultar sus datos.
 * SistemaEstancia: Se encarga de gestionar todas las estancias desde el check-in hasta el check-out
 * SistemaReservacion: Se encarga de gestionar las reservas desde que el cliente las solicita hasta que se realiza el pago, así como modificarlas.
 * PasarelaPagos: Es un sistema externo con el que nos comunicaremos mediante una interfaz para poder procesar los pagos que se deban realizar.
@@ -34,7 +34,7 @@ El sistema se despliega en un entorno cliente-servidor con acceso remoto a trav�
 
 === SistemaCadenaHotel
 
-image::../images/Components/SistemaCadenaHotel.png[Sistema Cadena de Hotel, width=600]
+image:../images/Components/SistemaCadenaHotel.png[Sistema Cadena de Hotel, width=600]
 
 *Propósito:* Administrar los hoteles de la cadena.
 
@@ -55,16 +55,11 @@ image::../images/Components/SistemaCadenaHotel.png[Sistema Cadena de Hotel, widt
 
 === SistemaHotel
 
-image::../images/Components/SistemaHotel.png[Sistema Hotel, width=600]
+image:../images/Components/SistemaHotel.png[Sistema Hotel, width=600]
 
 *Propósito:* Administrar un hotel en específico.
 
-*Responsabilidades:* 
-
-* Registrar habitaciones, servicios, productos y empleados del hotel.
-* Consultar habitaciones, servicios, productos y empleados del hotel.
-* Editar habitaciones, servicios, productos y empleados del hotel.
-* Eliminar habitaciones, servicios, productos y empleados del hotel.
+*Responsabilidades:* Gestionar (crear, consultar, actualizar y eliminar) habitaciones, servicios, productos y empleados del hotel.
 
 *Reglas o Restricciones:* 
 
@@ -72,11 +67,11 @@ image::../images/Components/SistemaHotel.png[Sistema Hotel, width=600]
 * Un _Hotel_ no puede eliminarse si tiene estancias o reservas activas.
 * No se puede eliminar una _Habitación_ si tiene una _Estancia_ activa.
 
-*Interfaces:* IHabitacionManager, IServicioManager, IProductoManager, IEmpleadoManager, HuespedFacade.
+*Interfaces:* IHabitacionManager, IServicioManager, IProductoManager, IEmpleadoManager, IHuespedFacade.
 
 === SistemaReservacion
 
-image::../images/Components/SistemaReservacion.png[Sistema Reservación, width=600]
+image:../images/Components/SistemaReservacion.png[Sistema Reservación, width=600]
 
 *Propósito:* Gestiona las _Reservaciones_ desde el momento en el que se hace una reservación desde el sitio web evitando el overbooking.
 
@@ -87,13 +82,13 @@ image::../images/Components/SistemaReservacion.png[Sistema Reservación, width=6
 * No se puede confirmar una reservación si la _Habitación_ solicitada no está disponible los días solicitados.
 * No se puede solicitar una reservación si el pago no se ha procesado o si la *PasarelaPagos* no está disponible.
 
-*Dependencias:* Depende del *SistemaHotel* (_HuespedFacade_) y la *PasarelaPagos* (_PagosFacade_).
+*Dependencias:* La conexión con *SistemaHotel* se realiza mediante _IHuespedFacade_ y con la *PasarelaPagos* mediante _PagosFacade_.
 
 *Interfaces:* IReservacionManager.
 
 === SistemaEstancia
 
-image::../images/Components/SistemaEstancia.png[Sistema Estancia, width=600]
+image:../images/Components/SistemaEstancia.png[Sistema Estancia, width=600]
 
 *Propósito:* Gestiona las _Estancias_ desde el momento en el que se realiza el check-in de una reservación hasta el check-out.
 
@@ -103,7 +98,7 @@ image::../images/Components/SistemaEstancia.png[Sistema Estancia, width=600]
 * Administrar los consumos asociados a la estancia (agregar/quitar productos y servicios).
 * Realizar check-in y check-out.
 
-*Dependencias:* Depende del *SistemaHotel* (_HuespedFacade_), la *PasarelaPagos* (_PagosFacade_) y *SistemaReservacion* (_IReservacionManager_).
+*Dependencias:* La conexión con el *SistemaHotel* se realiza mediante _HuespedFacade_, con la *PasarelaPagos* con _PagosFacade_ y con el *SistemaReservacion* con _IReservacionManager_.
 
 *Reglas o Restricciones:* 
 
@@ -114,7 +109,7 @@ image::../images/Components/SistemaEstancia.png[Sistema Estancia, width=600]
 
 === SistemaHuesped
 
-image::../images/Components/SistemaHuesped.png[Sistema Huésped, width=600]
+image:../images/Components/SistemaHuesped.png[Sistema Huésped, width=600]
 
 *Propósito:* Gestiona la información de los _Huéspedes_, maneja los datos sensibles como métodos de pago y su información personal.
 
@@ -132,7 +127,7 @@ image::../images/Components/SistemaHuesped.png[Sistema Huésped, width=600]
 
 === PasarelaPagos
 
-image::../images/Components/PasarelaPagos.png[Pasarela de Pagos, width=600]
+image:../images/Components/PasarelaPagos.png[Pasarela de Pagos, width=600]
 
 *Propósito:* Procesa los pagos de los _Huéspedes_.
 
@@ -147,50 +142,50 @@ image::../images/Components/PasarelaPagos.png[Pasarela de Pagos, width=600]
 
 === Vista general de los componentes del sistema
 
-image::../images/Components/Sistemas.png[Componentes del sistema, width=600]
-
-== Interacción de componentes
-
-En esta sección se demuestra cómo los componentes de software, colaboran para realizar las funcionalidades clave del sistema. Siguiendo las directrices del proceso de diseño, se utiliza un *Diagrama de Comunicación UML* por cada operación principal de la interfaz de sistema.
-
-El objetivo de estos diagramas es validar que las interfaces de negocio (como `IHotelMgr`, `IHuespedMgr`, `IPagos`, etc.) son suficientes y correctas para orquestar las operaciones que el sistema ofrece (como `ICheckIn` o `solicitarReservacion`). Cada diagrama muestra las instancias de los componentes y la secuencia numerada de mensajes que intercambian para completar una tarea.
-
-=== Interacción: solicitarReservacion
-
-El siguiente diagrama de comunicación ilustra la secuencia de mensajes para la operación `solicitarReservacion(reservacion, metodoPago)`. El componente `SistemaReservacion` actúa como coordinador principal, colaborando con `IHabitacionManager` (en `SistemaHotel`) para obtener los datos de la habitación (`getHabitacion`), `IHuespedManager` (en `SistemaHuesped`) para los datos del cliente (`getHuesped`), `IPagos` (en `SistemaPago`) para procesar el pago (`procesarPago`), y finalmente con `IHabitacionManager` de nuevo para actualizar el estado de la habitación (`editarHabitacion`).
-
-image::../images/DC/DC solicitarRervacion.png[Diagrama de Comunicación - Solicitar Reservación]
-
-=== Interacción: cancelarReservacion
-
-Este diagrama muestra la colaboración de componentes para la operación `cancelarReservacion(reservacionID)`. El `SistemaReservacion` coordina con `SistemaPago` para gestionar el reembolso (`procesarReembolso`) y con `SistemaHotel` (interfaz `IHabitacionManager`) para obtener la habitación (`getHabitacion`) y luego actualizar su estado a "Disponible" (`editarHabitacion`).
-
-image::../images/DC/DC cancelarReservacion.png[Diagrama de Comunicación - Cancelar Reservación]
-
-=== Interacción: checkIn
-
-A continuación, se presenta la interacción para la operación `checkIn(reservacion)`. El componente `SistemaEstancia` orquesta la colaboración, llamando a `IHuespedManager` (en `SistemaHuesped`) para verificar los datos del cliente (`getHuesped`) y a `IHabitacionManager` (en `SistemaHotel`) para actualizar el estado de la habitación de "Reservada" a "Ocupada" (`editarHabitacion`).
-
-image::../images/DC/DC checkIn.png[Diagrama de Comunicación - Check-In]
-
-=== Interacción: checkOut
-
-Este diagrama detalla la operación de `checkOut(estancia)`. Esta es una colaboración crítica donde `SistemaEstancia` se comunica con `IPagos` (en `SistemaPago`) para calcular y procesar los cargos finales (`procesarPago`). Una vez aprobado el pago, `SistemaEstancia` notifica a `IHabitacionManager` (en `SistemaHotel`) para que la habitación sea liberada y marcada como "Disponible" (`editarHabitacion`).
-
-image::../images/DC/DC checkOut.png[Diagrama de Comunicación - Check-Out]
-
-=== Interacción: agregarServicioEstancia
-
-El siguiente diagrama muestra la secuencia para `agregarServicioEstancia(servicio, estancia)`. Para añadir un cargo a una estancia activa, `SistemaEstancia` primero consulta a `IServicioManager` (en `SistemaHotel`) para obtener la información y precio oficial del servicio (`getServicio`). Luego, notifica a `IPagos` (en `SistemaPago`) para que registre este nuevo cargo en el balance de la estancia (`registrarCargo`).
-
-image::../images/DC/DC agregarServicioEstancia.png[Diagrama de Comunicación - Agregar Servicio]
-
-=== Interacción: agregarProductoEstancia
-
-De manera similar al servicio, este diagrama ilustra la operación `agregarProductoEstancia(producto, estancia)`. El `SistemaEstancia` colaborará con `IProductoManager` (en `SistemaHotel`) para verificar el precio del producto (`getProducto`) y con `IPagos` (en `SistemaPago`) para registrar el cargo correspondiente en la cuenta de la estancia activa (`registrarCargo`).
-
-image::../images/DC/DC agregarProductoEstancia.png[Diagrama de Comunicación - Agregar Producto]
+image:../images/Components/Sistemas.png[Componentes del sistema, width=600]
 
 ---
 
+== Interacción de componentes
 
+En esta sección se demuestra cómo los componentes de software, definidos en la Capa de Negocio, colaboran para realizar las funcionalidades clave del sistema. Siguiendo las directrices del proceso de diseño, se utiliza un **Diagrama de Comunicación UML** por cada operación principal de la "interfaz de sistema".
+
+El objetivo de estos diagramas es validar que las interfaces de negocio (como `IHotelManager`, `IHuespedManager`, `IPagosManager`, etc.) son suficientes y correctas para orquestar las operaciones que el sistema ofrece (como `ICheckIn` o `solicitarReservacion`) . Cada diagrama muestra las instancias de los componentes y la secuencia numerada de mensajes que intercambian para completar una tarea.
+
+=== Interacción: solicitarReservacion
+
+El siguiente diagrama de comunicación ilustra la secuencia de mensajes para la operación `solicitarReservacion(reservacion, metodoPago)`. El componente `SistemaReservacion` actúa como coordinador principal, colaborando con `IHabitacionManager` (en `SistemaHotel`) para obtener los datos de la habitación (`getHabitacion`), `IHuespedManager` (en `SistemaHuesped`) para los datos del cliente (`getHuesped`), `IPagosManager` (en `PasarelaPagos`) para procesar el pago (`procesarPago`), y finalmente con `IHabitacionManager` de nuevo para actualizar el estado de la habitación (`editarHabitacion`).
+
+image:../images/DC/DC solicitarRervacion.png[Diagrama de Comunicación - Solicitar Reservación, width=600]
+
+=== Interacción: cancelarReservacion
+
+Este diagrama muestra la colaboración de componentes para la operación `cancelarReservacion(reservacionID, metodoPago)`. El `SistemaReservacion` coordina con `IPagosManager` (en `PasarelaPagos`) para gestionar el reembolso (`procesarReembolso`) y con `IHabitacionManager` (en `SistemaHotel`) para obtener la habitación (`getHabitacion`) y luego actualizar su estado a "Disponible" (`editarHabitacion`).
+
+image:../images/DC/DC cancelarReservacion.png[Diagrama de Comunicación - Cancelar Reservación, width=600]
+
+=== Interacción: checkIn
+
+A continuación, se presenta la interacción para la operación `checkIn(reservacion)`. El componente `SistemaEstancia` orquesta la colaboración, llamando a `IHabitacionManager` (en `SistemaHotel`) para obtener la habitación (`getHabitacion`) y luego actualizar su estado de "Reservada" a "Ocupada" (`editarHabitacion`), formalizando así el inicio de la estancia.
+
+image:../images/DC/DC checkIn.png[Diagrama de Comunicación - Check-In, width=600]
+
+=== Interacción: checkOut
+
+Este diagrama detalla la operación de `checkOut(estancia)`. Esta es una colaboración crítica donde `SistemaEstancia` se comunica con `IPagosManager` (en `PasarelaPagos`)  para calcular y procesar los cargos finales (`procesarPago`). Una vez aprobado el pago, `SistemaEstancia` notifica a `IHabitacionManager` (en `SistemaHotel`) para que la habitación sea liberada y marcada como "Disponible" (`editarHabitacion`).
+
+image:../images/DC/DC checkOut.png[Diagrama de Comunicación - Check-Out, width=600]
+
+=== Interacción: agregarServicioEstancia
+
+El siguiente diagrama muestra la secuencia para `agregarServicioEstancia(servicio, estancia)`. Para añadir un cargo a una estancia activa, `SistemaEstancia` primero consulta a `IServicioManager` (en `SistemaHotel`) para obtener la información y precio oficial del servicio (`getServicio`). Luego, notifica a `IPagosManager` (en `PasarelaPagos`)  para que registre este nuevo cargo en el balance de la estancia (`registrarCargo`).
+
+image:../images/DC/DC agregarServicioEstancia.png[Diagrama de Comunicación - Agregar Servicio, width=600]
+
+=== Interacción: agregarProductoEstancia
+
+De manera similar al servicio, este diagrama ilustra la operación `agregarProductoEstancia(producto, estancia)`. El `SistemaEstancia` colaborará con `IProductoManager` (en `SistemaHotel`) para verificar el precio del producto (`getProducto`) y con `IPagosManager` (en `PasarelaPagos`)  para registrar el cargo correspondiente en la cuenta de la estancia activa (`registrarCargo`).
+
+image:../images/DC/DC agregarProductoEstancia.png[Diagrama de Comunicación - Agregar Producto, width=600]
+
+---

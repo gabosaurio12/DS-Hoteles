@@ -2,11 +2,12 @@
 == Impulsores Arquitectónicos y Priorización
 
 === Restricciones
+
 * CON-1: La solución deberá ser implementada para la web oficial de la cadena. (Negocio)
 * CON-2: Para los clientes, además deberá ser implementada una solución para la aplicación movil de la cadena. (Negocio)
 * CON-3: El costo de una reservación deberá pagarse en su totalidad por adelantado. (Negocio)
 * CON-4: El pago de una reservación deberá ser realizado mediante una interfaz bancaria externa. (Técnico)
-* CON-5: Las operaciones de reserva y pago deben realizarse utilizando un Sistema Gestor de Base de Datos Relacionales para asegurar la consistencia y evitar dobles cargos o dobles reservas. (Técnico)
+* CON-5: Las operaciones de reserva y pago deben realizarse utilizando un Sistema Gestor de Base de Datos Relacional para asegurar la consistencia y evitar dobles cargos o dobles reservas. (Técnico)
 * CON-6: El sistema deberá soportar una política de overbooking del 10% por tipo de habitación y por fecha, evitando sobreventa accidental. (Negocio) 
 * CON-7: La recolección y manejo de datos personales de los clientes deberá ir acorde con la Ley Federal de Protección de Datos Personales. (Legal)
 * CON-8: El proceso de y la reservación deberá cumplir con los requisitos mínimos de un contrato de servicios turísticos de acuerdo con la Norma Oficial Mexicana NOM-010-TUR-2001 (Legal)
@@ -14,6 +15,7 @@
 * CON-10: Garantizar la consistencia y trazabilidad de las operaciones de reservación es prioritario por sobre el rendimiento de las transacciones. (Negocio)
 
 === Preocupaciones
+
 * CRN-1: Definir la estructura inicial del sistema: Completar el analisis de impulsores arquitectonicos del sistema para la toma de las primeras decisiones arquitectonicas, a partir del análisis, derivar una primera estructura estática del sistema.
 * CRN-2: Asegurar la trazabilidad de las transacciones: Con fines de auditoria, se requiere llevar un registro completo de las operaciones de reservación, asi como otras operaciones que supongan cargos a los clientes.
 * CRN-3: Soportar cambios rápidos en la presentación del sistema: Para poder cumplir con las regulaciones comerciales, de protección al consumidor, así como las políticas internas cambiantes de la empresa, es necesario proveer toda la información de privacidad, servicios contratados y detalle de pago al cliente. 
@@ -24,3 +26,4 @@
 * CRN-8: Diseñar para escalar: Puesto que es posible que la carga real del sistema exceda significativamente las estimaciones iniciales, el sistema deberá estar preparado para escalar en un futuro.
 * CRN-9: Gestión de picos de demanda: El sistema deberá diseñarse para manejar aumentos esperados e inesperados en la demanda, debe evitarse el colapso del sistema, la degradación del servicio debe ser predecible.
 * CRN-10: Privacidad e integridad de información de _Huéspedes_: El sistema deberá diseñarse para evitar el acceso no autorizado a la información de los _Huéspedes_ así como para mantener su integridad, incluso ante ataques.
+* CRN-11: Evitar accesos directos entre componentes sensibles
