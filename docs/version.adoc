@@ -100,17 +100,17 @@
 |Especificacion de Interfaces: ICadenaHotelManager, IHabitacionManager, IHuespedManager, IReservacionManage e IServicioManager
 
 |0.1.7
-|02/111/2001
+|02/111/2025
 |Seth Marquez Rodriguez
 |Especificacion de interfaces IHotelManager, IProductoManager, IEmpleadoManager, IestanciaManager
 
 |0.1.8
-|02/111/2001
+|02/111/2025
 |Seth Marquez Rodriguez
 |Identificacion de CoreTypes y justificacion (ya realizado pero no registrado en el Log)
 
 |0.1.9
-|02/111/2001
+|02/11/2025
 |Seth Marquez Rodriguez
 |Elaboracion de diagrama de interfaces y justificacion (ya realizado pero no registrado en el Log)
 
@@ -133,5 +133,10 @@
 |15/11/2025
 |Gabriel Antonio González López
 |Actualización de matriz de trazabilidad
+
+|0.2.4
+|16/11/2025
+|Seth Marquez Rodriguez
+|Especificacion de interfaces (Refinamiento)
 
 |===

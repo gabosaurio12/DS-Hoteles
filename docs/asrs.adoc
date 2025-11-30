@@ -36,7 +36,7 @@ image::UtilityTreeHoteles.png[Utility tree, align=center, width=800]
 Un adversario externo a la organización.
 
 ==== Estímulo
-Intenta capturar los datos de pago de un cliente con un ataque Man-in-the-Middle
+Intenta capturar los datos de pago de un cliente con un ataque Man-in-the-Middle.
 
 ==== Artefacto
 Sistema de pagos
@@ -97,10 +97,10 @@ El sistema entra y sale del modo degradado respectivamente en menos de 5 minutos
 ==== Detección de fallas
 
 ==== Fuente
-El interfaz del proveedor bancario.
+La interfaz del proveedor bancario.
 
 ==== Estímulo
-Pasa más de 30 segunoods sin responder las solicitudes de pago.
+Pasa más de 30 segundos sin responder las solicitudes de pago.
 
 ==== Artefacto
 El servicio de reservación.
@@ -109,7 +109,7 @@ El servicio de reservación.
 Operación normal.
 
 ==== Respuesta
-El sistema cancela las transacciones en curso, desactiva el servicio de reservación, notifica al portal de clientes y a la administración de la cadena..
+El sistema cancela las transacciones en curso, desactiva el servicio de reservación, notifica al portal de clientes y a la administración de la cadena.
 
 ==== Medida
 El servicio de reservación vuelve a estar habilitado en menos de 60 segundos tras restablecerse la comunicación con el proveedor.
@@ -144,7 +144,7 @@ En 2 segundos o menos para el 95% de las peticiones.
 Multiples huespedes
 
 ==== Estímulo
-Confirmación su reservación durante temporada altaa.
+Confirman su reservación durante temporada alta.
 
 ==== Artefacto
 En el portal de clientes.
