@@ -1,0 +1,44 @@
+== Aspectos transversales
+
+=== Seguridad
+Es necesario garantizar la seguridad de los datos de los clientes al realizar pagos a través del sistema de la cadena, para lograrlo se aplicaran las siguientes tácticas, patrones y frameworks:
+
+* Vista lógica
+** Colocar un *Proxy* entre el sistema y la pasarela de pagos para gestionar la *autenticación* y *autorización* al comunicarse con la pasarela de pagos.  
+* Vista de Proceso
+** Aplicar el protocolo *Transport Layer Security* para asegurar la comunicación externa con la pasarela de pagos
+** Adoptar el *estándar OAuth 2.0* para gestionar la identidad y el acceso a la pasarela de pagos usando tokens de acceso con tiempo de vida limitado.  
+** Aplicar la táctica de *impieza de memoria* para limpiar las variables que almacenen información sensible inmediatamente después de su uso.
+* Vista de implementación
+** Usar *Helmet* para la configuración de los encabezados HTTP y mejorar la seguridad de las respuestas HTTP.
+* Vista fisica
+** Colocar el servicio que se comunica con la pasarela de pagos en una *Zona desmilitarizada* con reglas de firewall estrictas (listas blancas de IPs).
+
+
+=== Integridad de Datos
+Para garantizar la consistencia de las operaciones de la cadena hotelera es necesario asegurar que la consistencia se mantiene a traves de las capas, para ello se aplicaran las siguientes tácticas y patrones entre vistas: 
+
+* Vista Lógica
+** Aplicar la táctica de *validaciones invariantes* para garantizar que el estado de las habitaciones será consistente antes de aceptar cambios.
+** Aplicar la táctica de *idempotencia* en las operaciones de reserva y las solicitudes de pago para garantizar que el sistema solo procese las solicitudes una vez. 
+* Vista de proceso
+** Aplicar la táctica de *bloqueo pesimista* para garantizar alta confiabilidad y prevenir conflictos en las transacciones críticas del sistema.
+* Vista fisica
+** Para garantizar que la gestión del inventario del hotel opere sobre los datos más actualizados y evitar inconsistencias, aplicar *consistencia fuerte* para garantizar que no ocurran dobles reservas.
+** Usar un *Sistema Gestor de Bases de Datos Relaciones* para garantizar transacciones ACID.
+
+=== Disponibilidad
+Para cumplir con el impulsor de disponibilidad se aplicaran las siguientes tácticas,  patrones y frameworks:
+
+* Vista Lógica
+** Aplicar el patrón *Cortacircuitos* para gestionar la respuesta de servicios defectuosos y permitir que el resto servicios sigan operando en modo degradado.
+** Utilizar el patrón *Bulkhead* para aislar los recursos de cada servicio y permitir que si un servicio se satura, no paralize el resto de servicios del sistema.
+* Vista de proceso
+** Aplicar el patrón de *Nivelación de carga por colas*, para gestionar picos de demanda inesperados y prevenir que la base de datos se sature durante periodos de alta demanda.
+** Utilizar *Watchdogs* para monitorear los servicios y reiniciarlos en caso de que dejen de estar disponibles.
+* Visa fisica
+** Aplicar un *Balanceador de carga* para distribuir el tráfico uniformemente en el sistema y detectar nodos caídos.
+** Utilizar *redundancia activa N+1* para redirigir el trafico de una instancia de un servicio a otra si una falla bajo la carga.
+** Aplicar la táctica de *zonas de disponibilidad múltiples*, distribuir los centros de datos físicos para mantener el servicio en caso de que un centro entero deje de estar disponible. 
+** Aplicar la táctica de *escalado automático* para agregar más servidores automáticamente si el uso de CPU de un servidor supera la regla configurada.
+** Utilizar una *Plataforma de Orquestación de Contenedores* para automatizar el despliegue y ajustar las replicas de los servicios según a demanda.

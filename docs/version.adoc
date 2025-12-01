@@ -144,4 +144,9 @@
 |Seth Marquez Rodriguez
 |Vista de procesos (flujo critico2), Actualizacion CU
 
+|0.2.6
+|30/11/2025
+|Abel Hernández Yong
+|Aspectos transversales
+
 |===
