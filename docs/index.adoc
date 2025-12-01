@@ -33,14 +33,11 @@ include::usecases.adoc[]
 include::asrs.adoc[]
 include::priorization.adoc[]
 include::designmethod.adoc[]
+
 include::views/logic.adoc[]
 include::views/implementation.adoc[]
-
-include::views/functional.adoc[]
-include::views/information.adoc[]
-include::views/concurrency.adoc[]
 include::views/deployment.adoc[]
-include::views/development.adoc[]
-include::views/operational.adoc[]
+include::views/process.adoc[]
+include::views/transversal.adoc[]
 
 include::trazability.adoc[]
