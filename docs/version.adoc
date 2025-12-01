@@ -127,7 +127,7 @@
 |0.2.2
 |15/11/2025
 |Gabriel Antonio González López
-|Especificación de Componentes (Refinamiento)
+|Especificación de Componentes (Refinamsiento)
 
 |0.2.3
 |15/11/2025
@@ -148,5 +148,10 @@
 |27/11/2025
 |Gabriel Antonio González López
 |Vista de despliegue
+
+|0.2.7
+|30/11/2025
+|Seth Marquez Rodriguez
+|Vista de procesos (flujo critico2), Actualizacion CU
 
 |===
