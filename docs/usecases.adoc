@@ -259,6 +259,19 @@ image::DCU/CU_AdministradorHotel.png[.Diagrama de casos de uso de Administrador 
 
 *Flujos alternos*
 
+
+*FA01 – Pago rechazado* +
+
+1. El Sistema recibe del sistema de pagos la notificación de que el pago fue rechazado. +
+2. El Sistema informa al Recepcionista que el pago no pudo completarse. +
+3. El Recepcionista solicita al Huésped un nuevo método de pago. +
+4. El caso de uso retorna al paso 4 del flujo normal. +
+
+*FA02 – No hay monto pendiente de pago* +
+1. El Sistema detecta que la estancia del Huésped no genera cargos pendientes. +
+2. El Sistema informa al Recepcionista que no es necesario realizar ningún cobro. +
+3. El caso de uso continúa en el paso 7 del flujo normal. +
+
 *Excepciones* +
 
 *EX01 – Error al conectarse a la base de datos* +
