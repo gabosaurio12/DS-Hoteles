@@ -139,4 +139,14 @@
 |Seth Marquez Rodriguez
 |Especificacion de interfaces (Refinamiento)
 
+|0.2.5
+|16/11/2025
+|Gabriel Antonio González López
+|Vista de despliegue preliminar
+
+|0.2.6
+|27/11/2025
+|Gabriel Antonio González López
+|Vista de despliegue
+
 |===
