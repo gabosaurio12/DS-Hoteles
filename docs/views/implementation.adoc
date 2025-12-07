@@ -67,7 +67,7 @@ image:../images/Components/SistemaHotel.png[Sistema Hotel, width=600]
 * Un _Hotel_ no puede eliminarse si tiene estancias o reservas activas.
 * No se puede eliminar una _Habitación_ si tiene una _Estancia_ activa.
 
-*Interfaces:* IHabitacionManager, IServicioManager, IProductoManager, IEmpleadoManager, IHuespedFacade.
+*Interfaces:* IHabitacionManager, IServicioManager, IProductoManager, IEmpleadoManager, IReservacionFacade.
 
 === SistemaReservacion
 
@@ -82,7 +82,7 @@ image:../images/Components/SistemaReservacion.png[Sistema Reservación, width=60
 * No se puede confirmar una reservación si la _Habitación_ solicitada no está disponible los días solicitados.
 * No se puede solicitar una reservación si el pago no se ha procesado o si la *PasarelaPagos* no está disponible.
 
-*Dependencias:* La conexión con *SistemaHotel* se realiza mediante _IHuespedFacade_ y con la *PasarelaPagos* mediante _PagosFacade_.
+*Dependencias:* La conexión con *SistemaHotel* se realiza mediante _IReservacionFacade_ y con la *PasarelaPagos* mediante _PagosFacade_.
 
 *Interfaces:* IReservacionManager.
 
@@ -98,7 +98,7 @@ image:../images/Components/SistemaEstancia.png[Sistema Estancia, width=600]
 * Administrar los consumos asociados a la estancia (agregar/quitar productos y servicios).
 * Realizar check-in y check-out.
 
-*Dependencias:* La conexión con el *SistemaHotel* se realiza mediante _HuespedFacade_, con la *PasarelaPagos* con _PagosFacade_ y con el *SistemaReservacion* con _IReservacionManager_.
+*Dependencias:* La conexión con el *SistemaHotel* se realiza mediante _IReservacionFacade_, con la *PasarelaPagos* con _PagosFacade_ y con el *SistemaReservacion* con _IReservacionManager_.
 
 *Reglas o Restricciones:* 
 

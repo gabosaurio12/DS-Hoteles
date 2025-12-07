@@ -169,4 +169,9 @@
 |Gabriel Antonio González López
 |Balanceador de carga y representación de MVC en la vista de despliegue
 
+|0.2.9
+|06/12/2025
+|Gabriel Antonio González López
+|Refinamiento de vista Lógica y de Implementación
+
 |===
