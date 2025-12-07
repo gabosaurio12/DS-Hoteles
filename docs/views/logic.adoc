@@ -27,7 +27,7 @@ En *SistemaCadenaHotel* el cual implementará la interfaz _ICadenaHotelManager_,
 
 image::../images/Components/SistemaCadenaHotel.png[Sistema Cadena de Hotel, width=600]
 
-El *SistemaHotel* tiene como propósito gestionar la información de un hotel, así como las habitaciones (incluyendo su estado, si está reservada, ocupada o libre), servicios y productos.
+El *SistemaHotel* tiene como propósito que el _Administrador de Hotel_ pueda gestionar la información de un hotel, así como las habitaciones (incluyendo su estado, si está reservada, ocupada o libre), servicios y productos. Aparte del _Administrador de Hotel_, el _Auditor_ podrá usar ciertas funciones del *SistemaHotel* con permisos limitados para poder llevar a cabo sus funciones.
 
 image::../images/Components/SistemaHotel.png[Sistema Hotel, width=600]
 
