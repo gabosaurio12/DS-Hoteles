@@ -23,22 +23,25 @@ image::DCU/CU_AdministradorHotel.png[.Diagrama de casos de uso de Administrador 
 *CU01 - Buscar hotel* +
 *ID:* CU01 +
 *Nombre:* Buscar hotel +
-*Descripción:* El _Huésped_ busca un hotel para solicitar una estancia +
+*Descripción:* Este caso permite que el _Huésped_ busque *Hoteles* mediante la función de búsqueda de *Hoteles* por ciudad. 
+El resultado es que el _Huésped_ pudo ver los hoteles de la ciudad que consultó. +
 *Actor(es):* Huésped +
 *Disparador:* _Huésped_ selecciona "Buscar hotel” +
 *Precondiciones:* N/A
 
 *Flujo Normal* +
-1. El _Huésped_ selecciona una ciudad
-2. El _Sistema_ muestra los hoteles disponibles en esa ciudad (ver FA01) (ver EX01) +
-3. El _Huésped_ puede consultar la disponibilidad de habitaciones (Extiende CU02) +
-4. Termina el caso de uso
+1. El _Sistema_ recupera de la base de datos las ciudades disponibles (ver EX01) +
+2. El _Huésped_ selecciona una ciudad +
+3. El _Sistema_ recupera de la base de datos los hoteles de esa ciudad (ver EX01)
+4. El _Sistema_ muestra los hoteles recuperados (ver FA01) +
+5. El _Huésped_ puede consultar la disponibilidad de habitaciones (Extiende CU02) +
+6. Termina el caso de uso
 
 *Flujos alternos* +
 
 *FA01 - Buscar otro hotel* +
 1. El _Huésped_ busca en otra ciudad +
-2. Regresa al flujo normal 2
+2. Regresa al flujo normal 3
 
 *Excepciones* +
 
@@ -46,7 +49,9 @@ image::DCU/CU_AdministradorHotel.png[.Diagrama de casos de uso de Administrador 
 1. El _Sistema_ informa al _Huésped_ que hubo un error al conectarse a la base de datos +
 2. Termina el caso de uso
 
-*Postcondiciones:* El _Huésped_ recibió los datos de un hotel +
+*Postcondiciones:*
+POST01: Se consultaron *Hoteles* en la base de datos +
+POST02: El _Huésped_ recibió los datos de un hotel +
 *Reglas de negocio:* N/A +
 *Incluye:* N/A +
 *Extiende:* CU02
@@ -56,21 +61,23 @@ image::DCU/CU_AdministradorHotel.png[.Diagrama de casos de uso de Administrador 
 *CU02 - Consultar disponibilidad de habitaciones* +
 *ID:* CU02 +
 *Nombre:* Consultar disponibilidad de habitaciones +
-*Descripción:* El _Huésped_ consulta la disponibilidad de las habitaciones con ciertas características (fecha de check-in, check-out y cantidad de huéspedes) +
+*Descripción:* Este caso permite que el _Huésped_ consulte la disponibilidad de *Habitaciones* mediante un filtro de *Check-in*, *Check-out* y cantidad de *Huéspedes*.
+ El resultado es que el _Huésped_ pudo ver la disponibilidad de *Habitaciones* con las características que solicitó. +
 *Actor(es):* Huésped +
 *Disparador:* Húesped selecciona "Consultar disponibilidad" +
 *Precondiciones:* Haber consultado un hotel antes
 
 *Flujo Normal* +
-1. El _Huésped_ selecciona una fecha de check-in, check-out y cantidad de huéspedes y selecciona "Buscar" +
-2. El _Sistema_ muestra los cuartos del hotel disponibles con esas características +
-3. El _Huésped_ puede reservar una estancia (extiende CU03) +
-4. Termina el caso de uso
+1. El _Huésped_ selecciona una fecha de *Check-in*, *Check-out* y cantidad de huéspedes y selecciona "Buscar" +
+2. El _Sistema_ recupera de la base de datos las *Habitaciones* disponibles con ese filtro (ver EX01) +
+3. El _Sistema_ muestra las *Habitaciones* recuperadas +
+4. El _Huésped_ puede reservar una estancia (extiende CU03) +
+5. Termina el caso de uso
 
 *Flujos alternos*
 
 *FA01 - Cambiar características* +
-1. El _Huésped_ selecciona una fecha de check-in, check-out o cantidad de huéspedes diferentes y selecciona "Buscar" +
+1. El _Huésped_ selecciona una fecha de *Check-in*, *Check-out* o cantidad de huéspedes diferentes y selecciona "Buscar" +
 2. Regresa al flujo normal 2
 
 *Excepciones*
@@ -79,9 +86,11 @@ image::DCU/CU_AdministradorHotel.png[.Diagrama de casos de uso de Administrador 
 1. El _Sistema_ informa al _Huésped_ que hubo un error al conectarse a la base de datos +
 2. Termina el caso de uso
 
-*Postcondiciones:* El _Huésped_ pudo ver la disponibilidad de las habitaciones con las características seleccionadas +
-*Reglas de negocio:* +
-*Incluye:* +
+*Postcondiciones:* +
+POST01: Se consultaron *Habitaciones* en la base de datos +
+POST02: El _Huésped_ pudo ver la disponibilidad de las habitaciones con las características seleccionadas + 
+*Reglas de negocio:* N/A +
+*Incluye:* N/A +
 *Extiende:* CU03 +
 
 ---
@@ -89,18 +98,20 @@ image::DCU/CU_AdministradorHotel.png[.Diagrama de casos de uso de Administrador 
 *CU03 - Reservar estancia* +
 *ID:* CU03 +
 *Nombre:* Reservar una habitación +
-*Descripción:* El Huésped reserva una habitación para hospedarse +
+*Descripción:* Este caso permite que el _Huésped_ realice reservar una *Reseravción* mediante su interacción con la página web. El resultado es una *Reservación* del _Huésped_. +
 *Actor(es):* Huésped +
 *Disparador:* Huésped selecciona “Reservar” +
 *Precondiciones:* Haber buscado un hotel o consultado la disponibilidad de una habitación
 
 *Flujo Normal* +
-1. El _Sistema_ muestra los datos de la habitación solicitada (Ver EX01) +
-2. El _Huésped_ selecciona "Reservar la habitación" (ver FA01) +
-3. El _Sistema_ solicita los datos de pago al _Huésped_ (ver FA02) +
-4. El _Huésped_ ingresa sus datos de pago y selecciona “Pagar” +
-5. El _Sistema_ envía los datos al Sistema de cobros (Ver EX02) +
-6. El _Sistema_ envía al _Huésped_ su comprobante de pago y de reservación +
+1. El _Sistema_ recupera los datos de la *Habitación* solicitada (ver EX01) +
+2. El _Sistema_ muestra los datos de la *Habitación* recuperada +
+3. El _Huésped_ selecciona "Reservar Habitación" (ver FA01) +
+4. El _Sistema_ solicita los datos de pago al _Huésped_ (ver FA02) +
+5. El _Huésped_ ingresa sus datos de pago y selecciona “Pagar” +
+6. El _Sistema_ envía los datos al Sistema de cobros (Ver EX02) +
+7. El _Sistema_ envía al _Huésped_ su comprobante de pago y de reservación +
+8. El _Sistema_ registra en la base de datos la *Reservación* (ver EX01) +
 7. Termina el caso de uso
 
 *Flujos alternos*
@@ -124,9 +135,9 @@ image::DCU/CU_AdministradorHotel.png[.Diagrama de casos de uso de Administrador 
 2. Termina el caso de uso
 
 *Postcondiciones:* +
-
-* POST01: El Huésped reservó una habitación y recibió su comprobante
-* POST02: Se actualiza el estado de la habitación
+POST01: Se registró en la base de datos la *Reservación* hecha +
+POST02: Se envió un comprobante de *Reservación* al _Huésped_ +
+POST02: Se actualiza en la base de datos la disponibilidad de la *Habitación* +
 
 *Reglas de negocio:* N/A +
 *Incluye:* N/A +
@@ -138,12 +149,14 @@ image::DCU/CU_AdministradorHotel.png[.Diagrama de casos de uso de Administrador 
 *ID:* CU04 +
 *Nombre:* Consultar reservaciones +
 *Actores:* Huésped +
-*Descripción:* El _Huésped_ consulta las reservaciones pendientes que tiene +
+*Disparador:* El _Huésped_ selecciona "Reservaciones" +
+*Descripción:* Este caso permite que el _Huésped_ logre consultar sus *Reservaciones* mediante su interacción con la página web.
+ El resultado es que sus *Reservaciones* se mostraron en pantalla. +
 *Precondiciones:* El _Huésped_ debe tener reservaciones activas
 
 *Flujo normal* +
-1. El _Huésped_ selecciona "Reservaciones" +
-2. El _Sistema_ muestra las reservaciones del _Huésped_ activas (ver EX01) +
+1. El _Sistema_ recupera de la base de datos las *Reservaciones* del _Huésped_ (ver EX01) +
+2. El _Sistema_ muestra las reservaciones del _Huésped_ +
 3. El _Huésped_ puede cancelar una reservación (extiende CU05) +
 4. Termina el caso de uso
 
@@ -155,7 +168,7 @@ image::DCU/CU_AdministradorHotel.png[.Diagrama de casos de uso de Administrador 
 1. El _Sistema_ informa al _Huésped_ que hubo un error al conectarse a la base de datos +
 2. Termina el caso de uso
 
-*Postcondiciones:* El _Huésped_ consultó sus reservaciones activas +
+*Postcondiciones:* Se consultaron en base de datos las *Reservaciones* del _Huésped_ +
 *Reglas de negocio* N/A +
 *Incluye:* N/A +
 *Extiende:* CU05
@@ -165,24 +178,30 @@ image::DCU/CU_AdministradorHotel.png[.Diagrama de casos de uso de Administrador 
 *CU05 – Cancelar reservación* +
 *ID:* CU05 +
 *Nombre:* Cancelar reservación +
-*Descripción:* El Huésped cancela una reservación +
+*Descripción:* Este caso permite que el _Huésped_ cancele una *Reservación* mediante su interacción con la página web. El resultado es la cancelación de la *Reservación* seleccionada. +
 *Actores:* Huésped +
 *Disparador:* Huésped selecciona “Cancelar reservación” +
 *Precondiciones:* El _Huésped_ debe tener al menos una reserva activa
 
 *Flujo Normal* +
-1. El _Huésped_ selecciona un método de pago (ver FA01) +
-2. El _Sistema_ envía los datos de pago al _Sistema de pagos_ +
-3. El _Sistema_ confirma la transacción (ver EX01) +
-4. El _Sistema_ envía el recibo de pago al _Huésped_ y actualiza el estado de la habitación (ver EX01) +
-5. Termina el caso de uso
+1. El _Sistema_ muestra el pago por cancelación que se debe hacer +
+2. El _Huésped_ selecciona un método de pago (ver FA01) +
+3. El _Sistema_ envía los datos de pago al _Sistema de pagos_ +
+4. El _Sistema_ confirma la transacción (ver EX01) +
+5. El _Sistema_ envía el recibo de pago al _Huésped_ y actualiza el estado de la habitación (ver EX01) +
+6. El _Sistema_ actualiza la base de datos (ver EX01) +
+7. Termina el caso de uso
 
 *Flujos alternos*
 
 *FA01 - ingresar método de pago* +
 1. El _Huésped_ selecciona "Nuevo método de pago" +
-2. El _Sistema_ registra el método de pago +
-3. Regresa a flujo normal 2 +
+2. El _Sistema_ muestra el formulario para registrar un método de pago +
+3. El _Huésped_ ingresa rellena el formulario +
+4. El _Huésped_ selecciona "Confirmar" +
+5. El _Sistema_ valida el método de pago (ver EX02) +
+6. El _Sistema_ registra el método de pago +
+7. Regresa a flujo normal 2 +
 
 *Excepciones*
 
@@ -190,33 +209,37 @@ image::DCU/CU_AdministradorHotel.png[.Diagrama de casos de uso de Administrador 
 1. El _Sistema_ informa al _Huésped_ que hubo un error al realizar el cobro +
 2. Termina el caso de uso
 
-*Postcondiciones:* 
+*EX02 – Error al validar el método de pago* +
+1. El _Sistema_ informa al _Recepcionista_ que hubo un error al validar el método de pago +
+2. Termina el caso de uso
 
-* POST01: El _Huésped_ canceló una reserva
-* POST02: Se actualizó el estado de la habitación
-
+*Postcondiciones:* Se actualizó la base de datos con la cancelación de la *Reservación* +
 *Reglas de negocio:* N/A +
 *Incluye:* N/A +
 *Extiende:* N/A
 
 ---
 
-*CU06 - Realizar check-in*
+*CU06 - Realizar Check-in*
 
 *ID:* CU06 +
-*Nombre:* Realizar check-in +
+*Nombre:* Realizar *Check-in* +
 *Actores:* Recepcionista +
-*Descripción:* El _Recepcionista_ registra la entrega de la habitación al _Huésped_ +
+*Disparador*: El _Recepcionista_ selecciona "Check-in" +
+*Descripción:* Este caso permite que el _Recepcionista_ logre registrar un *Check-in* mediante la interacción con la página web. El resultado es el registro del *Check-in* +
 *Precondiciones:* La habitación que se va a entregar debe estar disponible
 
 *Flujo normal* +
 1. El _Recepcionista_ ingresa los datos de reservación del _Huésped_ +
-2. El _Sistema_ muestra los detalles de la reservación +
+2. El _Sistema_ recupera de la base de datos la *Reservación* (ver EX01) +
+2. El _Sistema_ muestra los detalles de la reservación recuperados +
 3. El _Huésped_ puede querer cambiar de habitación (ver CU08) +
 4. El _Recepcionista_ ingresa los datos de pago del _Huésped_ +
-5. El _Sistema_ corrobora que los datos de pago sean válidos (ver EX02) +
-6. El _Sistema_ actualiza el estado de la habitación +
-7. Termina el caso de uso
+5. El _Recepcionista_ selecciona "Confirmar" +
+6. El _Sistema_ corrobora que los datos de pago sean válidos (ver EX02) +
+7. El _Sistema_ actualiza el estado de la habitación (ver EX01) +
+8. El _Sistema_ cambia la *Reservación* a *Estancia* en la base de datos (ver EX01) +
+9. Termina el caso de uso
 
 *Flujos alternos*
 
@@ -226,14 +249,14 @@ image::DCU/CU_AdministradorHotel.png[.Diagrama de casos de uso de Administrador 
 1. El _Sistema_ informa al _Recepcionista_ que hubo un error al conectarse a la base de datos +
 2. Termina el caso de uso
 
-*EX02 – Error al procesar el pago* +
-1. El _Sistema_ informa al _Recepcionista_ que hubo un error al realizar el cobro +
+*EX02 – Error al validar el método de pago* +
+1. El _Sistema_ informa al _Recepcionista_ que hubo un error al validar el método de pago +
 2. Termina el caso de uso
 
 *Postcondiciones:*
 
-* POST01: El check-in es realizado con éxito
-* POST02: Se actualiza el estado de la habitación
+POST01: El *Check-in* es registrado en la base de datos +
+POST02: Se actualiza en la base de datos el estado de la habitación
 
 *Reglas de negocio:* N/A +
 *Incluye:* N/A +
@@ -241,35 +264,37 @@ image::DCU/CU_AdministradorHotel.png[.Diagrama de casos de uso de Administrador 
 
 ---
 
-*CU07 - Realizar check-out*
+*CU07 - Realizar Check-out*
 *ID:* CU07 +
-*Nombre:* Realizar check-out +
+*Nombre:* Realizar *Check-out* +
 *Actores:* Recepcionista +
-*Descripción:* El _Recepcionista_ registra la liberación de la habitación del _Huésped_ +
+*Disparador:* El _Recepcionista_ selecciona *Check-out* +
+*Descripción:* Este caso permite que el _Recepcionista_ logre registrar un *Check-out* mediante la interacción con la página web. El resultado es el registro del *Check-out* +
 *Precondiciones:* La habitación que se va a entregar debe haber estado ocupada
 
 *Flujo normal* +
-1. El _Recepcionista_ ingresa los datos de estancia del _Huésped_ +
-2. El _Sistema_ muestra los detalles de la estancia (ver EX01) +
+1. El _Recepcionista_ ingresa los datos de *Estancia* del _Huésped_ +
+2. El _Sistema_ recupera de la base de datos los detalles de la *Estancia* (ver EX01) +
+2. El _Sistema_ muestra los detalles de la *Estancia* (ver EX01) +
 4. El _Recepcionista_ selecciona el método de pago del _Huésped_ +
-5. El _Sistema_ envía el método de pago al sistema de pagos (ver EX02) +
-6. El _Ssitema_ recibe el comprobante de pago del sistema de pagos +
-7. El _Sistema_ actualiza el estado de la habitación +
-8. Termina el caso de uso
+5. El _Recepcionista_ selecciona "Confirmar" +
+6. El _Sistema_ envía el método de pago al _Sistema de pagos_ (ver EX02) +
+7. El _Sitema_ recibe el comprobante de pago del _Sistema de pagos_ +
+8. El _Sistema_ actualiza en la base de datos el estado de la *Estancia* (ver EX01) +
+9. Termina el caso de uso
 
 *Flujos alternos*
 
-
 *FA01 – Pago rechazado* +
 
-1. El Sistema recibe del sistema de pagos la notificación de que el pago fue rechazado. +
-2. El Sistema informa al Recepcionista que el pago no pudo completarse. +
+1. El _Sistema_ recibe del _Sistema de pagos_ la notificación de que el pago fue rechazado. +
+2. El _Sistema_ informa al Recepcionista que el pago no pudo completarse. +
 3. El Recepcionista solicita al Huésped un nuevo método de pago. +
 4. El caso de uso retorna al paso 4 del flujo normal. +
 
 *FA02 – No hay monto pendiente de pago* +
-1. El Sistema detecta que la estancia del Huésped no genera cargos pendientes. +
-2. El Sistema informa al Recepcionista que no es necesario realizar ningún cobro. +
+1. El _Sistema_ detecta que la estancia del Huésped no genera cargos pendientes. +
+2. El _Sistema_ informa al Recepcionista que no es necesario realizar ningún cobro. +
 3. El caso de uso continúa en el paso 7 del flujo normal. +
 
 *Excepciones* +
@@ -284,8 +309,8 @@ image::DCU/CU_AdministradorHotel.png[.Diagrama de casos de uso de Administrador 
 
 *Postcondiciones:*
 
-* POST01: El check-out es realizado con éxito
-* POST02: Se actualiza el estado de la habitación
+* POST01: El *Check-out* es realizado con éxito
+* POST02: Se actualiza en la base de datos el estado de la *Estancia*
 
 *Reglas de negocio:* N/A +
 *Incluye:* N/A +
@@ -297,14 +322,17 @@ image::DCU/CU_AdministradorHotel.png[.Diagrama de casos de uso de Administrador 
 *ID:* CU08 +
 *Nombre:* Cambiar habitación +
 *Actores:* Recepcionista +
-*Descripción:* El _Recepcionista_ cambia la habitación de la estancia del _Huésped_ +
+*Disparador:* El _Recepcionista_ selecciona "Cambiar Habitación" +
+*Descripción:* Este caso permite que el _Recepcionista_ logre cambiar la *Habitación* de una *Estancia* mediante la interacción con la página web. El resultado es el cambio de *Habitación* de la *Estancia* +
 *Precondiciones:* Debe haber habitaciones disponibles
 
 *Flujo normal* +
-1. El _Sistema_ muestra las habitaciones disponibles junto con su precio (ver EX01) +
-2. El _Recepcionista_ selecciona la que el _Huésped_ desee (ver FA01) +
-3. El _Sistema_ actualiza el estado de la habitación +
-4. Termina el caso de uso
+1. El _Sistema_ recupera de la base de datos las *Habitaciones* disponibles (ver EX01) +
+2. El _Sistema_ muestra las *Habitaciones* recuperadas junto con su precio (ver EX01) +
+3. El _Recepcionista_ selecciona la que el _Huésped_ desee (ver FA01) +
+4. El _Recepcionista_ selecciona "Confirmar" +
+5. El _Sistema_ actualiza en la base de datos el estado de la *Estancia* +
+6. Termina el caso de uso
 
 *Flujos alternos*
 
@@ -319,7 +347,7 @@ image::DCU/CU_AdministradorHotel.png[.Diagrama de casos de uso de Administrador 
 1. El _Sistema_ informa al _Recepcionista_ que hubo un error al conectarse a la base de datos +
 2. Termina el caso de uso
 
-*Postcondiciones:* Se cambió la habtiación del _Huésped_
+*Postcondiciones:* Se registró en la base de datos el cambio de *Habitación* de la *Estancia* +
 *Reglas de negocio* N/A
 *Incluye:* N/A
 *Extiende:* N/A
@@ -330,16 +358,20 @@ image::DCU/CU_AdministradorHotel.png[.Diagrama de casos de uso de Administrador 
 *ID:* CU09 +
 *Nombre:* Registrar cargo de servicios a la habitación +
 *Actores:* Recepcionista +
-*Descripción:* El _Recepcionista_ agrega el cargo por un servidio a la estancia del _Huésped_ +
-*Precondiciones:* N/A
+*Disparador:* El _Recepcionista_ selecciona "Agregar Servicio" +
+*Descripción:* Este caso permite que el _Recepcionista_ logre registrar un cargo de *Servicios* a una *Estancia* mediante la interacción con la página web. El resultado es un cargo de *Servicios* agregado a una *Estancia* +
+*Precondiciones:* Haber seleccionado un _Huésped_
 
 *Flujo normal* +
-1. El _Sistema_ muestra las estancias del _Huésped_ (ver EX01) +
-2. El _Recepcionista_ selecciona la estancia a la que se le hará el cargo +
-3. El _Sistema_ muestra los servicios que se pueden cargar (ver EX01) +
-4. El _Recepcionista_ selecciona los servicio que se cargarán +
-5. El _Sistema_ agrega al cargo de la habitación el servicio +
-6. Termina el caso de uso
+1. El _Sistema_ recupera de la base de datos las *Estancias* del _Huésped_ (ver EX01) +
+2. El _Sistema_ muestra las *Estancias* recuperadas del _Huésped_ +
+3. El _Recepcionista_ selecciona la *Estancai* a la que se le hará el cargo +
+4. El _Sistema_ recupera de la base de datos los *Servicios* disponibles (ver EX01) +
+5. El _Sistema_ muestra los *Servicios* recuperados +
+6. El _Recepcionista_ selecciona los *Servicio* que se cargarán +
+7. El _Recepcionista_ selecciona "Confirmar" +
+8. El _Sistema_ registra en la base de datos el cargo de los *Servicios* a la *Estancia* (ver EX01) +
+9. Termina el caso de uso
 
 *Flujos alternos*
 
@@ -349,27 +381,31 @@ image::DCU/CU_AdministradorHotel.png[.Diagrama de casos de uso de Administrador 
 1. El _Sistema_ informa al _Recepcionista_ que hubo un error al conectarse a la base de datos +
 2. Termina el caso de uso
 
-*Postcondiciones:* El _Recepcionista_ agregó los cargos de los servicios solicitados
+*Postcondiciones:* Se registró en la base de datos los *Servicios* agregados a la *Estancia* +
 *Reglas de negocio:* N/A +
-*Incluye:* N/A
+*Incluye:* N/A +
 *Extiende:* N/A
 
 ---
 
-*CU10 - Registrar cargo extra a habitación* +
+*CU10 - Registrar Productos a Habitación* +
 *ID:* CU10 +
-*Nombre:* Registrar cargo extra a habitación +
+*Nombre:* Registrar Productos a Habitación +
 *Actores:* Recepcionista +
-*Descripción:* El _Recepcionista_ agrega el cargo extra a una habitación +
+*Disparador:* El _Recepcionista_ selecciona "Agregar Producto a Habitación" +
+*Descripción:* Este caso permite que el _Recepcionista_ logre agregar *Productos* a una *Habitacion* mediante la interacción con la página web. El resultado es el registro de *Productos* a la *Habitación* +
 *Precondiciones:* N/A
 
 *Flujo normal* +
-1. El _Sistema_ muestra las habitaciones (ver EX01) +
-2. El _Recepcionista_ selecciona la habitación a la que se le agregará el cargo +
-3. El _Sistema_ muestra los cargos extra que se pueden agregar (ver EX01) +
-4. El _Recepcionista_ selecciona los cargos extra que se agregarán +
-5. El _Sistema_ actualiza el precio de la habitación (ver EX01) +
-6. Termina el caso de uso
+1. El _Sistema_ recupera de la base de datos las *Habitaciones* (ver EX01) + 
+2. El _Sistema_ muestra las *Habitaciones* +
+3. El _Recepcionista_ selecciona la *Habitación* a la que se le agregarán los *Productos* +
+4. El _Sistema_ recupera de la base de datos los *Productos* que se pueden agregar (ver EX01) +
+5. El _Sistema_ muestra los *Productos* recuperados que se pueden agregar +
+6. El _Recepcionista_ selecciona los *Productos* que se agregarán +
+7. El _Recepcionista_ selecciona "Confirmar" +
+8. El _Sistema_ actualiza en la base de datos el precio de la *Habitación* (ver EX01) +
+9. Termina el caso de uso
 
 *Flujos alternos*
 
@@ -379,7 +415,7 @@ image::DCU/CU_AdministradorHotel.png[.Diagrama de casos de uso de Administrador 
 1. El _Sistema_ informa al _Recepcionista_ que hubo un error al conectarse a la base de datos +
 2. Termina el caso de uso
 
-*Postcondiciones:* El _Recepcionista_ agregó los cargos extra a una habitación
+*Postcondiciones:* Se actualizó en la base de datos la *Habitación*
 *Reglas de negocio:* N/A
 *Incluye:* N/A
 *Extiende:* N/A
@@ -390,7 +426,8 @@ image::DCU/CU_AdministradorHotel.png[.Diagrama de casos de uso de Administrador 
 *ID:* CU11 +
 *Nombre:* Importar CSV de hoteles +
 *Actores:* Administrador de la cadena (Admin) +
-*Descripción:* El _Admin_ importa un CSV con los datos de los hoteles de la cadena +
+*Disparador:* El _Admin_ selecciona "Importar CSV de Hoteles" +
+*Descripción:* Este caso permite que el _Admin_ logre importar el CSV de los *Hoteles* mediante la interacción con la página web. El resultado es la actualización de la base de datos en base al CSV +
 *Precondiciones:* El CSV debe tener el formato brindado
 
 *Flujo normal* +
@@ -410,7 +447,7 @@ image::DCU/CU_AdministradorHotel.png[.Diagrama de casos de uso de Administrador 
 1. El _Sistema_ informa al _Recepcionista_ que hubo un error al conectarse a la base de datos +
 2. Termina el caso de uso
 
-*Postcondiciones:* El _Sistema_ cargó su base de datos mediante el CSV importado
+*Postcondiciones:* Se actualizó la base de datos usando el CSV como base
 *Reglas de negocio:* N/A
 *Incluye:* N/A
 *Extiende:* N/A
@@ -421,16 +458,20 @@ image::DCU/CU_AdministradorHotel.png[.Diagrama de casos de uso de Administrador 
 *ID:* CU012
 *Nombre:* Actualizar datos de hotel
 *Actores:* Administrador de la cadena (Admin) +
-*Descripción:* El _Admin_ modifica los datos de un hotel. +
+*Disparador:* El _Admin_ selecciona "Actualizar Hotel" +
+*Descripción:* Este caso permite que el _Admin_ logre actualizar la información de un *Hotel* mediante la interacción con la página web. El resultado es la actualización en la base de datos del *Hotel* +
 *Precondiciones:* Debe haber al menos un hotel registrado.
 
 *Flujo normal* +
-1. El _Admin_ selecciona el hotel que desea actualizar. +
-2. El _Sistema_ muestra lo datos del hotel seleccionado para actualizarlos (ver EX01). +
-3. El _Admin_ actualiza los datos del hotel (ver FA01). +
-4. El _Admin_ selecciona "Guardar". +
-5. El _Sistema_ actualiza los datos del hotel (ver EX01). +
-6. Termina el caso de uso.
+1. El _Sistema_ recupera de la base de datos los *Hoteles* (ver EX01) +
+2. El _Sistema_ muestra los *Hoteles* recuperados +
+3. El _Admin_ selecciona el hotel que desea actualizar +
+4. El _Sistema_ recupera de la base de datos los datos del *Hotel* +
+5. El _Sistema_ muestra lo datos recuperados del *Hotel* seleccionado para actualizarlos +
+6. El _Admin_ actualiza los datos del hotel (ver FA01). +
+7. El _Admin_ selecciona "Guardar". +
+8. El _Sistema_ actualiza los datos del hotel (ver EX01). +
+9. Termina el caso de uso.
 
 *Flujos alternos*
 
@@ -440,11 +481,11 @@ image::DCU/CU_AdministradorHotel.png[.Diagrama de casos de uso de Administrador 
 
 *Excepciones*
 
-*EX01 - Error al subir CSV* +
-1. El _Sistema_ informa al _Admin_ que hubo un error al subir el CSV +
-2. Termina el caso de uso
+*EX01 – Error al conectarse a la base de datos* +
+1. El _Sistema_ informa al _Admin_ que hubo un error al conectarse a la base de datos. +
+2. Termina el caso de uso. +
 
-*Postcondiciones:* Los datos del hotel seleccionado es actualizado. +
+*Postcondiciones:* Se actualizó en la base de datos la información del *Hotel* +
 *Reglas de negocio:* N/A +
 *Incluye:* N/A +
 *Extiende:* CU15 +
