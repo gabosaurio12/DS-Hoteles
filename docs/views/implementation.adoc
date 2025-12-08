@@ -25,7 +25,7 @@ La implementación se estructura en una arquitectura de capas, donde cada capa a
 
 * Capa de Presentación: interfaz web utilizada por huéspedes, recepcionistas, administradores y auditores.
 * Capa de Lógica de Negocio: Contiene los servicios de negocio (reservas, estancias, auditorías).
-* Capa de Datos: base de datos relacional (por ejemplo, SQL Server o PostgreSQL), se encarga de almacenar los datos de forma persistente e íntegra.
+* Capa de Persistencia: base de datos relacional (por ejemplo, SQL Server o PostgreSQL), se encarga de almacenar los datos de forma persistente e íntegra.
 * Capa de Integración: gestiona la comunicación con sistemas externos (pasarela de pagos).
 
 El sistema se despliega en un entorno cliente-servidor con acceso remoto a través de Internet, asegurando la disponibilidad y escalabilidad del servicio.
@@ -63,11 +63,11 @@ image:../images/Components/SistemaHotel.png[Sistema Hotel, width=600]
 
 *Reglas o Restricciones:* 
 
-* El acceso está restringido exclusivamente al _Administrador del hotel_.
+* El acceso está restringido exclusivamente al _Administrador del hotel_ y al _Auditor_ (con permisos limitados).
 * Un _Hotel_ no puede eliminarse si tiene estancias o reservas activas.
 * No se puede eliminar una _Habitación_ si tiene una _Estancia_ activa.
 
-*Interfaces:* IHabitacionManager, IServicioManager, IProductoManager, IEmpleadoManager, IHuespedFacade.
+*Interfaces:* IHabitacionManager, IServicioManager, IProductoManager, IEmpleadoManager, IReservacionFacade, IAuditorFacade.
 
 === SistemaReservacion
 
@@ -82,7 +82,7 @@ image:../images/Components/SistemaReservacion.png[Sistema Reservación, width=60
 * No se puede confirmar una reservación si la _Habitación_ solicitada no está disponible los días solicitados.
 * No se puede solicitar una reservación si el pago no se ha procesado o si la *PasarelaPagos* no está disponible.
 
-*Dependencias:* La conexión con *SistemaHotel* se realiza mediante _IHuespedFacade_ y con la *PasarelaPagos* mediante _PagosFacade_.
+*Dependencias:* La conexión con *SistemaHotel* se realiza mediante _IReservacionFacade_ y con la *PasarelaPagos* mediante _PagosFacade_.
 
 *Interfaces:* IReservacionManager.
 
@@ -98,7 +98,7 @@ image:../images/Components/SistemaEstancia.png[Sistema Estancia, width=600]
 * Administrar los consumos asociados a la estancia (agregar/quitar productos y servicios).
 * Realizar check-in y check-out.
 
-*Dependencias:* La conexión con el *SistemaHotel* se realiza mediante _HuespedFacade_, con la *PasarelaPagos* con _PagosFacade_ y con el *SistemaReservacion* con _IReservacionManager_.
+*Dependencias:* La conexión con el *SistemaHotel* se realiza mediante _IReservacionFacade_, con la *PasarelaPagos* con _PagosFacade_ y con el *SistemaReservacion* con _IReservacionManager_.
 
 *Reglas o Restricciones:* 
 
@@ -142,9 +142,7 @@ image:../images/Components/PasarelaPagos.png[Pasarela de Pagos, width=600]
 
 === Vista general de los componentes del sistema
 
-image:../images/Components/Sistemas.png[Componentes del sistema, width=600]
-
----
+image:../images/Components/Sistemas.png[Componentes del sistema, width=850]
 
 == Interacción de componentes
 

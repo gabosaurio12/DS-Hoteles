@@ -7,9 +7,9 @@ Los diagramas de despliegue muestran las piezas de hardware en las que vive el s
 
 A partir de aquí se representa el sistema con el supuesto uso de las siguientes tecnologías:
 
-* *React* como motor del front-end
+* *React* como motor del front-end para la página web
 * *Node.js* como motor del back-end
-* *Pristam* como ORM
+* *Prisma* como ORM
 * *PostgreSQL* para la base de datos relacional
 
 La estructura base del sistema sería:
@@ -18,8 +18,9 @@ La estructura base del sistema sería:
 |- api/ +
 |- persitance/ +
 |- presentation/ +
-|-- views/
-|-- components/
+|-- views/ +
+|-- components/ +
+|- controllers/
 
 La carpeta api contendrá lo que sería la _capa de lógica de negocio_, sería la manifestación de los componentes ya antes definidos y se comunicaría con la _capa de persistencia_ (persistance/) donde estaría la lógica y los modelos del ORM (se recomienda el uso de Prisma).
 
@@ -31,38 +32,42 @@ Como primer diagrama de manifestación está el del componente _SistemaCadenaHot
 
 La clase HotelChainManager importaría HotelManager.js para poder configurar lo que ya se había mencionado en secciones anteriores.
 
-image:../images/Despliegue/manifestation/components/Manifest SistemaCadenaHotel.png[align=center, width=600]
+image:../images/Despliegue/manifestation/components/Manifest SistemaCadenaHotel.png[align=center, width=800]
 
 Después tenemos el _SistemaHotel_ que como se puede apreciar contiene varias funcionalidades, es importante destacar que todas estas clases podrán ser importadas mediante la clase *HotelSystem*.
 
-image:../images/Despliegue/manifestation/components/Manifest SistemaHotel.png[align=center, width=600]
+image:../images/Despliegue/manifestation/components/Manifest SistemaHotel.png[align=center, width=1000]
 
 El _SistemaHuesped_ solo tendrá dentro de su carpeta _guestSystem_ su interfaz (clase abstracta) y su clase de implementación pero esta importará _ReservationManager_ para que tenga acceso a la funcionalidad de reserva.
 
-image:../images/Despliegue/manifestation/components/Manifest SistemaHuesped.png[align=center, width=600]
+image:../images/Despliegue/manifestation/components/Manifest SistemaHuesped.png[align=center, width=800]
 
 Esto nos lleva al _SistemaReservación_ en _reservationSystem_ acá importaría la façade de la _PasarelaDePagos_ y la façade de _GuestFacade_ del _SistemaHotel_. Con esto la responsabilidad de manejar los pagos se le cede totalmente a la _PasarelaDePagos_.
 
-image:../images/Despliegue/manifestation/components/Manifest SistemaReservacion.png[align=center, width=600]
+image:../images/Despliegue/manifestation/components/Manifest SistemaReservacion.png[align=center, width=800]
 
 Siguiendo el flujo de negocio, pasaría una _Estancia_, el _SistemaEstancia_ se vería manifestado en _StayManager_ y su clase abstracta, importando la façade de la _PasarelaDePagos_, _reservationManager_ y _GuestFacade_ para poder llevar a cabo sus propias funciones.
 
-image:../images/Despliegue/manifestation/components/Manifest SistemaEstancia.png[align=center, width=600]
+image:../images/Despliegue/manifestation/components/Manifest SistemaEstancia.png[align=center, width=800]
 
-Por úlitmo, está la capa de presentación, la cual será lo que llega al cliente en su navegador web, considero importante mencionar que la carpeta _componentes/_ contiene los componentes de React, no los de nuestro sistema.
+Por úlitmo, está la capa de presentación, la cual será lo que llega al cliente en su navegador web, considero importante mencionar que la carpeta _components/_ contiene los componentes de React, no los de nuestro sistema.
 
-El artefacto _routes.jsx_ son las rutas de navegabilidad que tienen nuestras vistas.
+El artefacto _routes.jsx_ son las rutas de navegabilidad que tienen nuestras vistas. La capa carga desde el principio los archivos que necesita para aplicar SPA (Single-Page Application).
 
-image:../images/Despliegue/manifestation/components/Manifest CapaPresentacion.png[align=center, width=600]
+image:../images/Despliegue/manifestation/components/Manifest CapaPresentacion.png[align=center, width=800]
+
+Como decidimos usar MVC, para respetar la comunicación entre la vista y los controladores la carpeta de _views/_ que contendrá las vistas se comunicará con sus controladores en la carpeta _controllers/_.
 
 === Diagrama de despliegue
 
-Finalmente tenemos el diagrama de despliegue del sistema, donde se comunica el navegador web (cliente) con la _capa de presentación_ construída en React mediante HTTPS/HTTP con nuestro servidor, el cual es donde se ejecuta la _capa de lógica de negocio_ y la _capa de persistencia_ bajo un ambiente de ejecución de Node.js.
+Finalmente tenemos el diagrama de despliegue del sistema, donde el navegador web (cliente) con la _capa de presentación_ construída en React se comunica mediante HTTP/HTTPS con la máquina virtual con el balanceador de carga *_Nginx_* la cual se comunica meidante HTTP/HTTPS con nuestro servidor en el que se ejecuta la _capa de lógica de negocio_ y la _capa de persistencia_ bajo un ambiente de ejecución de Node.js.
+
+En el caso de la app móvil se da como supuesto que la app móvil usa *React Native* como tecnología de construcción de front-end. Este se comunica mediante REST sobre HTTPS con el *balanceador de carga* y este se comunica con el servidor con REST sobre HTTPS.
 
 Los datos de pago del _Huésped_ se los pasa la _capa de lógica de negocio_ mediante REST sobre HTTPS para garantizar la seguridad.
 
 Y la _capa de persistencia_ se comunica con el servidor PostgreSQL mediante el protocolo de este.
 
-Podemos ver claramente representada la arquitectura por capas, bien respetada.
+Podemos ver claramente representada la arquitectura por capas y el uso de MVC, bien respetada.
 
-image:../images/Despliegue/SistemaHotelero.png[align=center, width=600]
+image:../images/Despliegue/SistemaHotelero.png[align=center, width=1000]

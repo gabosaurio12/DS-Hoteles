@@ -159,4 +159,19 @@
 |Abel Hernández Yong
 |Aspectos transversales
 
+|0.2.7
+|05/12/2025
+|Gabriel Antonio González López
+|Revisión y corrección de descripciones de caso de uso (CU01-CU12)
+
+|0.2.8
+|05/12/2025
+|Gabriel Antonio González López
+|Balanceador de carga y representación de MVC en la vista de despliegue
+
+|0.2.9
+|06/12/2025
+|Gabriel Antonio González López
+|Refinamiento de vista Lógica y de Implementación
+
 |===

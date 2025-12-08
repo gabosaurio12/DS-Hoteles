@@ -35,7 +35,7 @@ include::priorization.adoc[]
 include::designmethod.adoc[]
 include::views/logic.adoc[]
 include::views/implementation.adoc[]
-
+include::views/Interface.adoc[]
 include::views/functional.adoc[]
 include::views/information.adoc[]
 include::views/concurrency.adoc[]
