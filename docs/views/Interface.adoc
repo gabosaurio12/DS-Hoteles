@@ -55,6 +55,8 @@ Devuelve true si el Hotel.AdministradorHotel fue actualizado exitosamente
 
 ==== IHotelManager
 
+image::../images/Logica/Interfaces/IHotelManager.png[IHotelManager, width=600]
+
 * getDatosHotel()
 * getPreciosHotel()
 * actualizarPreciosHotel(string rutaPrecios)
@@ -146,6 +148,8 @@ Devuelve la cantidad de CategoriaHabitacion a las que se les retiro la Categoria
 
 ==== IProductoManager
 
+image::../images/Logica/Interfaces/IProductoManager.png[IProductoManager, width=600]
+
 * getProducto()
 * getProducto(string nombreProducto)
 * agregarProducto(Producto producto)
@@ -224,11 +228,29 @@ Devuelve true si la CategoriaServicio fue eliminada exitosamente
 
 ==== IEmpleadoManager
 
+image::../images/Logica/Interfaces/IEmpleadoManager.png[IEmpleadoManager, width=600]
+
 * getEmpleados()
 * getEmpleado(string nombreEmpleado)
 * agregarEmpleado(Empleado empleado)
 * editarEmpleado(Empleado empleado)
 * eliminarEmpleado(int empleadoID)
+
+==== IAuditorFacade
+
+image::../images/Logica/Interfaces/IAuditorFacade.png[IAuditorFacade, width=600]
+
+*consultarRegistroOperaciones(hotelID: int) : RegistroOperacion* +
+``pre:`` +
+Existe un hotel cuyo Hotel.hotelID es igual a hotelID +
+``pos:`` +
+Devuelve el RegistroOperacion del hotel desde su creación, recuperando el Hotel junto con todas las Reservaciones y estancias activas e historicas del hotel.
+
+*consultarRegistroOperacionesCadena(fechaInicio: Date, fechaFin: Date) : RegistroOperacion* +
+``pre:`` +
+Existe hoteles en la cadena que estuvieron activos entre fechaInicio y fechaFin +
+``pos:`` +
+Devuelve un RegistroOperacion entre fechaInicio y fechaFin para todos los hoteles de la cadena, recuperando el Hotel junto con todas las Reservaciones y estancias activas e historicas del hotel.
 
 ---
 
@@ -295,6 +317,8 @@ Devuelve todas las Reservaciones activas del hotel cuyo ID es igual in:hotelID, 
 === Interfaces SistemaEstancia
 
 ==== IEstanciaManager
+
+image::../images/Logica/Interfaces/IEstanciaManager.png[IEstanciaManager, width=600]
 
 * checkIn(Reservacion reservacion)
 * checkOut(Estancia estancia)
@@ -376,3 +400,4 @@ El monto in:monto debe ser mayor a 0 +
 ``pos:`` +
 Registra un cobro con tarjeta de débito asociado a in:transaccionID +
 Devuelve el identificador del cobro (cobroID) si la transacción fue aprobada
+
