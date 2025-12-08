@@ -174,4 +174,9 @@
 |Gabriel Antonio González López
 |Refinamiento de vista Lógica y de Implementación
 
+|0.2.10
+|07/12/2025
+|Abel Hernández Yong
+|Agregado IAuditorManager
+
 |===

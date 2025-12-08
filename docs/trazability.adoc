@@ -79,8 +79,8 @@
 
 | QAS: Disponibilidad - Detección de fallas: La interfaz del proveedor bancario pasa más de 30 segundos sin responder las solicitudes de pago. 
 | 
-|
-|
+| 
+| 
 
 | QAS: Rendimiento - Tiempo de respuesta: Huesped hace una búsqueda de alojamiento durante temporada alta.
 | Aplicar táctica de **Caching** mediante el patrón de diseño **Proxy**. Para acelerar las consultas de disponibilidad. 
@@ -99,8 +99,8 @@
 
 | QAS: Usabilidad - Confianza y satisfacción: Huésped intenta realizar su primera reservación
 | Aplicar el *patrón MVC* para permitir que el flujo de reservación evolucione iterativamente para mejorar la satisfacción del usuario.
-| Metodo de diseño (Iteracion-3)
-| Pendiente (Manifestacion de MVC en un diagrama)
+| Metodo de diseño (Iteracion-3) Vista de despliegue
+| Cumple
 
 | CRN-11 Evitar accesos directos entre componentes sensibles
 | Utilizar una Façade para la comunicación entre interfaces, limitando los datos que se comparten y los métodos que puede usar un componente
@@ -134,8 +134,8 @@
 
 | CON-6 El sistema deberá soportar una política de overbooking del 10% por tipo de habitación y por fecha, evitando sobreventa accidental. (Negocio) 
 | Táctica de **Bloqueo Pesimista** sobre el recurso "habitación" durante el proceso de pago. Adoptar una base de datos relacional (RDBMS) para garantizar transacciones **ACID**. 
-| Metodo de diseño (Iteracion-1, Iteracion-2)
-| Pendiente (Vista lógica, Vista de procesos)
+| Metodo de diseño (Iteracion-1, Iteracion-2), DS Solicitar Reservacion, Vista de Despliegue
+| Cumple
 
 | CON-7: La recolección y manejo de datos personales de los clientes deberá ir acorde con la Ley Federal de Protección de Datos Personales. (Legal)
 | Aplicar táctica **No Almacenar Datos Sensibles**, para la informacion de pago de los huespedes, delegando la responsabilidad a un proveedor de pagos externo. Adoptar una base de datos relacional (RDBMS) para garantizar que los datos del _huesped_ se mantengan integros. Aplicar el patrón **MVC (Model-View-Controller)** para permitir cambios rápidos en la interfaz en caso de cambios en la politica de privacidad de la cadena.
@@ -169,13 +169,13 @@
 
 | CRN-4 Gestionar concurrencia en reservación
 | Táctica de **Bloqueo Pesimista** sobre el recurso "habitación" durante el proceso de pago. Adoptar una base de datos relacional (RDBMS) para garantizar transacciones **ACID**. 
-| Metodo de diseño (Iteracion-1, Iteracion-2)
-| Pendiente (Vista lógica, Vista de procesos)
+| Metodo de diseño (Iteracion-1, Iteracion-2), DS SolicitarReservacion, Vista de Despliegue
+| Cumple
 
 | CRN-5: Garantizar coherencia de precios
 | Aplicar el patrón el patrón **MVC (Model-View-Controller)** para asegurarse de que los precios mostrados a los clientes sean actualizados en tiempo real
-| Metodo de diseño (Iteracion-1, Iteracion-2)
-| Pendiente (tactica/patrón para asegurar la coherencia de precios una vez iniciada una reservacion) (Manifestacion de MVC)
+| Metodo de diseño (Iteracion-1, Iteracion-2), Diagrama de despliegue, DS SolicitarReserva
+| Cumple
 
 | CRN-6: Garantizar cobros únicos
 | Delegar la responsabilidad de la confirmación del cobro a una **Pasarela de Pagos Externa**.
@@ -200,6 +200,7 @@
 | CRN-10: Privacidad e integridad de información de _Huéspedes_
 | Aplicar táctica **No Almacenar Datos Sensibles**, para la informacion de pago de los huespedes
 | Especificación de componentes (CmpSpecPasarelaPagos), vista de implementación (IPasarelaPagosManager), Vista de Despliegue
-| En revisión
+| Cumple
+
 
 |===
